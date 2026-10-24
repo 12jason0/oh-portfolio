@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="오승용 (Oh Seungyong) — Full-stack Developer. 두나(웹·iOS·Android)와 QuoteCrate(Shopify App Store)를 혼자 기획·개발해 출시했고, 지금도 직접 운영하고 있습니다.">
+<meta name="pofol-verify" content="pofol-verify-9f2d7dd43e30a861">
 <meta property="og:type" content="website">
 <meta property="og:title" content="오승용 — Full-stack Developer">
 <meta property="og:description" content="두나(웹·iOS·Android)와 QuoteCrate(Shopify App Store)를 혼자 기획·개발해 출시했고, 지금도 직접 운영하고 있습니다.">
@@ -108,23 +109,33 @@ section{padding:84px 0; position:relative}
 
 /* work — featured project + secondary project grid */
 .other-label{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin:40px 0 16px}
-.pgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:30px; align-items:start}
-.pgrid.cols-2{grid-template-columns:repeat(2,1fr); max-width:760px}
-.archive-bar{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; margin-top:14px; padding:14px 18px; border:1px solid var(--line2); border-radius:10px; font-size:13.5px; color:var(--faint)}
+.archive-bar{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; margin-top:14px; padding:14px 18px; border:1px solid var(--line2); border-radius:10px; font-size:15px; color:#C3CCDB}
 .archive-bar .a-tag{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); border:1px solid var(--line); border-radius:999px; padding:3px 9px}
-.archive-bar b{color:var(--muted); font-weight:600}
+.archive-bar b{color:#E4EAF4; font-weight:600}
 .archive-bar a{color:var(--cy2); border-bottom:1px solid rgba(127,231,248,.35)}
-@media(max-width:640px){.pgrid.cols-2{grid-template-columns:1fr}}
-.pcard.compact .exp-foot{border-top:0}
-.pgrid + .other-label{margin-top:8px}
 .pcard{border-radius:14px; overflow:hidden; border:1px solid var(--line); background:var(--panel); cursor:pointer; display:flex; flex-direction:column; box-shadow:var(--shadow-card); transition:box-shadow .2s, border-color .2s, background-color .2s}
 .pcard:hover{border-color:rgba(53,214,240,.4); box-shadow:var(--shadow-card-hover); background:#111927}
 .pcard.hide{display:none}
-.pcard-feature{grid-column:1/-1; flex-direction:row}
-.pcard-feature .exp-visual{flex:0 0 40%; min-height:auto}
-.pcard-feature .exp-foot{flex:1; border-top:0; border-left:1px solid var(--line2); padding:32px 36px}
-.pcard-feature .exp-foot h3{font-size:clamp(21px,2.6vw,28px)}
-@media(max-width:820px){.pcard-feature{flex-direction:column} .pcard-feature .exp-visual{flex:none} .pcard-feature .exp-foot{border-left:0; border-top:1px solid var(--line2); padding:24px 22px}}
+#work .sub{color:#C3CCDB}
+.plist{display:grid; gap:28px; margin-top:36px}
+.prow{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.prow.noimg{grid-template-columns:1fr}
+.prow .exp-visual{min-height:360px; padding:32px}
+.prow .exp-foot{border-top:0; border-left:1px solid var(--line2); padding:34px 36px}
+.prow.noimg .exp-foot{border-left:0}
+.prow .exp-foot h3{font-size:clamp(24px,3vw,32px); color:#EEF3FA}
+.prow .pdesc{font-family:var(--f-body); font-weight:500; font-size:16.5px; line-height:1.6; color:#D3DBE8; margin:12px 0 0}
+.points.pdid{margin-top:18px; gap:9px}
+.points.pdid li{font-size:16px; line-height:1.65; color:#C9D2E0}
+.shot{width:100%; max-width:600px; aspect-ratio:16/9; border-radius:10px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-card)}
+.shot img{display:block; width:100%; height:100%; object-fit:cover}
+.qc-gallery{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.qc-gallery img{display:block; width:100%; border-radius:8px; border:1px solid var(--line)}
+@media(max-width:820px){.prow{grid-template-columns:1fr} .prow .exp-visual{min-height:0; padding:24px} .prow .exp-foot{border-left:0; border-top:1px solid var(--line2); padding:24px 22px} .prow.noimg .exp-foot{border-top:0}}
+/* Korean text in the work section and its modal uses the body font, not Space Mono */
+:is(#work,.modal) :is(.more,.quicklinks,.other-label,.a-tag,.sec-label,.case dt,.chip-tag) .ko{font-family:var(--f-body); letter-spacing:0; text-transform:none}
+.modal .case dd{font-size:15px; color:#C3CCDB}
+.archive-bar .a-sep{color:var(--faint)}
 .exp-visual{min-height:220px; display:flex; align-items:center; justify-content:center; padding:24px; overflow:hidden; position:relative; background:#0a0f18; perspective:1000px}
 .exp-foot{position:relative; z-index:2; padding:20px 22px 22px; border-top:1px solid var(--line2); background:rgba(8,11,18,.72)}
 .exp-foot .top{display:flex; align-items:flex-start; gap:9px; min-width:0; flex-wrap:wrap}
@@ -134,13 +145,10 @@ section{padding:84px 0; position:relative}
 .chip-tag.camp{background:rgba(255,255,255,.08); color:var(--muted)}
 .exp-detail{display:none}
 .pdesc{font-family:var(--f-head); font-weight:600; font-size:16px; color:#E4EAF4; margin:12px 0 0}
-.prole{font-family:var(--f-mono); font-size:12.5px; color:var(--muted); margin:6px 0 0; line-height:1.6}
-.pproblem{font-size:14px; color:#AEB9CC; line-height:1.7; margin:16px 0 0; max-width:48ch}
 .pstack{display:flex; flex-wrap:wrap; gap:7px; margin-top:16px}
 .pstack span{font-family:var(--f-mono); font-size:10.5px; color:var(--ink); background:var(--panel2); border:1px solid var(--line); border-radius:6px; padding:4px 9px; line-height:1.3}
-.pfix{font-family:var(--f-mono); font-size:11px; color:var(--cy2); margin-top:12px; line-height:1.6}
-.quicklinks{display:flex; gap:16px; margin-top:14px}
-.quicklinks a{font-family:var(--f-mono); font-size:11.5px; color:var(--cy2); border-bottom:1px solid rgba(127,231,248,.35); padding-bottom:1px}
+.quicklinks{display:flex; flex-wrap:wrap; gap:16px; margin-top:18px}
+.quicklinks a{font-family:var(--f-mono); font-size:13px; color:var(--cy2); border-bottom:1px solid rgba(127,231,248,.35); padding-bottom:1px}
 .quicklinks a:hover{border-color:var(--cy2)}
 .more{display:flex; align-items:center; gap:6px; font-family:var(--f-mono); font-size:12px; font-weight:500; color:var(--cy2); letter-spacing:.02em; margin-top:16px}
 .more .arrow{display:inline-block; transition:transform .15s}
@@ -221,18 +229,7 @@ section{padding:84px 0; position:relative}
 .crd .ln{flex:1}
 .crd .ln i{display:block; height:6px; border-radius:4px; background:rgba(255,255,255,.2)}
 .crd .ln i.s{width:66%; margin-top:6px; background:rgba(255,255,255,.1)}
-.dash,.site{width:340px; max-width:100%; background:#0C1320; border:1px solid var(--line2); border-radius:14px; overflow:hidden; box-shadow:none}
-.dash .bar,.site .bar{display:flex; align-items:center; padding:11px 14px; border-bottom:1px solid var(--line2)}
-.dash .bar span,.site .bar span{font-family:var(--f-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--faint)}
-.dash .body{padding:18px}
-.qrow{display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,.04); border:0; border-radius:10px; padding:11px 13px; margin-bottom:10px}
-.qrow .q{font-family:var(--f-mono); font-size:11px; color:var(--muted)}
-.qrow .q b{color:var(--ink); font-family:var(--f-head); font-weight:600; font-size:13px; display:block}
-.badge{font-family:var(--f-mono); font-size:11px; padding:4px 9px; border-radius:999px}
-.badge.p{background:var(--cy-soft); color:var(--cy2)}
-.badge.g{background:rgba(63,208,139,.16); color:var(--good)}
-.flowline{display:flex; align-items:center; gap:8px; font-family:var(--f-mono); font-size:9.5px; color:var(--muted); margin-top:6px; justify-content:center}
-.flowline b{color:var(--cy2)}
+.site{width:340px; max-width:100%; background:#0C1320; border:1px solid var(--line2); border-radius:14px; overflow:hidden; box-shadow:none}
 .site .shero{padding:24px 18px; background:#0e1622}
 .site .shero i{display:block; height:9px; border-radius:5px; background:rgba(255,255,255,.72); width:72%}
 .site .shero i.s{height:6px; width:48%; margin-top:9px; background:rgba(255,255,255,.28)}
@@ -283,6 +280,7 @@ footer a:hover{color:var(--cy2)}
 .modal-left{display:flex; align-items:center; justify-content:center; padding:40px; border-right:1px solid var(--line2); background:#0a0f18; min-height:0; overflow:hidden}
 .modal-left .exp-visual{background:none; padding:0; min-height:0}
 .modal-left .exp-visual > *{transform:scale(1)!important}
+.modal-left .shot{box-shadow:none}
 /* only the text column scrolls when its content is taller than the modal — the phone
    mockup on the left stays put. min-height:0 lets this grid item shrink below its content's
    natural height so overflow-y:auto actually kicks in instead of stretching the whole row. */
@@ -304,7 +302,7 @@ footer a:hover{color:var(--cy2)}
 @media(max-width:820px){
   section{padding:66px 0}
   .stats{grid-template-columns:1fr}
-  .cards3,.pgrid,.cs-grid{grid-template-columns:1fr}
+  .cards3,.cs-grid{grid-template-columns:1fr}
   .exp-visual{padding:22px; min-height:200px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important; scroll-behavior:auto} .meta .ar{animation:none}}
@@ -533,8 +531,8 @@ footer a:hover{color:var(--cy2)}
       <p class="sub"><span class="ko">기획부터 프론트엔드·백엔드 개발, 배포와 운영까지 직접 경험합니다. AI를 리서치·개발·디버깅 과정에 적극 활용해 반복 작업을 줄이고, 실제 사용자에게 도달하는 서비스로 빠르게 검증합니다.</span><span class="en">I handle product planning, frontend/backend development, deployment and operations end to end. AI cuts repetitive work in research, development and debugging, so I can validate faster with a service that reaches real users.</span></p>
       <p class="sub" style="font-size:14.5px; margin-top:14px"><span class="ko">AI가 만든 결과를 그대로 사용하지 않고, 공식 문서·실행 결과·실사용 데이터를 기준으로 직접 검증합니다.</span><span class="en">I don't use what AI produces as-is — I verify it against official docs, execution results, and real usage data.</span></p>
 
-      <div class="pgrid">
-        <article class="pcard pcard-feature exp" id="feature-dona" data-cat="product">
+      <div class="plist">
+        <article class="pcard prow exp" id="feature-dona" data-cat="product">
           <div class="exp-visual">
             <div class="phone">
               <div class="notch"></div>
@@ -542,14 +540,18 @@ footer a:hover{color:var(--cy2)}
             </div>
           </div>
           <div class="exp-foot">
-            <div class="top"><span class="num">01</span><h3><span class="ko">두나 (DoNa)</span><span class="en">DoNa</span></h3><span class="chip-tag live">FEATURED · LIVE</span></div>
-            <p class="pdesc"><span class="ko">데이트 코스 추천 서비스</span><span class="en">Date-course recommendation service</span></p>
-            <p class="prole"><span class="ko">1인 개발 · Web / iOS / Android 정식 출시</span><span class="en">Solo build · Live on Web / iOS / Android</span></p>
-            <p class="pproblem"><span class="ko">장소를 찾는 것에서 끝나지 않고, 데이트 장소의 순서와 동선까지 결정할 수 있도록 만든 서비스</span><span class="en">Goes beyond finding places — decides the order and route between date spots too</span></p>
+            <div class="top"><span class="num">01</span><h3><span class="ko">두나 (DoNa)</span><span class="en">DoNa</span></h3><span class="chip-tag live">LIVE</span></div>
+            <p class="pdesc"><span class="ko">데이트 장소의 순서와 동선까지 정해주는 코스 추천 서비스 · 1인 개발, Web·iOS·Android 출시</span><span class="en">Date-course service that decides the order and route between spots · Solo build, live on Web, iOS and Android</span></p>
+            <ul class="points pdid">
+              <li><span class="ko">기획 · 프론트엔드 · 백엔드 · DB 설계 · 모바일 앱 · 배포 · 운영까지 1인으로 진행</span><span class="en">Solo across planning, frontend, backend, DB design, the mobile app, deployment and operations</span></li>
+              <li><span class="ko">JWT를 httpOnly 쿠키로 전환, N+1 쿼리 개선, Upstash Redis Rate Limiting 적용</span><span class="en">Moved the JWT to an httpOnly cookie, fixed an N+1 query, added Upstash Redis rate limiting</span></li>
+              <li><span class="ko">TossPayments·RevenueCat 결제 연동, 코스 44개 제작 후 앱스토어·구글플레이 정식 출시</span><span class="en">Integrated TossPayments and RevenueCat billing; built 44 courses and shipped to the App Store and Google Play</span></li>
+            </ul>
             <div class="pstack"><span>Next.js</span><span>TypeScript</span><span>PostgreSQL</span><span>Prisma</span><span>React Native</span></div>
-            <p class="pfix"><span class="ko">httpOnly Cookie 인증 전환 · N+1 쿼리 개선 · Redis Rate Limiting · 모바일 빌드 이슈 해결</span><span class="en">httpOnly cookie auth · N+1 query fix · Redis rate limiting · mobile build fix</span></p>
             <div class="quicklinks">
               <a href="https://dona.io.kr/" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="ko">LIVE 보기</span><span class="en">View live</span> ↗</a>
+              <a href="https://apps.apple.com/app/id6756777886" target="_blank" rel="noopener" onclick="event.stopPropagation()">App Store ↗</a>
+              <a href="https://play.google.com/store/apps/details?id=kr.io.dona.dona" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Play ↗</a>
             </div>
             <div class="more"><span class="ko">프로젝트 자세히 보기</span><span class="en">View project details</span><span class="arrow">→</span></div>
             <div class="exp-detail">
@@ -642,25 +644,19 @@ footer a:hover{color:var(--cy2)}
             </div>
           </div>
         </article>
-      </div>
 
-      <p class="other-label"><span class="ko">다른 프로젝트</span><span class="en">Other projects</span></p>
-      <div class="pgrid">
-        <article class="pcard exp" data-cat="product">
+        <article class="pcard prow exp" data-cat="product">
           <div class="exp-visual">
-            <div class="dash">
-              <div class="bar"><span><span class="ko">미리보기</span><span class="en">Preview</span></span></div>
-              <div class="body">
-                <div class="qrow"><div class="q"><span class="ko">견적 요청</span><span class="en">Quote request</span><b>#1042 · Wholesale</b></div><span class="badge p"><span class="ko">가격 책정</span><span class="en">Pricing</span></span></div>
-                <div class="qrow"><div class="q"><span class="ko">체크아웃</span><span class="en">Checkout</span><b>$1,280.00</b></div><span class="badge g"><span class="ko">결제 완료</span><span class="en">Paid</span></span></div>
-                <div class="flowline"><span class="ko">견적</span><span class="en">Quote</span> → <b><span class="ko">가격</span><span class="en">Price</span></b> → <span class="ko">수락</span><span class="en">Accept</span> → <b>Checkout</b></div>
-              </div>
-            </div>
+            <div class="shot"><img src="/qc/qc-2.png" alt="QuoteCrate 관리자 견적함 화면" loading="lazy"></div>
           </div>
           <div class="exp-foot">
             <div class="top"><span class="num">02</span><h3>QuoteCrate</h3><span class="chip-tag live">LIVE</span></div>
-            <p class="pdesc"><span class="ko">Shopify B2B 견적 앱</span><span class="en">Shopify B2B quoting app</span></p>
-            <p class="prole"><span class="ko">1인 개발 · Shopify App Store 정식 출시 (2026.10)</span><span class="en">Solo build · Live on the Shopify App Store (Oct 2026)</span></p>
+            <p class="pdesc"><span class="ko">Shopify 도매(B2B) 견적 → 주문·결제 전환 앱 · 1인 개발, Shopify App Store 출시 (2026.10)</span><span class="en">Shopify wholesale (B2B) quote-to-order app · Solo build, live on the Shopify App Store (Oct 2026)</span></p>
+            <ul class="points pdid">
+              <li><span class="ko">견적 요청 → 가격 책정 → 체크아웃을 하나의 흐름으로 잇고 E2E로 검증</span><span class="en">Connected quote → pricing → checkout in one flow, verified end to end</span></li>
+              <li><span class="ko">Billing API 구독 결제 + 무료체험 구현</span><span class="en">Billing API subscription with a free trial</span></li>
+              <li><span class="ko">HMAC 웹훅 검증·스코프 최소화로 App Store 심사 대응</span><span class="en">HMAC-verified webhooks and minimal scopes for App Store review</span></li>
+            </ul>
             <div class="pstack"><span>Remix</span><span>Node.js</span><span>PostgreSQL</span><span>Shopify</span></div>
             <div class="quicklinks">
               <a href="https://apps.shopify.com/quotecrate" target="_blank" rel="noopener" onclick="event.stopPropagation()">App Store ↗</a>
@@ -696,6 +692,16 @@ footer a:hover{color:var(--cy2)}
                 <span class="stk"><b>BE</b> Remix · Node · Prisma · PostgreSQL</span>
                 <span class="stk"><b>Shopify</b> GraphQL · Draft Orders · Billing</span>
               </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">화면</span><span class="en">Screens</span></p>
+                <div class="qc-gallery">
+                  <img src="/qc/qc-1.png" alt="상점 견적 요청 폼" loading="lazy">
+                  <img src="/qc/qc-2.png" alt="관리자 견적함" loading="lazy">
+                  <img src="/qc/qc-3.png" alt="도매가 설정" loading="lazy">
+                  <img src="/qc/qc-4.png" alt="구매자 수락 → 결제" loading="lazy">
+                  <img src="/qc/qc-5.png" alt="메시지" loading="lazy">
+                </div>
+              </div>
               <a class="repo" href="https://github.com/12jason0/quotecrate" target="_blank" rel="noopener">
                 <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
                 github.com/12jason0/quotecrate
@@ -704,11 +710,15 @@ footer a:hover{color:var(--cy2)}
           </div>
         </article>
 
-        <article class="pcard exp compact" data-cat="product">
+        <article class="pcard prow noimg exp" data-cat="product">
           <div class="exp-foot">
             <div class="top"><span class="num">03</span><h3><span class="ko">두나 관리자 백오피스</span><span class="en">DoNa Admin Back Office</span></h3><span class="chip-tag live"><span class="ko">운영 중</span><span class="en">In use</span></span></div>
-            <p class="pdesc"><span class="ko">AI 장소 자동수집 · 운영 관리자 시스템</span><span class="en">Admin system with AI place collection</span></p>
-            <p class="prole"><span class="ko">1인 개발 · 실제 서비스 운영에 매일 사용</span><span class="en">Solo build · Used daily to run the live service</span></p>
+            <p class="pdesc"><span class="ko">AI 장소 자동수집 · 운영 관리자 시스템 · 1인 개발, 실제 서비스 운영에 매일 사용</span><span class="en">Admin system with AI place collection · Solo build, used daily to run the live service</span></p>
+            <ul class="points pdid">
+              <li><span class="ko">텔레그램으로 장소 사진·이름 전송 → Claude API가 주소·4개 언어 번역 → 검수 후 등록</span><span class="en">Send a place via Telegram → Claude API fills address &amp; 4-language translation → reviewed before publishing</span></li>
+              <li><span class="ko">버튼 한 번으로 전체 장소 폐업·주소 변경 주 1회 점검</span><span class="en">One-click weekly check for closed places and address changes</span></li>
+              <li><span class="ko">분석 대시보드 · 코스/장소 관리 · 제보 검토 · 환불 · 푸시 알림</span><span class="en">Analytics dashboard · course/place management · reports · refunds · push</span></li>
+            </ul>
             <div class="pstack"><span>Next.js</span><span>Node.js</span><span>PostgreSQL</span><span>Claude API</span><span>Telegram Bot</span></div>
             <div class="more"><span class="ko">프로젝트 자세히 보기</span><span class="en">View project details</span><span class="arrow">→</span></div>
             <div class="exp-detail">
@@ -726,29 +736,14 @@ footer a:hover{color:var(--cy2)}
             </div>
           </div>
         </article>
-
-        <article class="pcard exp compact" data-cat="bootcamp">
-          <div class="exp-foot">
-            <div class="top"><span class="num">04</span><h3><span class="ko">개콜 (개린이 콜라보)</span><span class="en">GaeCall (Beginner Collab)</span></h3><span class="chip-tag camp"><span class="ko">부트캠프</span><span class="en">Bootcamp</span></span></div>
-            <p class="pdesc"><span class="ko">팀 협업·관리 웹 서비스</span><span class="en">Team collaboration web app</span></p>
-            <p class="prole"><span class="ko">4인 팀 · 프론트엔드 담당 · 포스코×코딩온 최우수상</span><span class="en">Team of 4 · Frontend · Top team award</span></p>
-            <div class="pstack"><span>JavaScript</span><span>React</span></div>
-            <div class="more"><span class="ko">프로젝트 자세히 보기</span><span class="en">View project details</span><span class="arrow">→</span></div>
-            <div class="exp-detail">
-              <p class="role"><span class="ko">개발 입문자 팀의 프로젝트 협업·관리 웹 서비스. 팀 4인(포스코×코딩온 11기 2차) — 최우수상. 회원가입·로그인·대시보드·작업보드·이슈관리 등 프론트엔드 전반 구현, axios 기반 API 연동 주도.</span><span class="en">A collaboration/PM web app for a bootcamp beginners' team (4 people, POSCO×CodingOn cohort 11) — top team award. Built most of the frontend: auth, dashboard, task board, issue tracker; led axios-based API integration.</span></p>
-              <p class="role" style="margin-top:14px"><b style="color:#C3CCDA"><span class="ko">협업: </span><span class="en">Collaboration: </span></b><span class="ko">화면을 나눠 개발하다 중간 점검에서 화면마다 여백·간격·스타일이 제각각인 걸 발견. 서로 화면을 공유하며 기준을 맞춰 발표 전까지 UI를 통일했습니다.</span><span class="en">We split screens to build in parallel; a mid-project check revealed each screen had inconsistent spacing and styling. We screen-shared to agree on a shared standard and unified the UI before the demo.</span></p>
-              <div class="stack">
-                <span class="stk">JavaScript · React</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
       </div>
 
-      <p class="other-label" style="margin-top:26px"><span class="ko">아카이브 · 이전 작업</span><span class="en">Archive · Earlier work</span></p>
+      <p class="other-label" style="margin-top:34px"><span class="ko">아카이브 · 이전 작업</span><span class="en">Archive · Earlier work</span></p>
       <div class="archive-bar">
         <span class="a-tag"><span class="ko">부트캠프</span><span class="en">Bootcamp</span></span>
+        <b><span class="ko">개콜</span><span class="en">GaeCall</span></b>
+        <span><span class="ko">팀 협업·관리 웹 · 4인 팀 프론트엔드 · 포스코×코딩온 최우수상</span><span class="en">Team collaboration web app · frontend in a team of 4 · POSCO×CodingOn top team award</span></span>
+        <span class="a-sep">·</span>
         <b><span class="ko">메이킹홈</span><span class="en">MakingHome</span></b>
         <span><span class="ko">원룸 인테리어 웹 최적화 · 2인 팀 · 데스크톱 UI 재구성</span><span class="en">Web-optimized interior service · pair project · rebuilt for desktop</span></span>
       </div>
@@ -896,7 +891,7 @@ footer a:hover{color:var(--cy2)}
     root.classList.add('js-anim');
     var groups=[
       ['.strip .lbl','.strip .brand'],
-      ['#work .kicker','#work .h2','#work .sub','#work .pgrid','#work .other-label','#work .archive-bar'],
+      ['#work .kicker','#work .h2','#work .sub','#work .prow','#work .other-label','#work .archive-bar'],
       ['#case-study .kicker','#case-study .h2','#case-study .sub','#case-study .case'],
       ['#ai-workflow .kicker','#ai-workflow .h2','#ai-workflow .sub'],
       ['#timeline .kicker','#timeline .h2','.timeline .trow'],
