@@ -282,16 +282,22 @@ section{padding:126px 0; position:relative}
 .tl-line{position:absolute; top:28px; bottom:40px; left:calc(var(--side) + var(--g) + var(--dotc)/2 - .5px); width:1px; background:var(--line)}
 .tl-line i{position:absolute; left:0; top:0; width:1px; height:0; background:linear-gradient(var(--cy), color-mix(in srgb, var(--cy) 30%, transparent)); box-shadow:0 0 6px var(--cy)}
 .tl-item{position:relative; display:grid; grid-template-columns:var(--side) var(--dotc) minmax(0,1fr); column-gap:var(--g); align-items:start}
-.tl-side{text-align:right; padding-top:22px; position:sticky; top:110px; transition:opacity .4s}
-.tl-item:not(.on) .tl-side{opacity:.45}
+.tl-side{text-align:right; padding-top:22px; visibility:hidden}
+@media(min-width:821px){.ptl .tl-item .tl-dot{visibility:hidden}}
+.tl-now{position:absolute; top:0; bottom:0; left:0; width:var(--side); pointer-events:none; z-index:2}
+.tl-now-in{position:sticky; top:110px; padding-top:22px; text-align:right; transition:opacity .22s ease, transform .22s ease}
+.tl-now-in.out{opacity:0; transform:translateY(-10px)}
+.tl-now-in.pre{opacity:0; transform:translateY(10px); transition:none}
+.tl-now .tl-name{color:var(--ink)}
+.tl-now-in::after{content:""; position:absolute; top:26px; right:calc(-1 * (var(--g) + var(--dotc)/2 + 6px)); width:12px; height:12px; border-radius:50%; background:var(--cy); box-shadow:0 0 0 4px var(--cy-soft), 0 0 14px var(--cy)}
 .tl-name{display:block; font-size:14px; font-weight:600; line-height:1.4; color:var(--body); transition:color .4s}
 .tl-date{display:block; margin-top:4px; font-size:14px; color:var(--muted); font-variant-numeric:tabular-nums}
-.tl-dot{position:sticky; top:135px; z-index:1; width:var(--dotc); height:var(--dotc); margin-top:25px; border-radius:50%; background:var(--bg); border:2px solid var(--muted); transition:background .5s, border-color .5s, box-shadow .5s}
+.tl-dot{position:relative; z-index:1; width:var(--dotc); height:var(--dotc); margin-top:25px; border-radius:50%; background:var(--bg); border:2px solid var(--muted); transition:background .5s, border-color .5s, box-shadow .5s}
 .tl-item.on .tl-dot{background:var(--cy); border-color:var(--cy); box-shadow:0 0 0 5px var(--cy-soft), 0 0 18px color-mix(in srgb, var(--cy) 70%, transparent)}
 .tl-item.on .tl-name{color:var(--ink)}
 /* back office hangs off DoNa as a smaller branch */
 .tl-item.tl-child{margin-top:-14px}
-.tl-item.tl-child .tl-dot{width:10px; height:10px; margin:28px auto 0; top:138px}
+.tl-item.tl-child .tl-dot{width:10px; height:10px; margin:28px auto 0}
 .tl-item.tl-child > .prow{margin-left:28px; position:relative}
 .tl-item.tl-child > .prow::before{content:""; position:absolute; left:calc(-28px - var(--g)); top:32px; width:calc(28px + var(--g)); border-top:1px dashed var(--line)}
 .tl-item.tl-child .tl-name{font-weight:500}
@@ -301,9 +307,10 @@ section{padding:126px 0; position:relative}
   .ptl{--side:0px; --g:14px; gap:32px}
   .tl-line{left:7.5px; top:6px}
   .tl-item{grid-template-columns:var(--dotc) minmax(0,1fr); row-gap:10px}
-  .tl-side{position:static; opacity:1!important; grid-column:2; grid-row:1; text-align:left; padding-top:0; display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline}
+  .tl-now{display:none}
+  .tl-side{visibility:visible; grid-column:2; grid-row:1; text-align:left; padding-top:0; display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline}
   .tl-date{margin-top:0}
-  .tl-dot{position:relative; top:auto; grid-column:1; grid-row:1; margin-top:3px}
+  .tl-dot{grid-column:1; grid-row:1; margin-top:3px}
   .tl-item > .prow{grid-column:2; grid-row:2}
   .tl-item.tl-child{margin-top:0}
   .tl-item.tl-child .tl-dot{margin:6px auto 0}
@@ -587,6 +594,7 @@ footer a:hover{color:var(--cy2)}
 
       <div class="plist ptl">
         <div class="tl-line" aria-hidden="true"><i></i></div>
+        <div class="tl-now" aria-hidden="true"><div class="tl-now-in"></div></div>
         <div class="tl-item">
           <div class="tl-side"><b class="tl-name"><span class="ko">두나 · 개발 및 운영</span><span class="en">DoNa · build &amp; run</span></b><span class="tl-date">2025.08–<span class="ko">현재</span><span class="en">now</span></span></div>
           <div class="tl-dot" aria-hidden="true"></div>
@@ -973,8 +981,26 @@ footer a:hover{color:var(--cy2)}
       var io=new IntersectionObserver(function(es){ es.forEach(function(en){ en.target.classList.toggle('on', en.isIntersecting); }); },{rootMargin:'-30% 0px -30% 0px'});
       items.forEach(function(it){ io.observe(it); });
     } else items.forEach(function(it){ it.classList.add('on'); });
+    var now=tl.querySelector('.tl-now-in'), shown=-1, busy=false;
+    function pick(){
+      var k=0, line=innerHeight*.45;
+      items.forEach(function(it,i){ if(it.getBoundingClientRect().top<=line) k=i; });
+      return k;
+    }
+    function swap(k){
+      if(k===shown) return;
+      var html=items[k].querySelector('.tl-side').innerHTML;
+      if(shown<0){ now.innerHTML=html; shown=k; return; }
+      shown=k; busy=true; now.classList.add('out');
+      setTimeout(function(){
+        now.innerHTML=items[shown].querySelector('.tl-side').innerHTML;
+        now.classList.remove('out'); now.classList.add('pre');
+        void now.offsetWidth; now.classList.remove('pre'); busy=false;
+      },220);
+    }
     var last=-1;
     function loop(){
+      if(!busy) swap(pick());
       var r=line.getBoundingClientRect(), h=Math.max(0,Math.min(r.height, innerHeight*.6 - r.top));
       if(Math.abs(h-last)>.5){ last=h; fill.style.height=h.toFixed(1)+'px'; }
       requestAnimationFrame(loop);
