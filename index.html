@@ -140,7 +140,8 @@ section{padding:126px 0; position:relative}
 .modal .qc-gallery img:hover{opacity:1}
 .modal .qc-gallery img.on{opacity:1; border-color:var(--acc, var(--cy)); box-shadow:0 0 0 1px var(--acc, var(--cy))}
 .modal-left .shot{aspect-ratio:auto; max-width:100%}
-.modal-left .shot img{height:auto; max-height:calc(min(88vh,720px) - 100px); object-fit:contain; transition:opacity .15s}
+.modal-left .phone{width:270px}
+.modal-left .shot img{height:auto; max-height:calc(min(90vh,860px) - 100px); object-fit:contain; transition:opacity .15s}
 @media(max-width:820px){.prow{grid-template-columns:1fr} .prow .exp-visual{min-height:0; padding:24px} .prow .exp-foot{border-left:0; border-top:1px solid var(--line2); padding:24px 22px}}
 /* Korean text in the work section and its modal uses the body font, not Space Mono */
 :is(#work,.modal) :is(.more,.quicklinks,.other-label,.a-tag,.sec-label,.case dt,.chip-tag) .ko{font-family:var(--f-body); letter-spacing:0; text-transform:none}
@@ -386,7 +387,7 @@ footer a:hover{color:var(--cy2)}
    algorithm actually respects — max-height alone lets the row grow to fit the tallest
    child's full content and only clips the box visually, which defeats min-height:0 on the
    children below and stops modal-right's own overflow-y:auto from ever engaging. */
-.modal-box{position:relative; z-index:1; width:min(940px,100%); height:min(88vh,720px); overflow:hidden; background:var(--panel); border:1px solid var(--line); border-radius:16px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:minmax(0,1fr); box-shadow:var(--shadow-modal)}
+.modal-box{position:relative; z-index:1; width:min(1240px,100%); height:min(90vh,860px); overflow:hidden; background:var(--panel); border:1px solid var(--line); border-radius:16px; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); grid-template-rows:minmax(0,1fr); box-shadow:var(--shadow-modal)}
 .modal-left{display:flex; align-items:center; justify-content:center; padding:40px; border-right:1px solid var(--line2); background:var(--visual); min-height:0; overflow:hidden}
 .modal-left .exp-visual{background:none; padding:0; min-height:0}
 .modal-left .exp-visual > *{transform:scale(1)!important}
@@ -394,15 +395,16 @@ footer a:hover{color:var(--cy2)}
 /* only the text column scrolls when its content is taller than the modal — the phone
    mockup on the left stays put. min-height:0 lets this grid item shrink below its content's
    natural height so overflow-y:auto actually kicks in instead of stretching the whole row. */
-.modal-right{padding:38px 58px 38px 36px; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch}
+.modal-right{padding:44px 64px 44px 44px; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none}
+.modal-right::-webkit-scrollbar{display:none}
 .modal-right .top{display:flex; align-items:center; gap:11px; margin-bottom:4px}
 .modal-right h3{font-family:var(--f-head); font-weight:600; font-size:24px; margin:0; color:var(--ink); white-space:normal}
 .modal-right .chip-tag{margin-left:auto}
 .modal-right .more{display:none!important}
-.modal .exp-detail{display:block!important; margin-top:16px; max-width:58ch}
+.modal .exp-detail{display:block!important; margin-top:16px; max-width:62ch}
 .modal-close{position:absolute; top:12px; right:14px; z-index:2; width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:var(--nav-bg); color:var(--ink); font-size:16px; cursor:pointer; line-height:1}
 .modal-close:hover{border-color:var(--cy); color:var(--cy2)}
-@media(max-width:720px){ .modal-box{grid-template-columns:1fr; grid-template-rows:auto 1fr; height:min(90vh,680px)} .modal-left{border-right:0; border-bottom:1px solid var(--line2); padding:16px} .modal-left .phone{width:150px} }
+@media(max-width:720px){ .modal-box{grid-template-columns:1fr; grid-template-rows:auto 1fr; height:min(90vh,680px)} .modal-left{border-right:0; border-bottom:1px solid var(--line2); padding:16px} .modal-left .phone{width:150px} .modal-right{padding:26px 22px 30px} }
 
 /* scroll reveal (FEConf-style) */
 .js-anim .reveal{opacity:0; transform:translateY(32px); transition:opacity .8s cubic-bezier(.2,.65,.25,1), transform .8s cubic-bezier(.2,.65,.25,1)}
