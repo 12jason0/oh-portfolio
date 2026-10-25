@@ -165,7 +165,15 @@ section{padding:126px 0; position:relative}
 .exp-detail .repo{margin-top:18px}
 .exp-detail .sec{margin-top:28px}
 .exp-detail .sec:first-child{margin-top:0}
-.exp-detail .sec-label{font-family:var(--f-mono); font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--cy2); margin:0 0 10px}
+.exp-detail .sec-label{font-family:var(--f-body); font-size:14px; font-weight:700; letter-spacing:0; color:var(--acc, var(--cy2)); margin:0 0 10px}
+.exp-detail .role.note{margin-top:10px; font-size:14px; color:var(--muted)}
+.case-link{display:inline-block; margin-top:12px; font-size:14px; font-weight:600; color:var(--acc, var(--cy2)); border-bottom:1px solid color-mix(in srgb, var(--acc, var(--cy)) 40%, transparent)}
+.case-link:hover{border-bottom-color:var(--acc, var(--cy))}
+.modal .points li::before{background:var(--acc, var(--cy))}
+.modal .stk b{color:var(--acc, var(--cy2))}
+.modal .case dt.key{color:var(--acc, var(--cy))}
+.modal .chip-tag{margin-left:auto}
+.modal-box{border-color:color-mix(in srgb, var(--acc, var(--cy)) 30%, var(--line))}
 .case{border:1px solid var(--line); border-radius:10px; padding:16px 17px; margin-top:12px; background:var(--tint)}
 .case .case-h{font-family:var(--f-head); font-weight:600; font-size:16px; color:var(--ink); margin:0 0 11px}
 .case dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:9px 14px}
@@ -366,7 +374,7 @@ footer a:hover{color:var(--cy2)}
 /* only the text column scrolls when its content is taller than the modal — the phone
    mockup on the left stays put. min-height:0 lets this grid item shrink below its content's
    natural height so overflow-y:auto actually kicks in instead of stretching the whole row. */
-.modal-right{padding:38px 36px; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch}
+.modal-right{padding:38px 58px 38px 36px; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch}
 .modal-right .top{display:flex; align-items:center; gap:11px; margin-bottom:4px}
 .modal-right h3{font-family:var(--f-head); font-weight:600; font-size:24px; margin:0; color:var(--ink); white-space:normal}
 .modal-right .chip-tag{margin-left:auto}
@@ -633,15 +641,21 @@ footer a:hover{color:var(--cy2)}
             </div>
             <div class="exp-detail">
               <div class="sec">
-                <p class="sec-label">Problem</p>
-                <p class="role"><span class="ko">기존 지도 서비스는 장소만 보여줄 뿐, 어떤 순서로 갈지는 정해주지 않았습니다.</span><span class="en">Map services show places, but never decide the order to visit them in.</span></p>
+                <p class="sec-label"><span class="ko">왜 만들었나</span><span class="en">Why</span></p>
+                <p class="role"><span class="ko">기존 지도 서비스는 장소만 보여줄 뿐, 어떤 순서로 갈지는 정해주지 않았습니다. 그래서 동선까지 짜주는 데이트 코스 서비스를 만들었습니다.</span><span class="en">Map services show places but never decide the order to visit them, so I built a date-course service that plans the route too.</span></p>
               </div>
               <div class="sec">
-                <p class="sec-label"><span class="ko">내 역할</span><span class="en">My Role</span></p>
+                <p class="sec-label"><span class="ko">내가 한 일</span><span class="en">What I did</span></p>
                 <p class="role"><span class="ko">기획·프론트엔드·백엔드·DB 설계·결제·모바일 앱·배포·운영을 혼자 맡았습니다.</span><span class="en">Solo across planning, frontend, backend, DB design, payments, the mobile app, deployment and operations.</span></p>
+                <ul class="points">
+                  <li><span class="ko">N+1 개선: 항목마다 반복하던 관계 조회를 relation include 한 번으로 통합</span><span class="en">N+1 fix: folded per-item relation lookups into one relation-include query</span></li>
+                  <li><span class="ko">Rate Limiting: Upstash Redis로 요청 속도 제한</span><span class="en">Rate limiting: request limits on Upstash Redis</span></li>
+                  <li><span class="ko">결제: TossPayments·RevenueCat 구독 결제 연동</span><span class="en">Payments: TossPayments and RevenueCat subscriptions</span></li>
+                  <li><span class="ko">배포·모니터링: Vercel, CloudFront CDN, Sentry</span><span class="en">Deploy & monitoring: Vercel, CloudFront CDN, Sentry</span></li>
+                </ul>
               </div>
               <div class="sec">
-                <p class="sec-label"><span class="ko">아키텍처</span><span class="en">Architecture</span></p>
+                <p class="sec-label"><span class="ko">구조</span><span class="en">Architecture</span></p>
                 <div class="ai-flow" style="justify-content:flex-start; margin-top:4px">
                   <span class="step"><span class="ko">Web · Mobile</span><span class="en">Web · Mobile</span></span><span class="arrow">→</span>
                   <span class="step"><span class="ko">Next.js API</span><span class="en">Next.js API</span></span><span class="arrow">→</span>
@@ -650,45 +664,34 @@ footer a:hover{color:var(--cy2)}
                 </div>
               </div>
               <div class="sec">
-                <p class="sec-label"><span class="ko">기술적 문제 해결</span><span class="en">Technical Challenges</span></p>
+                <p class="sec-label"><span class="ko">문제 해결</span><span class="en">Problem solving</span></p>
                 <div class="case">
-                  <p class="case-h"><span class="ko">Case 01 · 안드로이드 빌드 의존성 충돌</span><span class="en">Case 01 · Android build dependency conflict</span></p>
+                  <p class="case-h"><span class="ko">안드로이드 빌드 의존성 충돌</span><span class="en">Android build dependency conflict</span></p>
                   <dl>
                     <dt><span class="ko">문제</span><span class="en">Problem</span></dt>
                     <dd><span class="ko">Android 빌드에서 React 19와 react-naver-maps 간 peer dependency 충돌, AGP/Gradle 버전 문제 발생</span><span class="en">Android build failed from a React 19 / react-naver-maps peer-dependency conflict plus an AGP/Gradle version mismatch</span></dd>
                     <dt><span class="ko">AI 활용</span><span class="en">AI use</span></dt>
-                    <dd><span class="ko">에러 로그를 기반으로 원인 후보와 버전 충돌 가능성을 빠르게 정리</span><span class="en">Used AI to quickly triage likely causes and version-conflict candidates from the error log</span></dd>
-                    <dt><span class="ko">직접 검증</span><span class="en">Verified myself</span></dt>
-                    <dd><span class="ko">패키지 의존성과 라이브러리 호환성을 직접 확인하고 버전을 조정한 뒤 재빌드해 해결</span><span class="en">Checked package dependencies and library compatibility myself, adjusted versions, and rebuilt</span></dd>
-                    <dt><span class="ko">결과</span><span class="en">Result</span></dt>
-                    <dd><span class="ko">Android 빌드 정상화 및 배포 진행</span><span class="en">Android build fixed and shipped</span></dd>
+                    <dd><span class="ko">에러 로그로 원인 후보와 버전 충돌 가능성을 빠르게 정리</span><span class="en">Used AI to triage likely causes and version conflicts from the error log</span></dd>
+                    <dt><span class="ko">직접 확인</span><span class="en">Checked myself</span></dt>
+                    <dd><span class="ko">패키지 의존성과 라이브러리 호환성을 확인하고 버전을 조정해 재빌드</span><span class="en">Checked dependencies and library compatibility, adjusted versions and rebuilt</span></dd>
+                    <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
+                    <dd class="key"><span class="ko">Android 빌드 정상화, 배포 진행</span><span class="en">Android build fixed and shipped</span></dd>
                   </dl>
                 </div>
-                <div class="case">
-                  <p class="case-h"><span class="ko">Case 02 · 인증 구조 개선 (JWT → httpOnly Cookie) — '문제 해결' 섹션 참고</span><span class="en">Case 02 · Auth hardening (JWT → httpOnly cookie) — see Case Study</span></p>
-                </div>
+                <a class="case-link" href="#case-study" data-close><span class="ko">로그인 보안 개선(JWT → httpOnly 쿠키) 사례 보기 →</span><span class="en">See the login security case (JWT → httpOnly cookie) →</span></a>
               </div>
               <div class="sec">
-                <p class="sec-label"><span class="ko">그 외 구현</span><span class="en">Also shipped</span></p>
+                <p class="sec-label"><span class="ko">수요 검증</span><span class="en">Validating demand</span></p>
                 <ul class="points">
-                  <li><b><span class="ko">N+1 개선: 항목마다 반복하던 관계 조회를 relation include 한 번으로 통합</span><span class="en">N+1 fix: folded per-item relation lookups into one relation-include query</span></b></li>
-                  <li><b><span class="ko">Rate Limiting: Upstash Redis로 요청 속도 제한</span><span class="en">Rate limiting: request limits on Upstash Redis</span></b></li>
-                  <li><b><span class="ko">결제: TossPayments·RevenueCat 구독 결제 연동</span><span class="en">Payments: TossPayments and RevenueCat subscriptions</span></b></li>
-                  <li><b><span class="ko">배포·모니터링: Vercel, CloudFront CDN, Sentry</span><span class="en">Deploy & monitoring: Vercel, CloudFront CDN, Sentry</span></b></li>
+                  <li><span class="ko">코스를 35개까지 늘렸지만 구매는 0건이었습니다.</span><span class="en">I grew to 35 courses and got zero purchases.</span></li>
+                  <li><span class="ko">"많이 만들면 팔린다"를 접고, 만들기 전에 수요부터 확인하기로 했습니다.</span><span class="en">So I dropped "build more and it will sell" and now check demand before building.</span></li>
+                  <li><span class="ko">빙고 이벤트·카카오톡 설문(66명, 응답률 15%)·당근마켓 투표(5명 응답, 60% 긍정)에서 약~중간 신호를 확인했고, 지금은 릴스 데이터로 검증 중입니다.</span><span class="en">A bingo event, a KakaoTalk survey (66 members, 15% response) and a Daangn poll (5 responses, 60% positive) gave a weak-to-moderate signal; now testing with Reels data.</span></li>
                 </ul>
               </div>
               <div class="sec">
-                <p class="sec-label"><span class="ko">검증</span><span class="en">Validation</span></p>
-                <ul class="points">
-                  <li><b><span class="ko">관찰: 코스를 35개까지 늘렸지만 구매는 0건. 릴스 시청자는 앱이 있는지도 몰랐음</span><span class="en">Observed: grew to 35 courses, zero purchases; Reel viewers often didn't know the app existed</span></b></li>
-                  <li><b><span class="ko">판단: "많이 만들면 팔린다"를 접고, 만들기 전에 수요부터 검증</span><span class="en">Decided: dropped "build more, it'll sell" and validate demand before building</span></b></li>
-                  <li><b><span class="ko">실행: 주렁주렁 영등포 빙고 이벤트로 첫 검증. 카카오톡 채널 설문(66명, 응답률 15%)·당근마켓 투표(118명 중 5명 응답, 60% 긍정)에서 약~중간 신호, 지금은 릴스 행동 데이터로 검증 중</span><span class="en">Ran: a Jureongjureong Yeongdeungpo bingo event as the first test. KakaoTalk survey (66 members, 15% response) and Daangn poll (118 views, 5 responses, 60% positive) gave a weak-to-moderate signal; now testing with Reels behavior data</span></b></li>
-                </ul>
-              </div>
-              <div class="sec">
-                <p class="sec-label">Result</p>
+                <p class="sec-label"><span class="ko">결과</span><span class="en">Result</span></p>
                 <p class="role"><span class="ko">코스 44개 제작, 앱스토어·구글플레이 정식 출시.</span><span class="en">44 courses built, live on the App Store and Google Play.</span></p>
-                <p class="role" style="margin-top:10px; color:var(--faint); font-size:14px"><b style="color:var(--ink)"><span class="ko">콘텐츠 도달 (제품 성과와 별개): </span><span class="en">Content reach (separate from product performance): </span></b><span class="ko">인스타 팔로워 138명('26.08), 협찬 릴스 1건 조회 40만+ — 앱 전환은 별도로 측정하지 않았습니다.</span><span class="en">138 Instagram followers (Aug '26), one sponsored reel past 400K views — app conversion from this was not tracked separately.</span></p>
+                <p class="role note"><span class="ko">콘텐츠 도달(제품 성과와 별개): 인스타 팔로워 138명(2026.08), 협찬 릴스 1건 조회 40만+ — 앱 전환은 따로 측정하지 않았습니다.</span><span class="en">Content reach (separate from the product): 138 Instagram followers (Aug 2026), one sponsored reel past 400K views — app conversion was not tracked.</span></p>
               </div>
               <div class="stack">
                 <span class="stk"><b>FE</b> Next.js 14 · TypeScript · Tailwind</span>
@@ -697,7 +700,6 @@ footer a:hover{color:var(--cy2)}
                 <span class="stk"><b>Infra</b> Vercel · CloudFront · Upstash Redis · Sentry</span>
                 <span class="stk"><b>Payment</b> TossPayments · RevenueCat</span>
               </div>
-              <p class="sec-label">Links</p>
               <div class="repo-row">
                 <a class="repo" href="https://dona.io.kr/" target="_blank" rel="noopener">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -738,7 +740,22 @@ footer a:hover{color:var(--cy2)}
             <div class="pstack"><span>Next.js</span><span>Node.js</span><span>PostgreSQL</span><span>Claude API</span><span>Telegram Bot</span></div>
             <div class="more"><span class="ko">자세히 보기</span><span class="en">Details</span><span class="arrow">→</span></div>
             <div class="exp-detail">
-              <p class="role"><span class="ko">DB를 직접 고치던 운영 업무를 관리자 화면(내부 전용)으로 옮기고 수집·번역·점검을 자동화했습니다. 네이버·카카오 블로그 후기로 만드는 팁 후보는 장소당 평균 26초, Claude 비용 약 58원입니다.</span><span class="en">Moved hand-edited database operations into an internal admin UI and automated collection, translation and checks. Tip drafts from Naver and Kakao blog reviews take 26s on average and about ₩58 of Claude cost per place.</span></p>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">왜 만들었나</span><span class="en">Why</span></p>
+                <p class="role"><span class="ko">운영 업무를 DB에서 직접 고치고 있었습니다. 그 일을 관리자 화면(내부 전용)으로 옮기고 수집·번역·점검을 자동화했습니다.</span><span class="en">Running DoNa meant editing the database by hand. I moved that work into an internal admin UI and automated collection, translation and checks.</span></p>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">내가 한 일</span><span class="en">What I did</span></p>
+                <ul class="points">
+                  <li><span class="ko">네이버·카카오 블로그 후기로 Claude가 장소 팁 후보를 만들고, 사람이 검수해 승인</span><span class="en">Claude drafts place tips from Naver and Kakao blog reviews; a person reviews and approves</span></li>
+                  <li><span class="ko">텔레그램으로 장소 사진·이름을 보내면 주소와 4개 언어 번역까지 채워서 등록</span><span class="en">Send a place photo and name on Telegram and it fills in the address and 4 languages</span></li>
+                  <li><span class="ko">코스 편집(지도 경로)·카드뉴스·분석·제보 검토·환불·푸시를 한곳에서 관리</span><span class="en">Course editing with map routes, card news, stats, reports, refunds and push in one place</span></li>
+                </ul>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">결과</span><span class="en">Result</span></p>
+                <p class="role"><span class="ko">팁 후보 자동 처리는 장소당 평균 26초, Claude 비용은 장소당 약 58원입니다. 실제 서비스 운영에 매일 씁니다.</span><span class="en">Automated tip drafting takes 26s per place on average at about ₩58 of Claude cost, and I use it daily to run the service.</span></p>
+              </div>
               <div class="stack">
                 <span class="stk"><b>Web</b> Next.js · TypeScript</span>
                 <span class="stk"><b>BE</b> Node.js · Prisma · PostgreSQL</span>
@@ -780,28 +797,33 @@ footer a:hover{color:var(--cy2)}
               <div class="more"><span class="ko">자세히 보기</span><span class="en">Details</span><span class="arrow">→</span></div>
             </div>
             <div class="exp-detail">
-              <p class="role"><span class="ko">도매(B2B) 견적을 주문·결제로 잇는 Shopify 앱입니다. 1인 개발로 2026.10 Shopify App Store에 출시했고, 필수 웹훅·이메일 인증까지 직접 구현했습니다.</span><span class="en">A wholesale (B2B) quote-to-order Shopify app. Built solo and live on the Shopify App Store since Oct 2026, including mandatory webhooks and authenticated email.</span></p>
-              <ul class="points">
-                <li><b><span class="ko">견적 → 결제 E2E 구현</span><span class="en">Quote → payment, verified E2E</span></b></li>
-                <li><b><span class="ko">Billing API 구독 + 무료체험</span><span class="en">Billing API subscription + trial</span></b></li>
-                <li><b><span class="ko">웹훅(HMAC)·스코프 최소화 심사 대응</span><span class="en">HMAC webhooks & minimal scope</span></b></li>
-              </ul>
-              <div class="case" style="margin-top:14px">
-                <p class="case-h"><span class="ko">기술 문제 해결 · Checkout 401 오류</span><span class="en">Debugging story · Checkout 401</span></p>
-                <dl>
-                  <dt class="key"><span class="ko">문제</span><span class="en">Problem</span></dt>
-                  <dd class="key"><span class="ko">Embedded app 내부 요청에서 결제가 계속 401로 실패했습니다.</span><span class="en">Checkout kept failing with 401 inside the embedded app's requests.</span></dd>
-                  <dt><span class="ko">초기 가정</span><span class="en">Initial assumption</span></dt>
-                  <dd><span class="ko">인증 토큰 문제라고 확신하고 이틀을 헤맸습니다.</span><span class="en">I was sure it was an auth-token bug and lost two days on it.</span></dd>
-                  <dt><span class="ko">조사</span><span class="en">Investigation</span></dt>
-                  <dd><span class="ko">성공/실패 요청의 request·response를 직접 비교했습니다.</span><span class="en">Compared the successful vs. failing request/response pairs myself.</span></dd>
-                  <dt><span class="ko">원인</span><span class="en">Root cause</span></dt>
-                  <dd><span class="ko">인증이 아니라 iframe 안에서 외부 리다이렉트가 막혀 401로 표출된 것이었습니다.</span><span class="en">Not auth — an external redirect was being blocked inside the iframe and surfacing as a 401.</span></dd>
-                  <dt><span class="ko">수정</span><span class="en">Fix</span></dt>
-                  <dd><span class="ko">Shopify App Bridge로 top window를 이동시켜 리다이렉트가 통과되도록 했습니다.</span><span class="en">Used Shopify App Bridge to move the redirect to the top window.</span></dd>
-                  <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
-                  <dd class="key"><span class="ko">정상 인증 흐름을 복구했고, 이후로는 오류 메시지를 곧이곧대로 믿지 않게 됐습니다.</span><span class="en">Restored the normal auth flow — since then I don't take an error message at face value.</span></dd>
-                </dl>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">무엇을 만들었나</span><span class="en">What it is</span></p>
+                <p class="role"><span class="ko">도매(B2B) 견적을 주문·결제로 잇는 Shopify 앱입니다. 혼자 개발해 2026.10 Shopify App Store에 출시했습니다.</span><span class="en">A Shopify app that turns wholesale (B2B) quotes into orders and payment. Built solo and live on the Shopify App Store since Oct 2026.</span></p>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">내가 한 일</span><span class="en">What I did</span></p>
+                <ul class="points">
+                  <li><span class="ko">견적 요청 → 가격 책정 → 체크아웃을 한 흐름으로 잇고 E2E로 검증</span><span class="en">Linked quote request, pricing and checkout in one flow, tested end to end</span></li>
+                  <li><span class="ko">Billing API로 구독 결제와 무료 체험 구현</span><span class="en">Subscription billing with a free trial via the Billing API</span></li>
+                  <li><span class="ko">HMAC 웹훅 검증·최소 권한·이메일 인증으로 앱 심사 대응</span><span class="en">HMAC-verified webhooks, minimal scopes and authenticated email for app review</span></li>
+                </ul>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">문제 해결</span><span class="en">Problem solving</span></p>
+                <div class="case">
+                  <p class="case-h"><span class="ko">결제가 계속 401로 실패</span><span class="en">Checkout kept failing with 401</span></p>
+                  <dl>
+                    <dt><span class="ko">문제</span><span class="en">Problem</span></dt>
+                    <dd><span class="ko">앱 안(iframe)에서 결제 요청이 계속 401로 실패</span><span class="en">Inside the embedded app (iframe), checkout kept failing with 401</span></dd>
+                    <dt><span class="ko">처음 생각</span><span class="en">First guess</span></dt>
+                    <dd><span class="ko">인증 토큰 문제라고 확신하고 이틀을 헤맴</span><span class="en">I was sure it was the auth token and lost two days</span></dd>
+                    <dt><span class="ko">원인</span><span class="en">Cause</span></dt>
+                    <dd><span class="ko">성공·실패 요청을 직접 비교해 보니, iframe 안에서 외부 이동이 막힌 것이 401로 보인 것</span><span class="en">Comparing good and failing requests showed a blocked redirect inside the iframe surfacing as 401</span></dd>
+                    <dt class="key"><span class="ko">해결</span><span class="en">Fix</span></dt>
+                    <dd class="key"><span class="ko">Shopify App Bridge로 바깥 창에서 이동하게 바꿔 결제 흐름 복구</span><span class="en">Moved the redirect to the top window with App Bridge and restored checkout</span></dd>
+                  </dl>
+                </div>
               </div>
               <div class="stack">
                 <span class="stk"><b>FE</b> React · Polaris</span>
@@ -978,9 +1000,10 @@ footer a:hover{color:var(--cy2)}
     var vis=card.querySelector('.exp-visual'); if(vis) mLeft.appendChild(vis.cloneNode(true));
     var top=card.querySelector('.exp-foot .top'); if(top) mRight.appendChild(top.cloneNode(true));
     var det=card.querySelector('.exp-detail'); if(det) mRight.appendChild(det.cloneNode(true));
+    var ti=card.closest('.tl-item'); modal.style.setProperty('--acc', ti ? 'var(--a'+ti.getAttribute('data-acc')+')' : 'var(--cy)');
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
   function closeModal(){ if(!modal) return; modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-  if(modal){ modal.addEventListener('click',function(e){ if(e.target.hasAttribute('data-close')) closeModal(); });
+  if(modal){ modal.addEventListener('click',function(e){ if(e.target.closest('[data-close]')) closeModal(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); }); }
   exps.forEach(function(el){ el.addEventListener('click',function(){ openModal(el); }); });
 
