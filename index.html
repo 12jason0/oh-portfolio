@@ -1163,7 +1163,7 @@ footer a:hover{color:var(--cy2)}
       var btn=f.querySelector('button[type=submit]'); btn.disabled=true; say('sending');
       fetch('https://formsubmit.co/ajax/12jason@donacouse.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
         body:JSON.stringify({name:d.name,email:d.email,message:d.message,_replyto:d.email,_subject:'[포트폴리오] '+d.name+'님의 메시지',_template:'table',_captcha:'false'})})
-      .then(function(r){ return r.json().then(function(j){ return r.ok && String(j.success)==='true'; }); })
+      .then(function(r){ return r.json().then(function(j){ if(!(r.ok && String(j.success)==='true')) console.warn('[contact form]', r.status, j && j.message); return r.ok && String(j.success)==='true'; }); })
       .then(function(ok){ if(ok){ f.reset(); say('ok','ok'); } else say('err','err'); })
       .catch(function(){ say('err','err'); })
       .then(function(){ btn.disabled=false; });
