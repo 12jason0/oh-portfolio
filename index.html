@@ -264,10 +264,11 @@ section{padding:126px 0; position:relative}
 .cta-band p{color:var(--muted); max-width:44ch; margin:0 auto 30px; font-size:17px}
 .cta-band .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 /* scroll-down mouse at the bottom of the hero */
-.scroll-hint{position:absolute; left:50%; bottom:28px; z-index:3; width:24px; height:38px; margin-left:-12px; border:1.5px solid var(--muted); border-radius:13px; opacity:.6; transition:opacity .2s}
-.scroll-hint:hover{opacity:1}
-.scroll-hint span{position:absolute; left:50%; top:8px; width:4px; height:8px; margin-left:-2px; border-radius:2px; background:var(--body); animation:wheel 1.8s ease-in-out infinite}
-@keyframes wheel{0%{transform:translateY(0); opacity:1}70%{transform:translateY(10px); opacity:0}100%{transform:translateY(0); opacity:0}}
+.scroll-hint{position:absolute; left:50%; bottom:26px; z-index:3; width:26px; height:42px; margin-left:-13px; border:2px solid var(--body); border-radius:14px; opacity:.85; transition:opacity .2s, border-color .2s}
+.scroll-hint::before{content:"SCROLL"; position:absolute; left:50%; bottom:calc(100% + 8px); transform:translateX(-50%); font-size:11px; font-weight:600; letter-spacing:.2em; color:var(--muted); white-space:nowrap}
+.scroll-hint:hover{opacity:1; border-color:var(--ink)}
+.scroll-hint span{position:absolute; left:50%; top:7px; width:4px; height:9px; margin-left:-2px; border-radius:2px; background:var(--ink); animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{transform:translateY(0); opacity:1}60%{transform:translateY(12px); opacity:.15}100%{transform:translateY(0); opacity:1}}
 @media(prefers-reduced-motion: reduce){.scroll-hint span{animation:none}}
 @media(max-height:620px){.scroll-hint{display:none}}
 
