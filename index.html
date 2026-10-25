@@ -270,6 +270,10 @@ section{padding:126px 0; position:relative}
 .scroll-hint span{position:absolute; left:50%; top:7px; width:4px; height:9px; margin-left:-2px; border-radius:2px; background:var(--ink); animation:wheel 1.6s ease-in-out infinite}
 @keyframes wheel{0%{transform:translateY(0); opacity:1}60%{transform:translateY(12px); opacity:.15}100%{transform:translateY(0); opacity:1}}
 @media(prefers-reduced-motion: reduce){.scroll-hint span{animation:none}}
+.scroll-float{position:fixed; bottom:22px; z-index:30; padding:0; background:transparent; cursor:pointer; opacity:0; pointer-events:none; transform:translateY(8px); transition:opacity .6s, transform .6s}
+.scroll-float::before{display:none}
+.scroll-float.show{opacity:.35; pointer-events:auto; transform:none}
+.scroll-float.show:hover{opacity:.8}
 @media(max-height:620px){.scroll-hint{display:none}}
 
 /* projects timeline — short name/period on the left, thin line + dot, the project card on the right */
@@ -278,15 +282,16 @@ section{padding:126px 0; position:relative}
 .tl-line{position:absolute; top:28px; bottom:40px; left:calc(var(--side) + var(--g) + var(--dotc)/2 - .5px); width:1px; background:var(--line)}
 .tl-line i{position:absolute; left:0; top:0; width:1px; height:0; background:linear-gradient(var(--cy), color-mix(in srgb, var(--cy) 30%, transparent)); box-shadow:0 0 6px var(--cy)}
 .tl-item{position:relative; display:grid; grid-template-columns:var(--side) var(--dotc) minmax(0,1fr); column-gap:var(--g); align-items:start}
-.tl-side{text-align:right; padding-top:22px}
+.tl-side{text-align:right; padding-top:22px; position:sticky; top:110px; transition:opacity .4s}
+.tl-item:not(.on) .tl-side{opacity:.45}
 .tl-name{display:block; font-size:14px; font-weight:600; line-height:1.4; color:var(--body); transition:color .4s}
 .tl-date{display:block; margin-top:4px; font-size:14px; color:var(--muted); font-variant-numeric:tabular-nums}
-.tl-dot{position:relative; z-index:1; width:var(--dotc); height:var(--dotc); margin-top:25px; border-radius:50%; background:var(--bg); border:2px solid var(--muted); transition:background .5s, border-color .5s, box-shadow .5s}
+.tl-dot{position:sticky; top:135px; z-index:1; width:var(--dotc); height:var(--dotc); margin-top:25px; border-radius:50%; background:var(--bg); border:2px solid var(--muted); transition:background .5s, border-color .5s, box-shadow .5s}
 .tl-item.on .tl-dot{background:var(--cy); border-color:var(--cy); box-shadow:0 0 0 5px var(--cy-soft), 0 0 18px color-mix(in srgb, var(--cy) 70%, transparent)}
 .tl-item.on .tl-name{color:var(--ink)}
 /* back office hangs off DoNa as a smaller branch */
 .tl-item.tl-child{margin-top:-14px}
-.tl-item.tl-child .tl-dot{width:10px; height:10px; margin:28px auto 0}
+.tl-item.tl-child .tl-dot{width:10px; height:10px; margin:28px auto 0; top:138px}
 .tl-item.tl-child > .prow{margin-left:28px; position:relative}
 .tl-item.tl-child > .prow::before{content:""; position:absolute; left:calc(-28px - var(--g)); top:32px; width:calc(28px + var(--g)); border-top:1px dashed var(--line)}
 .tl-item.tl-child .tl-name{font-weight:500}
@@ -296,9 +301,9 @@ section{padding:126px 0; position:relative}
   .ptl{--side:0px; --g:14px; gap:32px}
   .tl-line{left:7.5px; top:6px}
   .tl-item{grid-template-columns:var(--dotc) minmax(0,1fr); row-gap:10px}
-  .tl-side{grid-column:2; grid-row:1; text-align:left; padding-top:0; display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline}
+  .tl-side{position:static; opacity:1!important; grid-column:2; grid-row:1; text-align:left; padding-top:0; display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline}
   .tl-date{margin-top:0}
-  .tl-dot{grid-column:1; grid-row:1; margin-top:3px}
+  .tl-dot{position:relative; top:auto; grid-column:1; grid-row:1; margin-top:3px}
   .tl-item > .prow{grid-column:2; grid-row:2}
   .tl-item.tl-child{margin-top:0}
   .tl-item.tl-child .tl-dot{margin:6px auto 0}
@@ -905,6 +910,7 @@ footer a:hover{color:var(--cy2)}
     </div>
   </section>
 </main>
+<button class="scroll-hint scroll-float" type="button" aria-label="아래로 더 보기" tabindex="-1"><span></span></button>
 
 <div class="modal" id="modal" aria-hidden="true" translate="no">
   <div class="modal-bg" data-close></div>
@@ -974,6 +980,21 @@ footer a:hover{color:var(--cy2)}
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
+  })();
+
+  // faint mouse at the bottom: shows up when you pause partway down, hides while scrolling and near the end
+  (function(){
+    var f=document.querySelector('.scroll-float'), hero=document.getElementById('top'); if(!f) return;
+    var t=0;
+    function onScroll(){
+      f.classList.remove('show'); clearTimeout(t);
+      t=setTimeout(function(){
+        var y=window.scrollY, end=document.documentElement.scrollHeight-innerHeight;
+        if(y>hero.offsetHeight*.6 && y<end-innerHeight*.9) f.classList.add('show');
+      },900);
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    f.addEventListener('click',function(){ window.scrollBy({top:innerHeight*.8, behavior:'smooth'}); });
   })();
 
   // contact form — sent to my inbox through FormSubmit (no server of my own)
