@@ -362,7 +362,6 @@ footer a:hover{color:var(--cy2)}
     <div class="nav-links">
       <a href="#work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
       <a href="#case-study"><span class="ko">문제 해결</span><span class="en">Case Study</span></a>
-      <a href="#ai-workflow"><span class="ko">AI 활용</span><span class="en">AI Workflow</span></a>
       <a href="#about"><span class="ko">소개</span><span class="en">About</span></a>
       <a href="#timeline"><span class="ko">경력</span><span class="en">Experience</span></a>
       <a href="#contact"><span class="ko">연락</span><span class="en">Contact</span></a>
@@ -495,7 +494,7 @@ footer a:hover{color:var(--cy2)}
   <div class="core">
     <p class="namebadge"><b><span class="ko">오승용</span><span class="en">Oh Seungyong</span></b> · <span class="ko">Full-stack Developer</span><span class="en">Full-stack Developer</span></p>
     <h1><span class="ko"><span class="thin">서비스를 혼자 만들고,</span><br>출시해서 운영합니다.</span><span class="en"><span class="thin">I build products on my own,</span><br>then ship and run them.</span></h1>
-    <p class="echo"><span class="ko">두나(웹·iOS·Android)와 QuoteCrate(Shopify App Store)를 혼자 기획·개발해 출시했고, 지금도 직접 운영하고 있습니다.<br>AI는 리서치·디버깅 속도를 높이는 도구로 쓰고, 결과는 직접 검증합니다.</span><span class="en">I planned, built and shipped DoNa (web, iOS, Android) and QuoteCrate (Shopify App Store) on my own, and I still run both today.<br>I use AI to speed up research and debugging, and I verify the results myself.</span></p>
+    <p class="echo"><span class="ko">두나와 QuoteCrate를 혼자 만들어 출시하고, 지금도 운영하고 있습니다.</span><span class="en">I built and shipped DoNa and QuoteCrate on my own, and I still run both.</span></p>
     <div class="cta">
       <a class="btn solid" href="#work"><span class="ko">프로젝트 보기</span><span class="en">View work</span></a>
       <a class="btn ghost" href="#contact"><span class="ko">연락하기</span><span class="en">Contact</span></a>
@@ -510,8 +509,7 @@ footer a:hover{color:var(--cy2)}
     <div class="wrap">
       <p class="kicker"><span class="ko">모아 놓은 프로젝트</span><span class="en">Selected work</span></p>
       <h2 class="h2" style="max-width:26ch"><span class="ko">직접 만들고<br>운영하는 프로젝트</span><span class="en">Products I<br>build and run</span></h2>
-      <p class="sub"><span class="ko">기획부터 프론트엔드·백엔드 개발, 배포와 운영까지 직접 경험합니다. AI를 리서치·개발·디버깅 과정에 적극 활용해 반복 작업을 줄이고, 실제 사용자에게 도달하는 서비스로 빠르게 검증합니다.</span><span class="en">I handle product planning, frontend/backend development, deployment and operations end to end. AI cuts repetitive work in research, development and debugging, so I can validate faster with a service that reaches real users.</span></p>
-      <p class="sub" style="font-size:14.5px; margin-top:14px"><span class="ko">AI가 만든 결과를 그대로 사용하지 않고, 공식 문서·실행 결과·실사용 데이터를 기준으로 직접 검증합니다.</span><span class="en">I don't use what AI produces as-is — I verify it against official docs, execution results, and real usage data.</span></p>
+      <p class="sub"><span class="ko">기획부터 배포·운영까지 직접 하고, AI 결과는 공식 문서·실행 결과로 검증합니다.</span><span class="en">I handle planning through deployment and operations, and check AI output against official docs and real runs.</span></p>
 
       <div class="plist">
         <article class="pcard prow exp" id="feature-dona" data-cat="product">
@@ -523,11 +521,11 @@ footer a:hover{color:var(--cy2)}
           </div>
           <div class="exp-foot">
             <div class="top"><span class="num">01</span><h3><span class="ko">두나 (DoNa)</span><span class="en">DoNa</span></h3><span class="chip-tag live">LIVE</span></div>
-            <p class="pdesc"><span class="ko">데이트 장소의 순서와 동선까지 정해주는 코스 추천 서비스 · 1인 개발, Web·iOS·Android 출시</span><span class="en">Date-course service that decides the order and route between spots · Solo build, live on Web, iOS and Android</span></p>
+            <p class="pdesc"><span class="ko">동선 짜주는 데이트 코스 · 웹·iOS·Android</span><span class="en">Route-planned date courses · Web, iOS, Android</span></p>
             <ul class="points pdid">
-              <li><span class="ko">기획 · 프론트엔드 · 백엔드 · DB 설계 · 모바일 앱 · 배포 · 운영까지 1인으로 진행</span><span class="en">Solo across planning, frontend, backend, DB design, the mobile app, deployment and operations</span></li>
-              <li><span class="ko">JWT를 httpOnly 쿠키로 전환, N+1 쿼리 개선, Upstash Redis Rate Limiting 적용</span><span class="en">Moved the JWT to an httpOnly cookie, fixed an N+1 query, added Upstash Redis rate limiting</span></li>
-              <li><span class="ko">TossPayments·RevenueCat 결제 연동, 코스 44개 제작 후 앱스토어·구글플레이 정식 출시</span><span class="en">Integrated TossPayments and RevenueCat billing; built 44 courses and shipped to the App Store and Google Play</span></li>
+              <li><span class="ko">기획·FE·BE·DB·앱·배포·운영 모두 1인</span><span class="en">Solo: planning, FE, BE, DB, app, deploy, ops</span></li>
+              <li><span class="ko">JWT 쿠키 전환 · N+1 개선 · Redis Rate Limit</span><span class="en">JWT → httpOnly cookie · N+1 fix · Redis rate limit</span></li>
+              <li><span class="ko">Toss·RevenueCat 결제, 코스 44개로 출시</span><span class="en">Toss + RevenueCat billing, shipped with 44 courses</span></li>
             </ul>
             <div class="pstack"><span>Next.js</span><span>TypeScript</span><span>PostgreSQL</span><span>Prisma</span><span>React Native</span></div>
             <div class="quicklinks">
@@ -539,11 +537,11 @@ footer a:hover{color:var(--cy2)}
             <div class="exp-detail">
               <div class="sec">
                 <p class="sec-label">Problem</p>
-                <p class="role"><span class="ko">기존 지도·장소 검색 서비스는 장소를 보여주지만, 데이트 장소를 어떤 순서로 이동해야 하는지까지 결정해주지는 않았습니다.</span><span class="en">Existing map and place-search services show you places, but don't decide the order you should move through them for a date.</span></p>
+                <p class="role"><span class="ko">기존 지도 서비스는 장소만 보여줄 뿐, 어떤 순서로 갈지는 정해주지 않았습니다.</span><span class="en">Map services show places, but never decide the order to visit them in.</span></p>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">내 역할</span><span class="en">My Role</span></p>
-                <p class="role"><span class="ko">기획 · 프론트엔드 · 백엔드 · DB 설계 · 결제 연동 · 모바일 앱 · 배포 · 운영까지 1인으로 진행했습니다.</span><span class="en">Solo — product planning, frontend, backend, database design, payment integration, the mobile app, deployment and ongoing operations.</span></p>
+                <p class="role"><span class="ko">기획·프론트엔드·백엔드·DB 설계·결제·모바일 앱·배포·운영을 혼자 맡았습니다.</span><span class="en">Solo across planning, frontend, backend, DB design, payments, the mobile app, deployment and operations.</span></p>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">아키텍처</span><span class="en">Architecture</span></p>
@@ -556,7 +554,6 @@ footer a:hover{color:var(--cy2)}
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">기술적 문제 해결</span><span class="en">Technical Challenges</span></p>
-                <p class="role"><span class="ko">두나를 개발하며 실제로 부딪힌 기술적 문제 중 2가지입니다.</span><span class="en">Two of the real technical problems I ran into while building DoNa.</span></p>
                 <div class="case">
                   <p class="case-h"><span class="ko">Case 01 · 안드로이드 빌드 의존성 충돌</span><span class="en">Case 01 · Android build dependency conflict</span></p>
                   <dl>
@@ -571,25 +568,24 @@ footer a:hover{color:var(--cy2)}
                   </dl>
                 </div>
                 <div class="case">
-                  <p class="case-h"><span class="ko">Case 02 · 인증 구조 개선 (JWT → httpOnly Cookie) — 자세한 내용은 '문제 해결' 섹션에 정리했습니다</span><span class="en">Case 02 · Auth hardening (JWT → httpOnly cookie) — details in the Case Study section</span></p>
+                  <p class="case-h"><span class="ko">Case 02 · 인증 구조 개선 (JWT → httpOnly Cookie) — '문제 해결' 섹션 참고</span><span class="en">Case 02 · Auth hardening (JWT → httpOnly cookie) — see Case Study</span></p>
                 </div>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">그 외 구현</span><span class="en">Also shipped</span></p>
                 <ul class="points">
-                  <li><b><span class="ko">인증 구조 개선: JWT를 httpOnly 쿠키로 전환</span><span class="en">Auth hardening: moved the JWT to an httpOnly cookie</span></b></li>
-                  <li><b><span class="ko">N+1 개선: 각 항목마다 관계 데이터를 반복 조회하던 구조를 relation include 기반으로 재구성해 per-item 반복 조회를 제거</span><span class="en">N+1 fix: restructured a per-item relation lookup into a single relation-include query, removing the per-item repeated queries</span></b></li>
-                  <li><b><span class="ko">Redis Rate Limiting: Upstash Redis 기반으로 요청 속도 제한 적용</span><span class="en">Rate limiting: applied request rate limiting on Upstash Redis</span></b></li>
-                  <li><b><span class="ko">결제 연동: TossPayments·RevenueCat 구독 결제 직접 연동</span><span class="en">Payments: integrated TossPayments and RevenueCat subscription billing myself</span></b></li>
-                  <li><b><span class="ko">배포 및 모니터링: Vercel 배포, CloudFront CDN, Sentry 에러 모니터링 연결</span><span class="en">Deploy & monitoring: shipped on Vercel, fronted with CloudFront CDN, wired up Sentry error monitoring</span></b></li>
+                  <li><b><span class="ko">N+1 개선: 항목마다 반복하던 관계 조회를 relation include 한 번으로 통합</span><span class="en">N+1 fix: folded per-item relation lookups into one relation-include query</span></b></li>
+                  <li><b><span class="ko">Rate Limiting: Upstash Redis로 요청 속도 제한</span><span class="en">Rate limiting: request limits on Upstash Redis</span></b></li>
+                  <li><b><span class="ko">결제: TossPayments·RevenueCat 구독 결제 연동</span><span class="en">Payments: TossPayments and RevenueCat subscriptions</span></b></li>
+                  <li><b><span class="ko">배포·모니터링: Vercel, CloudFront CDN, Sentry</span><span class="en">Deploy & monitoring: Vercel, CloudFront CDN, Sentry</span></b></li>
                 </ul>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">검증</span><span class="en">Validation</span></p>
                 <ul class="points">
-                  <li><b><span class="ko">관찰: "코스를 늘리면 구매도 늘 것"이라 보고 35개까지 만들었지만 구매 전환은 0건. 릴스는 조회수가 나와도 시청자가 앱 존재 자체를 모른다는 것도 확인</span><span class="en">Observed: assumed more courses → more purchases, built up to 35 courses, got zero purchases; also found Reel viewers often don't know the app exists at all</span></b></li>
-                  <li><b><span class="ko">판단: "많이 만들면 팔린다"는 가설을 접고, 만들기 전에 수요부터 검증하는 방식으로 전환</span><span class="en">Decided: dropped the "build more, it'll sell" assumption and switched to validating demand before building</span></b></li>
-                  <li><b><span class="ko">실행/검증: 주렁주렁 영등포 빙고 이벤트로 첫 구조적 검증 실험: 카카오톡 채널 설문(66명, 응답률 15%)·당근마켓 투표(118명 중 응답 5명, 60% 긍정)로 약~중간 신호 확인 후 릴스 행동 데이터로 다음 검증 진행 중</span><span class="en">Validated: ran a bingo-event experiment as the first structured test: a KakaoTalk-channel survey (66 members, ~15% response) and a Daangn poll (118 views, 5 responses, 60% positive) showed a weak-to-moderate signal; now validating further via Reels behavior data</span></b></li>
+                  <li><b><span class="ko">관찰: 코스를 35개까지 늘렸지만 구매는 0건. 릴스 시청자는 앱이 있는지도 몰랐음</span><span class="en">Observed: grew to 35 courses, zero purchases; Reel viewers often didn't know the app existed</span></b></li>
+                  <li><b><span class="ko">판단: "많이 만들면 팔린다"를 접고, 만들기 전에 수요부터 검증</span><span class="en">Decided: dropped "build more, it'll sell" and validate demand before building</span></b></li>
+                  <li><b><span class="ko">실행: 주렁주렁 영등포 빙고 이벤트로 첫 검증. 카카오톡 채널 설문(66명, 응답률 15%)·당근마켓 투표(118명 중 5명 응답, 60% 긍정)에서 약~중간 신호, 지금은 릴스 행동 데이터로 검증 중</span><span class="en">Ran: a Jureongjureong Yeongdeungpo bingo event as the first test. KakaoTalk survey (66 members, 15% response) and Daangn poll (118 views, 5 responses, 60% positive) gave a weak-to-moderate signal; now testing with Reels behavior data</span></b></li>
                 </ul>
               </div>
               <div class="sec">
@@ -633,11 +629,11 @@ footer a:hover{color:var(--cy2)}
           </div>
           <div class="exp-foot">
             <div class="top"><span class="num">02</span><h3>QuoteCrate</h3><span class="chip-tag live">LIVE</span></div>
-            <p class="pdesc"><span class="ko">Shopify 도매(B2B) 견적 → 주문·결제 전환 앱 · 1인 개발, Shopify App Store 출시 (2026.10)</span><span class="en">Shopify wholesale (B2B) quote-to-order app · Solo build, live on the Shopify App Store (Oct 2026)</span></p>
+            <p class="pdesc"><span class="ko">B2B 견적→주문 Shopify 앱 · 2026.10</span><span class="en">Shopify B2B quote-to-order app · Oct 2026</span></p>
             <ul class="points pdid">
-              <li><span class="ko">견적 요청 → 가격 책정 → 체크아웃을 하나의 흐름으로 잇고 E2E로 검증</span><span class="en">Connected quote → pricing → checkout in one flow, verified end to end</span></li>
-              <li><span class="ko">Billing API 구독 결제 + 무료체험 구현</span><span class="en">Billing API subscription with a free trial</span></li>
-              <li><span class="ko">HMAC 웹훅 검증·스코프 최소화로 App Store 심사 대응</span><span class="en">HMAC-verified webhooks and minimal scopes for App Store review</span></li>
+              <li><span class="ko">견적→가격→체크아웃 한 흐름, E2E 검증</span><span class="en">Quote → pricing → checkout in one flow, E2E</span></li>
+              <li><span class="ko">Billing API 구독 결제 + 무료체험</span><span class="en">Billing API subscription + free trial</span></li>
+              <li><span class="ko">HMAC 웹훅·최소 스코프로 심사 대응</span><span class="en">HMAC webhooks, minimal scopes for review</span></li>
             </ul>
             <div class="pstack"><span>Remix</span><span>Node.js</span><span>PostgreSQL</span><span>Shopify</span></div>
             <div class="quicklinks">
@@ -646,7 +642,7 @@ footer a:hover{color:var(--cy2)}
             </div>
             <div class="more"><span class="ko">프로젝트 자세히 보기</span><span class="en">View project details</span><span class="arrow">→</span></div>
             <div class="exp-detail">
-              <p class="role"><span class="ko">Shopify 도매(B2B) 견적 → 주문·결제 전환 앱. 견적–가격 책정–체크아웃을 하나로 잇고, 구독 결제·필수 웹훅·이메일 인증까지 직접 구현해 Shopify App Store에 정식 출시했습니다.</span><span class="en">A Shopify wholesale (B2B) quote-to-order app. Connected quote → pricing → checkout in one flow, with subscription billing, mandatory webhooks and authenticated email — now live on the Shopify App Store.</span></p>
+              <p class="role"><span class="ko">도매(B2B) 견적을 주문·결제로 잇는 Shopify 앱입니다. 1인 개발로 2026.10 Shopify App Store에 출시했고, 필수 웹훅·이메일 인증까지 직접 구현했습니다.</span><span class="en">A wholesale (B2B) quote-to-order Shopify app. Built solo and live on the Shopify App Store since Oct 2026, including mandatory webhooks and authenticated email.</span></p>
               <ul class="points">
                 <li><b><span class="ko">견적 → 결제 E2E 구현</span><span class="en">Quote → payment, verified E2E</span></b></li>
                 <li><b><span class="ko">Billing API 구독 + 무료체험</span><span class="en">Billing API subscription + trial</span></b></li>
@@ -698,16 +694,16 @@ footer a:hover{color:var(--cy2)}
           </div>
           <div class="exp-foot">
             <div class="top"><span class="num">03</span><h3><span class="ko">두나 관리자 백오피스</span><span class="en">DoNa Admin Back Office</span></h3><span class="chip-tag camp"><span class="ko">운영 중</span><span class="en">In use</span></span></div>
-            <p class="pdesc"><span class="ko">AI 장소 자동수집 · 운영 관리자 시스템 · 1인 개발, 실제 서비스 운영에 매일 사용</span><span class="en">Admin system with AI place collection · Solo build, used daily to run the live service</span></p>
+            <p class="pdesc"><span class="ko">AI 장소 수집 관리자 · 1인 개발, 매일 사용</span><span class="en">AI place-collecting admin · solo, used daily</span></p>
             <ul class="points pdid">
-              <li><span class="ko">네이버·카카오 블로그 후기를 모아 Claude API로 장소 팁 후보를 만들고, 사람이 검수해 승인 (장소당 자동 처리 평균 26초, Claude 비용 장소당 약 58원)</span><span class="en">Collects Naver and Kakao blog reviews, has the Claude API draft place-tip candidates, and a person reviews and approves them (26s average automated processing and about ₩58 of Claude cost per place)</span></li>
-              <li><span class="ko">텔레그램으로 장소 사진·이름을 보내면 주소·4개 언어 번역까지 채워서 등록</span><span class="en">Send a place's photo and name via Telegram and it fills in the address and 4-language translations, then registers it</span></li>
-              <li><span class="ko">코스 편집(지도 경로), 카드뉴스 생성, 분석 대시보드, 제보 검토, 환불, 푸시 알림을 한곳에서 처리</span><span class="en">Course editing (map routes), card-news generation, analytics dashboard, report review, refunds and push notifications, all in one place</span></li>
+              <li><span class="ko">블로그 후기→Claude 팁 후보→사람 검수</span><span class="en">Blog reviews → Claude tip drafts → human review</span></li>
+              <li><span class="ko">텔레그램 사진·이름으로 주소·4개 언어 등록</span><span class="en">Telegram photo + name → address, 4 languages</span></li>
+              <li><span class="ko">코스·카드뉴스·분석·제보·환불·푸시 한곳에</span><span class="en">Courses, card news, analytics, reports, refunds, push</span></li>
             </ul>
             <div class="pstack"><span>Next.js</span><span>Node.js</span><span>PostgreSQL</span><span>Claude API</span><span>Telegram Bot</span></div>
             <div class="more"><span class="ko">프로젝트 자세히 보기</span><span class="en">View project details</span><span class="arrow">→</span></div>
             <div class="exp-detail">
-              <p class="role"><span class="ko">DB를 직접 고치던 운영 업무를 관리자 화면으로 옮기고, 장소 수집·번역·점검을 자동화했습니다. 관리자 화면은 내부 전용입니다.</span><span class="en">Moved operations that used to mean editing the database by hand into an admin UI, and automated place collection, translation and checks. Internal only.</span></p>
+              <p class="role"><span class="ko">DB를 직접 고치던 운영 업무를 관리자 화면(내부 전용)으로 옮기고 수집·번역·점검을 자동화했습니다. 네이버·카카오 블로그 후기로 만드는 팁 후보는 장소당 평균 26초, Claude 비용 약 58원입니다.</span><span class="en">Moved hand-edited database operations into an internal admin UI and automated collection, translation and checks. Tip drafts from Naver and Kakao blog reviews take 26s on average and about ₩58 of Claude cost per place.</span></p>
               <div class="stack">
                 <span class="stk"><b>Web</b> Next.js · TypeScript</span>
                 <span class="stk"><b>BE</b> Node.js · Prisma · PostgreSQL</span>
@@ -744,38 +740,27 @@ footer a:hover{color:var(--cy2)}
     <div class="wrap">
       <p class="kicker"><span class="ko">기술 문제 해결 사례</span><span class="en">Technical Case Study</span></p>
       <h2 class="h2" style="max-width:34ch; text-wrap:pretty"><span class="ko">동작하는 코드보다,<br>운영할 수 있는 구조를 고민합니다</span><span class="en">I build for operability, not just functionality.</span></h2>
-      <p class="sub"><span class="ko">두나에서 실제로 부딪힌 인증 구조 문제 하나를, 어떻게 진단하고 어떤 대안을 검토해서 실제로 어떻게 설정했는지 정리했습니다.</span><span class="en">One real authentication problem I ran into building DoNa — how I diagnosed it, weighed the alternatives, and actually configured the fix.</span></p>
       <div class="cs-grid">
         <div class="case cs-case">
           <p class="case-h"><span class="ko">JWT 인증 구조 개선 · localStorage → httpOnly Cookie</span><span class="en">JWT Auth Hardening · localStorage → httpOnly Cookie</span></p>
           <dl>
             <dt class="key"><span class="ko">문제</span><span class="en">Problem</span></dt>
-            <dd class="key"><span class="ko">JWT를 localStorage에 저장하는 구조를 사용 중이었고, XSS가 발생하면 저장된 토큰이 그대로 노출될 수 있다는 것을 확인했습니다.</span><span class="en">The JWT was being stored in localStorage, and I confirmed that an XSS hit would expose the stored token directly.</span></dd>
-            <dt><span class="ko">후보안</span><span class="en">Candidate options</span></dt>
-            <dd><span class="ko">localStorage 유지 / sessionStorage로 이동 / httpOnly Cookie 전환, 세 가지를 놓고 비교했습니다. localStorage·sessionStorage는 구현은 간단하지만 XSS가 발생하면 토큰이 그대로 노출되고, httpOnly Cookie는 클라이언트 JavaScript가 아예 접근할 수 없어 노출 경로 자체를 없앨 수 있었습니다.</span><span class="en">Compared three options: keep localStorage, move to sessionStorage, or switch to an httpOnly cookie. localStorage and sessionStorage are simpler to implement but still expose the token directly under XSS; an httpOnly cookie is unreachable from client-side JavaScript entirely, removing that exposure path altogether.</span></dd>
-            <dt><span class="ko">선택 이유</span><span class="en">Reason for choice</span></dt>
-            <dd><span class="ko">SameSite·CSRF 위험과 실제 인증 요청 흐름을 함께 검토한 뒤에도 httpOnly Cookie가 XSS 노출 범위를 가장 줄일 수 있는 선택이라고 판단해 전환하기로 결정했습니다.</span><span class="en">Even after weighing the SameSite/CSRF trade-offs against the real authenticated request flow, an httpOnly cookie still cut the XSS exposure the most, so I decided to move to it.</span></dd>
-            <dt><span class="ko">실제 설정</span><span class="en">Actual configuration</span></dt>
+            <dd class="key"><span class="ko">JWT를 localStorage에 저장해, XSS가 나면 토큰이 그대로 노출될 수 있었습니다.</span><span class="en">The JWT lived in localStorage, so any XSS could expose it directly.</span></dd>
+            <dt><span class="ko">선택</span><span class="en">Choice</span></dt>
+            <dd><span class="ko">localStorage·sessionStorage·httpOnly Cookie를 SameSite·CSRF까지 따져 비교하고, JS가 접근할 수 없는 httpOnly Cookie를 골랐습니다.</span><span class="en">Compared localStorage, sessionStorage and an httpOnly cookie, including SameSite/CSRF, and picked the cookie since JS can't reach it.</span></dd>
+            <dt><span class="ko">설정</span><span class="en">Config</span></dt>
             <dd><pre class="cs-code">response.cookies.set("auth", token, {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
   sameSite: "lax",
   path: "/",
   maxAge: 60 * 60 * 24 * 365,
-});</pre><div class="cs-note"><span class="ko">쿠키명은 auth, SameSite=Lax, 운영 환경에서만 Secure를 적용하고 유효기간은 1년으로 설정했습니다.</span><span class="en">Cookie name is auth, SameSite=Lax, Secure only in production, with a one-year maxAge.</span></div></dd>
+});</pre></dd>
             <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
-            <dd class="key"><span class="ko">클라이언트 JavaScript에서 토큰에 직접 접근하는 경로를 제거했습니다.</span><span class="en">Removed the path for client-side JavaScript to access the token directly.</span></dd>
+            <dd class="key"><span class="ko">클라이언트 JavaScript가 토큰에 접근하는 경로를 없앴습니다.</span><span class="en">Client-side JavaScript can no longer reach the token.</span></dd>
           </dl>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="ai-workflow">
-    <div class="wrap">
-      <p class="kicker"><span class="ko">AI를 어떻게 활용하는가</span><span class="en">How I use AI</span></p>
-      <h2 class="h2" style="max-width:26ch"><span class="ko">AI에 맡기는 것과 직접 판단해야 하는 것을 구분합니다</span><span class="en">I draw a line between what AI handles and what I decide myself</span></h2>
-      <p class="sub"><span class="ko">AI는 속도를 높이는 도구로 적극 활용하지만, 보안·데이터 구조·의존성·배포처럼 실제 서비스에 영향을 주는 결정은 공식 문서와 실행 결과를 기준으로 직접 검증합니다.</span><span class="en">I use AI to accelerate research, implementation, and debugging, while validating technical decisions through documentation, logs, tests, and runtime behavior.</span></p>
     </div>
   </section>
 
@@ -807,21 +792,21 @@ footer a:hover{color:var(--cy2)}
           <div class="tdate">2026.09 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
           <div>
             <h3><span class="ko">프리랜서 활동</span><span class="en">Freelance</span> <span style="font-family:var(--f-mono); font-size:11px; font-weight:400; color:var(--faint)">· Upwork · Wishket · Freemoa</span></h3>
-            <p><span class="ko">웹·앱 개발 외주 플랫폼에서 프로필을 운영하며, 현재 첫 외주로 한샘수학 웹사이트를 개발하고 있습니다.</span><span class="en">I maintain profiles on web and app development freelance platforms, and I'm currently building the Hansaem Math website as my first client project.</span></p>
+            <p><span class="ko">첫 외주로 한샘수학 웹사이트를 개발하고 있습니다.</span><span class="en">Building the Hansaem Math website, my first client project.</span></p>
           </div>
         </div>
         <div class="trow">
           <div class="tdate">2024.07 — 2025.01</div>
           <div>
             <h3><span class="ko">퀀텀에이아이 · 데이터 QA 프리랜서</span><span class="en">Quantum AI — Freelance Data QA</span></h3>
-            <p><span class="ko">AI 학습 데이터 구축을 위한 이미지 내 텍스트 추출 및 검수, 추출 데이터 오류 확인 및 품질 관리를 수행했습니다.</span><span class="en">Extracted and proofed text from images for AI training data, and checked extracted data for errors and quality.</span></p>
+            <p><span class="ko">AI 학습용 이미지 텍스트를 추출·검수하고 품질을 관리했습니다.</span><span class="en">Extracted and proofed image text for AI training data.</span></p>
           </div>
         </div>
         <div class="trow">
           <div class="tdate">2023.12 — 2024.06</div>
           <div>
             <h3><span class="ko">포스코×코딩온 K-Digital Training 11기</span><span class="en">POSCO×CodingOn K-Digital Training, Cohort 11</span></h3>
-            <p><span class="ko">수료. 팀 프로젝트 1·2차 모두 최우수상을 받았습니다.</span><span class="en">Completed the program; won the top team award in both round-1 and round-2 team projects.</span></p>
+            <p><span class="ko">수료, 팀 프로젝트 1·2차 모두 최우수상.</span><span class="en">Completed; top team award in both team projects.</span></p>
           </div>
         </div>
       </div>
@@ -831,7 +816,6 @@ footer a:hover{color:var(--cy2)}
   <section class="cta-band" id="contact">
     <div class="wrap">
       <h2><span class="ko">함께 제품을 만들 개발자를<br>찾고 계신가요?</span><span class="en">Looking for a developer<br>to build with?</span></h2>
-      <p><span class="ko">채용·협업 문의는 언제든 환영합니다.</span><span class="en">Open to roles and collaboration — reach out anytime.</span></p>
       <div class="cta">
         <a class="btn solid" href="mailto:12jason@donacouse.com"><span class="ko">이메일 보내기</span><span class="en">Email me</span></a>
         <a class="btn ghost" href="https://github.com/12jason0" target="_blank" rel="noopener">GitHub ↗</a>
@@ -902,10 +886,9 @@ footer a:hover{color:var(--cy2)}
     var groups=[
       ['#work .kicker','#work .h2','#work .sub','#work .prow','#work .other-label','#work .archive-bar'],
       ['#case-study .kicker','#case-study .h2','#case-study .sub','#case-study .case'],
-      ['#ai-workflow .kicker','#ai-workflow .h2','#ai-workflow .sub'],
       ['#about .kicker','#about .h2','#about .lines p'],
       ['#timeline .kicker','#timeline .h2','.timeline .trow'],
-      ['.cta-band h2','.cta-band p','.cta-band .cta','.cta-band .fill']
+      ['.cta-band h2','.cta-band .cta']
     ];
     var io=new IntersectionObserver(function(es){ es.forEach(function(en){ en.target.classList.toggle('in', en.isIntersecting); }); },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
     groups.forEach(function(sel){ var els=[]; sel.forEach(function(s){ els=els.concat(Array.prototype.slice.call(document.querySelectorAll(s))); });
