@@ -263,6 +263,46 @@ section{padding:126px 0; position:relative}
 .cta-band h2{font-family:var(--f-head); font-weight:600; font-size:clamp(26px,4vw,44px); letter-spacing:-.03em; margin:0 0 16px; text-wrap:balance}
 .cta-band p{color:var(--muted); max-width:44ch; margin:0 auto 30px; font-size:17px}
 .cta-band .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+/* hero project previews — small cards in the middle of the sphere, grow on hover */
+#orbit{position:absolute; top:64px; left:50%; right:0; bottom:0; z-index:3; display:flex; align-items:center; justify-content:center; pointer-events:none}
+.orbit-box{--box:min(44vw,620px); position:relative; width:var(--box); height:var(--box)}
+.hp-pos{position:absolute; width:0; height:0; animation:hpFloat 6s ease-in-out infinite; animation-delay:var(--d)}
+@keyframes hpFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+.hp{position:absolute; left:0; top:0; width:calc(var(--box)*.4); aspect-ratio:16/10; padding:0; margin:0; border-radius:12px; overflow:hidden; cursor:pointer; pointer-events:auto;
+  background:#0C1320; border:1px solid rgba(53,214,240,.45); box-shadow:0 10px 30px rgba(0,0,0,.5), 0 0 24px rgba(53,214,240,.12);
+  transform:translate(-50%,-50%) scale(.5); transition:transform .4s cubic-bezier(.2,.8,.2,1), opacity .3s, box-shadow .3s, border-color .3s}
+.hp.phone{width:calc(var(--box)*.25); aspect-ratio:9/17; border-radius:16px}
+.hp img{display:block; width:100%; height:100%; object-fit:cover; object-position:top}
+.hp .cap{position:absolute; left:0; right:0; bottom:0; padding:28px 14px 12px; display:flex; flex-direction:column; gap:2px; text-align:left; color:#F2F5FA;
+  background:linear-gradient(rgba(5,8,14,0), rgba(5,8,14,.92) 55%); opacity:0; transition:opacity .25s}
+.hp .cap b{font-size:16px; font-weight:700}
+.hp .cap small{font-size:13px; color:#C5CDD9}
+.hp-lbl{position:absolute; left:0; top:calc(var(--box)*.4*.625*.25 + 10px); transform:translateX(-50%); white-space:nowrap; font-size:14px; font-weight:600; color:var(--ink); pointer-events:none; transition:opacity .2s}
+.hp-pos:has(.phone) .hp-lbl{top:calc(var(--box)*.25*17/9*.25 + 10px)}
+.orbit-box:has(.hp:hover) .hp-pos{animation-play-state:paused}
+.orbit-box:has(.hp:hover) .hp:not(:hover){opacity:.25}
+.orbit-box:has(.hp:hover) .hp-lbl{opacity:0}
+.hp-pos:has(.hp:hover), .hp-pos:has(.hp:focus-visible){z-index:5}
+.hp:hover, .hp:focus-visible{transform:translate(-50%,-50%) scale(1); border-color:rgba(53,214,240,.9); box-shadow:0 24px 60px rgba(0,0,0,.6), 0 0 40px rgba(53,214,240,.25); outline:none}
+.hp:hover .cap, .hp:focus-visible .cap{opacity:1}
+@media(prefers-reduced-motion: reduce){.hp-pos{animation:none} .hp{transition:none}}
+@media(max-width:820px){#orbit{display:none}}
+
+/* contact form */
+.cform{max-width:620px; margin:8px auto 0; text-align:left; display:flex; flex-direction:column; gap:14px}
+.cf-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.cform label{display:flex; flex-direction:column; gap:6px; font-size:14px; font-weight:600; color:var(--body)}
+.cform input,.cform textarea{font:inherit; font-size:16px; font-weight:400; color:var(--ink); background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:12px 14px; resize:vertical; transition:border-color .15s}
+.cform input::placeholder,.cform textarea::placeholder{color:var(--muted)}
+.cform input:focus,.cform textarea:focus{outline:none; border-color:var(--cy)}
+.cf-foot{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.cf-foot .btn{padding:13px 26px; font-size:15px}
+.cf-foot .btn[disabled]{opacity:.6; cursor:wait}
+.cta-band .cf-msg{margin:0; max-width:none; font-size:14px; color:var(--muted); text-align:left}
+.cta-band .cf-msg.ok{color:var(--good)} .cta-band .cf-msg.err{color:#F07A7A}
+.cta-band .links{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:40px}
+@media(max-width:600px){.cf-row{grid-template-columns:1fr}}
+
 
 footer{border-top:1px solid var(--line2); background:var(--bg2)}
 footer .wrap{display:flex; justify-content:space-between; align-items:center; padding:32px 28px; flex-wrap:wrap; gap:14px}
@@ -359,9 +399,9 @@ footer a:hover{color:var(--cy2)}
   <div class="wrap">
     <a class="logo" href="#top">OH<b>.</b>dev</a>
     <div class="nav-links">
+      <a href="#about"><span class="ko">소개</span><span class="en">About</span></a>
       <a href="#work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
       <a href="#case-study"><span class="ko">문제 해결</span><span class="en">Case Study</span></a>
-      <a href="#about"><span class="ko">소개</span><span class="en">About</span></a>
       <a href="#timeline"><span class="ko">경력</span><span class="en">Experience</span></a>
       <a href="#contact"><span class="ko">연락</span><span class="en">Contact</span></a>
     </div>
@@ -490,6 +530,13 @@ footer a:hover{color:var(--cy2)}
 <ellipse cx="320.00" cy="320.0" rx="243.70" ry="151.1" fill="none" stroke="rgba(53,214,240,.14)" stroke-width="1" stroke-dasharray="3 8"/><ellipse cx="320.00" cy="320.0" rx="278.50" ry="172.7" fill="none" stroke="rgba(53,214,240,.09)" stroke-width="1" stroke-dasharray="3 8"/><g class="sphere-lines"><path d="M342.9,158.9L331.0,128.4 M289.6,141.0L273.2,103.3 M289.6,141.0L331.0,128.4 M324.1,196.9L288.0,205.6 M359.5,128.7L358.1,99.7 M359.5,128.7L359.3,92.6 M359.5,128.7L331.0,128.4 M253.9,175.7L224.3,163.9 M253.9,175.7L288.0,205.6 M380.0,196.5L399.9,178.3 M295.9,109.1L312.0,86.8 M295.9,109.1L273.2,103.3 M295.9,109.1L331.0,128.4 M283.8,222.6L288.0,205.6 M411.9,152.9L431.6,131.4 M411.9,152.9L422.2,124.9 M411.9,152.9L399.9,178.3 M223.7,150.9L182.5,144.9 M223.7,150.9L224.3,163.9 M358.4,237.0L358.2,271.1 M358.1,99.7L312.0,86.8 M358.1,99.7L359.3,92.6 M358.1,99.7L331.0,128.4 M429.6,203.7L399.9,178.3 M238.8,111.8L240.0,99.9 M238.8,111.8L273.2,103.3 M238.8,111.8L224.3,163.9 M431.6,131.4L415.1,106.8 M431.6,131.4L474.6,144.0 M431.6,131.4L422.2,124.9 M431.6,131.4L399.9,178.3 M187.6,192.8L182.5,144.9 M187.6,192.8L224.3,163.9 M312.0,86.8L359.3,92.6 M312.0,86.8L273.2,103.3 M312.0,86.8L331.0,128.4 M467.5,192.9L486.3,170.6 M467.5,192.9L483.4,180.8 M181.5,145.8L168.3,141.5 M181.5,145.8L182.5,144.9 M181.5,145.8L224.3,163.9 M347.1,287.9L358.2,271.1 M415.1,106.8L422.2,124.9 M181.2,243.4L137.4,226.1 M181.2,243.4L184.7,261.5 M451.0,255.9L461.5,249.0 M240.0,99.9L273.2,103.3 M275.0,300.8L251.0,319.9 M486.3,170.6L474.6,144.0 M486.3,170.6L522.0,201.5 M486.3,170.6L483.4,180.8 M145.9,199.0L121.1,202.3 M145.9,199.0L116.7,208.9 M145.9,199.0L137.4,226.1 M359.3,92.6L331.0,128.4 M200.6,290.9L184.7,261.5 M493.0,245.9L520.7,226.2 M493.0,245.9L527.8,252.0 M493.0,245.9L461.5,249.0 M168.3,141.5L182.5,144.9 M474.6,144.0L422.2,124.9 M474.6,144.0L483.4,180.8 M140.1,257.2L108.3,267.6 M140.1,257.2L137.4,226.1 M140.1,257.2L184.7,261.5 M238.2,330.1L251.0,319.9 M520.7,226.2L522.0,201.5 M520.7,226.2L548.3,268.5 M520.7,226.2L527.8,252.0 M121.1,202.3L116.7,208.9 M121.1,202.3L137.4,226.1 M373.4,344.2L412.9,353.7 M422.2,124.9L399.9,178.3 M160.8,310.3L121.5,330.9 M495.7,300.9L499.1,330.9 M182.5,144.9L224.3,163.9 M522.0,201.5L483.4,180.8 M522.0,201.5L527.8,252.0 M108.3,267.6L90.3,279.3 M108.3,267.6L137.4,226.1 M108.3,267.6L92.6,298.2 M428.4,352.3L412.9,353.7 M200.1,353.8L177.6,383.4 M533.0,287.1L548.3,268.5 M533.0,287.1L527.8,252.0 M533.0,287.1L546.4,328.3 M533.0,287.1L499.1,330.9 M116.7,208.9L137.4,226.1 M342.3,380.1L316.3,398.6 M125.7,326.6L100.1,343.5 M125.7,326.6L92.6,298.2 M125.7,326.6L121.5,330.9 M481.1,352.5L499.1,330.9 M548.3,268.5L527.8,252.0 M90.3,279.3L92.6,298.2 M399.5,392.8L412.9,353.7 M164.2,374.8L177.6,383.4 M525.3,346.3L551.4,336.4 M525.3,346.3L546.4,328.3 M525.3,346.3L499.1,330.9 M137.4,226.1L184.7,261.5 M307.1,411.6L316.3,398.6 M100.1,343.5L92.6,298.2 M100.1,343.5L90.5,365.3 M100.1,343.5L121.5,330.9 M454.6,398.9L431.2,442.0 M214.9,412.2L177.6,383.4 M551.4,336.4L546.4,328.3 M551.4,336.4L499.1,330.9 M92.6,298.2L121.5,330.9 M135.0,396.0L119.2,420.8 M135.0,396.0L105.9,397.7 M135.0,396.0L177.6,383.4 M502.2,400.3L533.7,399.6 M502.2,400.3L537.4,401.6 M502.2,400.3L502.5,413.5 M271.5,440.3L249.7,456.2 M546.4,328.3L499.1,330.9 M90.5,365.3L121.5,330.9 M90.5,365.3L105.9,397.7 M420.6,440.2L431.2,442.0 M184.3,436.9L154.6,446.3 M533.7,399.6L537.4,401.6 M533.7,399.6L502.5,413.5 M329.1,461.3L351.3,487.8 M119.2,420.8L105.9,397.7 M119.2,420.8L127.7,453.7 M119.2,420.8L154.6,446.3 M468.0,448.4L499.0,456.2 M468.0,448.4L502.5,413.5 M468.0,448.4L501.4,468.0 M468.0,448.4L431.2,442.0 M468.0,448.4L463.8,489.8 M240.0,468.2L249.7,456.2 M240.0,468.2L242.3,513.7 M537.4,401.6L502.5,413.5 M382.9,477.6L351.3,487.8 M165.7,464.1L127.7,453.7 M165.7,464.1L154.6,446.3 M165.7,464.1L172.9,497.7 M165.7,464.1L178.0,499.7 M499.0,456.2L502.5,413.5 M499.0,456.2L501.4,468.0 M499.0,456.2L463.8,489.8 M502.5,413.5L501.4,468.0 M127.7,453.7L154.6,446.3 M426.3,491.5L431.2,442.0 M426.3,491.5L448.4,506.4 M426.3,491.5L463.8,489.8 M426.3,491.5L430.0,526.8 M220.1,497.7L249.7,456.2 M220.1,497.7L178.0,499.7 M220.1,497.7L231.8,531.9 M220.1,497.7L242.3,513.7 M501.4,468.0L463.8,489.8 M154.6,446.3L172.9,497.7 M154.6,446.3L178.0,499.7 M345.7,512.5L378.6,531.0 M345.7,512.5L351.3,487.8 M345.7,512.5L384.7,526.8 M345.7,512.5L361.5,550.5 M345.7,512.5L314.9,545.4 M431.2,442.0L463.8,489.8 M172.9,497.7L178.0,499.7 M448.4,506.4L463.8,489.8 M448.4,506.4L430.0,526.8 M249.7,456.2L242.3,513.7 M274.4,524.3L231.8,531.9 M274.4,524.3L242.3,513.7 M274.4,524.3L248.5,542.1 M274.4,524.3L314.9,545.4 M463.8,489.8L430.0,526.8 M378.6,531.0L351.3,487.8 M378.6,531.0L384.7,526.8 M378.6,531.0L361.5,550.5 M351.3,487.8L384.7,526.8 M231.8,531.9L242.3,513.7 M231.8,531.9L248.5,542.1 M430.0,526.8L384.7,526.8 M242.3,513.7L248.5,542.1 M317.8,546.4L361.5,550.5 M317.8,546.4L314.9,545.4 M384.7,526.8L361.5,550.5 M361.5,550.5L314.9,545.4" stroke="rgba(70,210,240,0.25)" stroke-width="1" fill="none"/></g><g class="sphere-dots"><circle cx="342.90" cy="158.9" r="1.42" fill="rgba(141,235,255,0.53)"/><circle cx="289.60" cy="141.0" r="1.56" fill="rgba(146,235,255,0.58)"/><circle cx="324.10" cy="196.9" r="1.2" fill="rgba(132,235,255,0.45)"/><circle cx="359.50" cy="128.7" r="1.67" fill="rgba(151,235,255,0.62)"/><circle cx="253.90" cy="175.7" r="1.4" fill="rgba(140,235,255,0.52)"/><circle cx="380.00" cy="196.5" r="1.27" fill="rgba(135,235,255,0.48)"/><circle cx="295.90" cy="109.1" r="1.84" fill="rgba(158,235,255,0.68)"/><circle cx="283.80" cy="222.6" r="1.11" fill="rgba(129,235,255,0.42)"/><circle cx="411.90" cy="152.9" r="1.63" fill="rgba(149,235,255,0.61)"/><circle cx="223.70" cy="150.9" r="1.66" fill="rgba(151,235,255,0.62)"/><circle cx="358.40" cy="237.0" r="1.06" fill="rgba(127,235,255,0.41)"/><circle cx="358.10" cy="99.7" r="1.98" fill="rgba(163,235,255,0.73)"/><circle cx="230.40" cy="220.4" r="1.25" fill="rgba(134,235,255,0.47)"/><circle cx="429.60" cy="203.7" r="1.41" fill="rgba(140,235,255,0.53)"/><circle cx="238.80" cy="111.8" r="1.98" fill="rgba(163,235,255,0.73)"/><circle cx="306.50" cy="261.7" r="0.97" fill="rgba(123,235,255,0.37)"/><circle cx="431.60" cy="131.4" r="1.92" fill="rgba(161,235,255,0.71)"/><circle cx="187.60" cy="192.8" r="1.57" fill="rgba(147,235,255,0.59)"/><circle cx="403.70" cy="253.8" r="1.12" fill="rgba(129,235,255,0.43)"/><circle cx="312.00" cy="86.8" r="2.19" fill="rgba(172,235,255,0.8)"/><circle cx="242.00" cy="264.5" r="1.08" fill="rgba(127,235,255,0.41)"/><circle cx="467.50" cy="192.9" r="1.67" fill="rgba(151,235,255,0.62)"/><circle cx="181.50" cy="145.8" r="1.97" fill="rgba(163,235,255,0.72)"/><circle cx="347.10" cy="287.9" r="0.93" fill="rgba(121,235,255,0.36)"/><circle cx="415.10" cy="106.8" r="2.2" fill="rgba(172,235,255,0.8)"/><circle cx="181.20" cy="243.4" r="1.4" fill="rgba(140,235,255,0.52)"/><circle cx="451.00" cy="255.9" r="1.32" fill="rgba(137,235,255,0.5)"/><circle cx="240.00" cy="99.9" r="2.28" fill="rgba(175,235,255,0.83)"/><circle cx="275.00" cy="300.8" r="0.95" fill="rgba(122,235,255,0.37)"/><circle cx="486.30" cy="170.6" r="1.98" fill="rgba(163,235,255,0.73)"/><circle cx="145.90" cy="199.0" r="1.84" fill="rgba(157,235,255,0.68)"/><circle cx="396.10" cy="302.5" r="1.02" fill="rgba(125,235,255,0.39)"/><circle cx="359.30" cy="92.6" r="2.41" fill="rgba(180,235,255,0.88)"/><circle cx="200.60" cy="290.9" r="1.2" fill="rgba(132,235,255,0.45)"/><circle cx="493.00" cy="245.9" r="1.61" fill="rgba(148,235,255,0.6)"/><circle cx="168.30" cy="141.5" r="2.26" fill="rgba(174,235,255,0.82)"/><circle cx="320.70" cy="327.3" r="0.9" fill="rgba(120,235,255,0.35)"/><circle cx="474.60" cy="144.0" r="2.29" fill="rgba(175,235,255,0.84)"/><circle cx="140.10" cy="257.2" r="1.63" fill="rgba(149,235,255,0.61)"/><circle cx="447.50" cy="306.5" r="1.22" fill="rgba(133,235,255,0.46)"/><circle cx="273.20" cy="103.3" r="2.52" fill="rgba(185,235,255,0.92)"/><circle cx="238.20" cy="330.1" r="1.03" fill="rgba(125,235,255,0.4)"/><circle cx="520.70" cy="226.2" r="1.95" fill="rgba(162,235,255,0.72)"/><circle cx="121.10" cy="202.3" r="2.12" fill="rgba(169,235,255,0.78)"/><circle cx="373.40" cy="344.2" r="0.97" fill="rgba(123,235,255,0.37)"/><circle cx="422.20" cy="124.9" r="2.53" fill="rgba(185,235,255,0.92)"/><circle cx="160.80" cy="310.3" r="1.4" fill="rgba(140,235,255,0.53)"/><circle cx="495.70" cy="300.9" r="1.52" fill="rgba(145,235,255,0.57)"/><circle cx="182.50" cy="144.9" r="2.51" fill="rgba(184,235,255,0.91)"/><circle cx="287.20" cy="359.6" r="0.95" fill="rgba(122,235,255,0.37)"/><circle cx="522.00" cy="201.5" r="2.29" fill="rgba(176,235,255,0.84)"/><circle cx="108.30" cy="267.6" r="1.91" fill="rgba(160,235,255,0.7)"/><circle cx="428.40" cy="352.3" r="1.15" fill="rgba(130,235,255,0.44)"/><circle cx="331.00" cy="128.4" r="2.68" fill="rgba(191,235,255,0.97)"/><circle cx="200.10" cy="353.8" r="1.21" fill="rgba(132,235,255,0.46)"/><circle cx="533.00" cy="287.1" r="1.87" fill="rgba(159,235,255,0.69)"/><circle cx="116.70" cy="208.9" r="2.39" fill="rgba(180,235,255,0.87)"/><circle cx="342.30" cy="380.1" r="0.98" fill="rgba(123,235,255,0.38)"/><circle cx="483.40" cy="180.8" r="2.57" fill="rgba(187,235,255,0.93)"/><circle cx="125.70" cy="326.6" r="1.66" fill="rgba(151,235,255,0.62)"/><circle cx="481.10" cy="352.5" r="1.44" fill="rgba(141,235,255,0.54)"/><circle cx="224.30" cy="163.9" r="2.71" fill="rgba(192,235,255,0.98)"/><circle cx="250.70" cy="387.2" r="1.08" fill="rgba(127,235,255,0.41)"/><circle cx="548.30" cy="268.5" r="2.23" fill="rgba(173,235,255,0.82)"/><circle cx="90.30" cy="279.3" r="2.19" fill="rgba(172,235,255,0.8)"/><circle cx="399.50" cy="392.8" r="1.13" fill="rgba(129,235,255,0.43)"/><circle cx="399.90" cy="178.3" r="2.76" fill="rgba(194,235,255,1)"/><circle cx="164.20" cy="374.8" r="1.44" fill="rgba(142,235,255,0.54)"/><circle cx="525.30" cy="346.3" r="1.78" fill="rgba(155,235,255,0.66)"/><circle cx="137.40" cy="226.1" r="2.62" fill="rgba(189,235,255,0.95)"/><circle cx="307.10" cy="411.6" r="1.07" fill="rgba(127,235,255,0.41)"/><circle cx="527.80" cy="252.0" r="2.54" fill="rgba(186,235,255,0.93)"/><circle cx="100.10" cy="343.5" r="1.95" fill="rgba(162,235,255,0.72)"/><circle cx="454.60" cy="398.9" r="1.38" fill="rgba(139,235,255,0.52)"/><circle cx="288.00" cy="205.6" r="2.83" fill="rgba(197,235,255,1)"/><circle cx="214.90" cy="412.2" r="1.29" fill="rgba(135,235,255,0.48)"/><circle cx="551.40" cy="336.4" r="2.14" fill="rgba(170,235,255,0.79)"/><circle cx="92.60" cy="298.2" r="2.45" fill="rgba(182,235,255,0.89)"/><circle cx="365.10" cy="428.7" r="1.17" fill="rgba(131,235,255,0.45)"/><circle cx="461.50" cy="249.0" r="2.77" fill="rgba(195,235,255,1)"/><circle cx="135.00" cy="396.0" r="1.71" fill="rgba(153,235,255,0.63)"/><circle cx="502.20" cy="400.3" r="1.71" fill="rgba(152,235,255,0.63)"/><circle cx="184.70" cy="261.5" r="2.79" fill="rgba(196,235,255,1)"/><circle cx="271.50" cy="440.3" r="1.23" fill="rgba(133,235,255,0.47)"/><circle cx="546.40" cy="328.3" r="2.47" fill="rgba(183,235,255,0.9)"/><circle cx="90.50" cy="365.3" r="2.22" fill="rgba(173,235,255,0.81)"/><circle cx="420.60" cy="440.2" r="1.39" fill="rgba(139,235,255,0.52)"/><circle cx="358.20" cy="271.1" r="2.88" fill="rgba(199,235,255,1)"/><circle cx="184.30" cy="436.9" r="1.54" fill="rgba(146,235,255,0.57)"/><circle cx="533.70" cy="399.6" r="2.06" fill="rgba(166,235,255,0.75)"/><circle cx="121.50" cy="330.9" r="2.65" fill="rgba(190,235,255,0.96)"/><circle cx="329.10" cy="461.3" r="1.3" fill="rgba(136,235,255,0.49)"/><circle cx="499.10" cy="330.9" r="2.72" fill="rgba(193,235,255,0.99)"/><circle cx="119.20" cy="420.8" r="2.0" fill="rgba(164,235,255,0.73)"/><circle cx="468.00" cy="448.4" r="1.68" fill="rgba(151,235,255,0.62)"/><circle cx="251.00" cy="319.9" r="2.88" fill="rgba(199,235,255,1)"/><circle cx="240.00" cy="468.2" r="1.46" fill="rgba(143,235,255,0.55)"/><circle cx="537.40" cy="401.6" r="2.38" fill="rgba(179,235,255,0.87)"/><circle cx="105.90" cy="397.7" r="2.46" fill="rgba(182,235,255,0.89)"/><circle cx="382.90" cy="477.6" r="1.47" fill="rgba(143,235,255,0.55)"/><circle cx="412.90" cy="353.7" r="2.86" fill="rgba(198,235,255,1)"/><circle cx="165.70" cy="464.1" r="1.83" fill="rgba(157,235,255,0.67)"/><circle cx="499.00" cy="456.2" r="2.0" fill="rgba(164,235,255,0.74)"/><circle cx="177.60" cy="383.4" r="2.77" fill="rgba(195,235,255,1)"/><circle cx="295.90" cy="492.5" r="1.5" fill="rgba(144,235,255,0.56)"/><circle cx="502.50" cy="413.5" r="2.62" fill="rgba(189,235,255,0.95)"/><circle cx="127.70" cy="453.7" r="2.26" fill="rgba(174,235,255,0.82)"/><circle cx="426.30" cy="491.5" r="1.73" fill="rgba(153,235,255,0.64)"/><circle cx="316.30" cy="398.6" r="2.87" fill="rgba(199,235,255,1)"/><circle cx="220.10" cy="497.7" r="1.75" fill="rgba(154,235,255,0.65)"/><circle cx="501.40" cy="468.0" r="2.3" fill="rgba(176,235,255,0.84)"/><circle cx="154.60" cy="446.3" r="2.61" fill="rgba(188,235,255,0.95)"/><circle cx="345.70" cy="512.5" r="1.66" fill="rgba(150,235,255,0.62)"/><circle cx="431.20" cy="442.0" r="2.76" fill="rgba(194,235,255,1.0)"/><circle cx="172.90" cy="497.7" r="2.11" fill="rgba(168,235,255,0.77)"/><circle cx="448.40" cy="506.4" r="2.03" fill="rgba(165,235,255,0.74)"/><circle cx="249.70" cy="456.2" r="2.78" fill="rgba(195,235,255,1)"/><circle cx="274.40" cy="524.3" r="1.81" fill="rgba(156,235,255,0.67)"/><circle cx="463.80" cy="489.8" r="2.51" fill="rgba(184,235,255,0.91)"/><circle cx="178.00" cy="499.7" r="2.44" fill="rgba(182,235,255,0.89)"/><circle cx="378.60" cy="531.0" r="1.92" fill="rgba(161,235,255,0.71)"/><circle cx="351.30" cy="487.8" r="2.74" fill="rgba(194,235,255,0.99)"/><circle cx="231.80" cy="531.9" r="2.08" fill="rgba(167,235,255,0.76)"/><circle cx="430.00" cy="526.8" r="2.29" fill="rgba(176,235,255,0.84)"/><circle cx="242.30" cy="513.7" r="2.61" fill="rgba(188,235,255,0.95)"/><circle cx="317.80" cy="546.4" r="2.03" fill="rgba(165,235,255,0.74)"/><circle cx="384.70" cy="526.8" r="2.56" fill="rgba(186,235,255,0.93)"/><circle cx="248.50" cy="542.1" r="2.35" fill="rgba(178,235,255,0.86)"/><circle cx="361.50" cy="550.5" r="2.25" fill="rgba(174,235,255,0.82)"/><circle cx="314.90" cy="545.4" r="2.48" fill="rgba(183,235,255,0.9)"/></g>
 <g class="hud-cross" opacity="0.5" stroke="rgba(150,232,255,.5)" stroke-width="1"><line x1="306.0" y1="320.0" x2="316.0" y2="320.0"/><line x1="324.0" y1="320.0" x2="334.0" y2="320.0"/><line x1="320.0" y1="306.0" x2="320.0" y2="316.0"/><line x1="320.0" y1="324.0" x2="320.0" y2="334.0"/></g>
 </svg></div>
+  <div id="orbit" aria-label="프로젝트 미리보기">
+    <div class="orbit-box">
+      <div class="hp-pos" style="left:37%;top:50%;--d:0s"><button class="hp phone" type="button" data-idx="0" aria-label="두나 자세히 보기"><img src="dona/dona-frame-1.jpg" alt=""><span class="cap"><b>두나</b><small><span class="ko">데이트 코스 추천 앱</span><span class="en">Date-course app</span></small></span></button><span class="hp-lbl"><span class="ko">두나</span><span class="en">DoNa</span></span></div>
+      <div class="hp-pos" style="left:65%;top:37%;--d:-2s"><button class="hp" type="button" data-idx="1" aria-label="QuoteCrate 자세히 보기"><img src="qc/qc-2.png" alt=""><span class="cap"><b>QuoteCrate</b><small><span class="ko">Shopify 도매 견적 앱</span><span class="en">Shopify wholesale quote app</span></small></span></button><span class="hp-lbl">QuoteCrate</span></div>
+      <div class="hp-pos" style="left:65%;top:64%;--d:-4s"><button class="hp" type="button" data-idx="2" aria-label="두나 관리자 자세히 보기"><img src="admin/admin-cover.jpg" alt=""><span class="cap"><b><span class="ko">두나 관리자</span><span class="en">DoNa Admin</span></b><small><span class="ko">AI 장소 수집 · 운영 도구</span><span class="en">AI place collection · ops tools</span></small></span></button><span class="hp-lbl"><span class="ko">관리자</span><span class="en">Admin</span></span></div>
+    </div>
+  </div>
   <div class="core">
     <p class="namebadge"><b><span class="ko">오승용</span><span class="en">Oh Seungyong</span></b> · <span class="ko">Full-stack Developer</span><span class="en">Full-stack Developer</span></p>
     <h1><span class="ko"><span class="thin">서비스를 혼자 만들고,</span><br>출시해서 운영합니다.</span><span class="en"><span class="thin">I build products on my own,</span><br>then ship and run them.</span></h1>
@@ -504,6 +551,18 @@ footer a:hover{color:var(--cy2)}
 
 
 <main translate="no">
+  <section id="about" class="about" style="padding-bottom:0">
+    <div class="wrap">
+      <p class="kicker"><span class="ko">소개</span><span class="en">About</span></p>
+      <h2 class="h2"><span class="ko">두나를 만든 이유</span><span class="en">Why I built DoNa</span></h2>
+      <div class="lines">
+        <p><span class="ko">데이트 정보는 많은데, 다들 비슷한 장소 하나씩만 보여줬습니다.</span><span class="en">There was plenty of date information out there, but every service just showed one similar spot at a time.</span></p>
+        <p><span class="ko">그래서 사람마다 다른 하루를 코스로 짜주는 두나를 만들었습니다.</span><span class="en">So I built DoNa, which plans a different day for each person as a full course.</span></p>
+        <p><span class="ko">장소는 직접 가서 찍고, 웹·앱·서버와 운영 도구까지 혼자 만들어 운영합니다.</span><span class="en">I visit and photograph the places myself, and I build and run the web, apps, server, and admin tools on my own.</span></p>
+      </div>
+    </div>
+  </section>
+
   <section id="work">
     <div class="wrap">
       <p class="kicker"><span class="ko">모아 놓은 프로젝트</span><span class="en">Selected work</span></p>
@@ -763,18 +822,6 @@ footer a:hover{color:var(--cy2)}
     </div>
   </section>
 
-  <section id="about" class="about" style="padding-top:0">
-    <div class="wrap">
-      <p class="kicker"><span class="ko">소개</span><span class="en">About</span></p>
-      <h2 class="h2"><span class="ko">두나를 만든 이유</span><span class="en">Why I built DoNa</span></h2>
-      <div class="lines">
-        <p><span class="ko">데이트 정보는 많은데, 다들 비슷한 장소 하나씩만 보여줬습니다.</span><span class="en">There was plenty of date information out there, but every service just showed one similar spot at a time.</span></p>
-        <p><span class="ko">그래서 사람마다 다른 하루를 코스로 짜주는 두나를 만들었습니다.</span><span class="en">So I built DoNa, which plans a different day for each person as a full course.</span></p>
-        <p><span class="ko">장소는 직접 가서 찍고, 웹·앱·서버와 운영 도구까지 혼자 만들어 운영합니다.</span><span class="en">I visit and photograph the places myself, and I build and run the web, apps, server, and admin tools on my own.</span></p>
-      </div>
-    </div>
-  </section>
-
   <section id="timeline" style="padding-top:0">
     <div class="wrap">
       <p class="kicker"><span class="ko">경력</span><span class="en">Experience</span></p>
@@ -815,8 +862,20 @@ footer a:hover{color:var(--cy2)}
   <section class="cta-band" id="contact">
     <div class="wrap">
       <h2><span class="ko">함께 제품을 만들 개발자를<br>찾고 계신가요?</span><span class="en">Looking for a developer<br>to build with?</span></h2>
-      <div class="cta">
-        <a class="btn solid" href="mailto:12jason@donacouse.com"><span class="ko">이메일 보내기</span><span class="en">Email me</span></a>
+      <form class="cform" id="cform" novalidate>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div class="cf-row">
+          <label><span><span class="ko">이름 · 회사</span><span class="en">Name · Company</span></span><input name="name" required maxlength="80" data-ph-ko="홍길동 · OO회사" data-ph-en="Jane Doe · Company"></label>
+          <label><span><span class="ko">답장 받을 이메일</span><span class="en">Your email</span></span><input type="email" name="email" required maxlength="120" placeholder="you@company.com"></label>
+        </div>
+        <label><span><span class="ko">메시지</span><span class="en">Message</span></span><textarea name="message" rows="5" required maxlength="3000" data-ph-ko="어떤 일인지 편하게 적어주세요." data-ph-en="Tell me a bit about what you have in mind."></textarea></label>
+        <div class="cf-foot">
+          <button class="btn solid" type="submit"><span class="ko">보내기</span><span class="en">Send</span></button>
+          <p class="cf-msg" id="cfMsg" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+      <div class="cta links">
+        <a class="btn ghost" href="mailto:12jason@donacouse.com">12jason@donacouse.com</a>
         <a class="btn ghost" href="https://github.com/12jason0" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn ghost" href="https://velog.io/@12jason" target="_blank" rel="noopener"><span class="ko">블로그 ↗</span><span class="en">Blog ↗</span></a>
         <a class="btn ghost" href="https://www.linkedin.com/in/seungyong-oh-a6b271406" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -851,6 +910,7 @@ footer a:hover{color:var(--cy2)}
 (function(){
   var root=document.documentElement;
   function setLang(l){ root.setAttribute('data-lang',l);
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ph-ko]'),function(el){ el.placeholder=el.getAttribute('data-ph-'+l); });
     document.getElementById('ko').setAttribute('aria-pressed',l==='ko');
     document.getElementById('en').setAttribute('aria-pressed',l==='en'); }
   setLang('ko');
@@ -876,6 +936,30 @@ footer a:hover{color:var(--cy2)}
   if(modal){ modal.addEventListener('click',function(e){ if(e.target.hasAttribute('data-close')) closeModal(); });
     document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); }); }
   exps.forEach(function(el){ el.addEventListener('click',function(){ openModal(el); }); });
+  Array.prototype.forEach.call(document.querySelectorAll('#orbit .hp'),function(b){
+    b.addEventListener('click',function(){ var c=exps[+b.getAttribute('data-idx')]; if(c) openModal(c); }); });
+
+  // contact form — sent to my inbox through FormSubmit (no server of my own)
+  (function(){
+    var f=document.getElementById('cform'), msg=document.getElementById('cfMsg'); if(!f) return;
+    var t={ko:{need:'이름, 이메일, 메시지를 모두 적어주세요.',mail:'이메일 주소를 확인해주세요.',sending:'보내는 중…',ok:'보냈습니다. 확인하고 답장드릴게요.',err:'전송에 실패했습니다. 12jason@donacouse.com 으로 직접 보내주세요.'},
+           en:{need:'Please fill in your name, email and message.',mail:'Please check your email address.',sending:'Sending…',ok:'Sent. I will get back to you soon.',err:'Could not send. Please email 12jason@donacouse.com directly.'}};
+    function say(k,cls){ var l=root.getAttribute('data-lang')==='en'?'en':'ko'; msg.textContent=t[l][k]; msg.className='cf-msg'+(cls?' '+cls:''); }
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var E=f.elements; var d={name:E['name'].value.trim(), email:E['email'].value.trim(), message:E['message'].value.trim()};
+      if(E['_honey'].value) return;
+      if(!d.name||!d.email||!d.message){ say('need','err'); return; }
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)){ say('mail','err'); return; }
+      var btn=f.querySelector('button[type=submit]'); btn.disabled=true; say('sending');
+      fetch('https://formsubmit.co/ajax/12jason@donacouse.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify({name:d.name,email:d.email,message:d.message,_replyto:d.email,_subject:'[포트폴리오] '+d.name+'님의 메시지',_template:'table',_captcha:'false'})})
+      .then(function(r){ return r.json().then(function(j){ return r.ok && String(j.success)==='true'; }); })
+      .then(function(ok){ if(ok){ f.reset(); say('ok','ok'); } else say('err','err'); })
+      .catch(function(){ say('err','err'); })
+      .then(function(){ btn.disabled=false; });
+    });
+  })();
 
   // scroll-reveal — sections below the hero animate in on scroll (FEConf-style)
   (function(){
@@ -887,7 +971,7 @@ footer a:hover{color:var(--cy2)}
       ['#case-study .kicker','#case-study .h2','#case-study .sub','#case-study .case'],
       ['#about .kicker','#about .h2','#about .lines p'],
       ['#timeline .kicker','#timeline .h2','.timeline .trow'],
-      ['.cta-band h2','.cta-band .cta']
+      ['.cta-band h2','.cta-band .cform','.cta-band .cta']
     ];
     var io=new IntersectionObserver(function(es){ es.forEach(function(en){ en.target.classList.toggle('in', en.isIntersecting); }); },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
     groups.forEach(function(sel){ var els=[]; sel.forEach(function(s){ els=els.concat(Array.prototype.slice.call(document.querySelectorAll(s))); });
