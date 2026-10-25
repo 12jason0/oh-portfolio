@@ -280,7 +280,18 @@ section{padding:126px 0; position:relative}
 .tl-item > .prow{scroll-margin-top:110px}
 .ptl{--side:118px; --dotc:16px; --g:18px; position:relative; display:flex; flex-direction:column; gap:40px}
 .tl-line{position:absolute; top:28px; bottom:40px; left:calc(var(--side) + var(--g) + var(--dotc)/2 - .5px); width:1px; background:var(--line)}
-.tl-line i{position:absolute; left:0; top:0; width:1px; height:0; background:linear-gradient(var(--cy), color-mix(in srgb, var(--cy) 30%, transparent)); box-shadow:0 0 6px var(--cy)}
+@property --cur{syntax:'<color>'; inherits:true; initial-value:#35D6F0}
+:root{--a1:#35D6F0; --a2:#3FD08B; --a3:#A493FF}
+:root[data-theme="light"]{--a1:#0B7C93; --a2:#1A8350; --a3:#6A55E0}
+.ptl{--cur:var(--a1); transition:--cur .6s ease}
+.tl-item[data-acc="1"]{--acc:var(--a1)} .tl-item[data-acc="2"]{--acc:var(--a2)} .tl-item[data-acc="3"]{--acc:var(--a3)}
+.tl-item .points li::before{background:var(--acc)}
+.tl-item .quicklinks a{color:var(--acc); border-bottom-color:color-mix(in srgb, var(--acc) 40%, transparent)}
+.tl-item .quicklinks a:hover{border-bottom-color:var(--acc)}
+.tl-item .more{color:var(--acc)}
+.tl-line i{position:absolute; left:0; top:0; width:1px; height:0; background:linear-gradient(color-mix(in srgb, var(--cur) 40%, transparent), var(--cur)); box-shadow:0 0 6px var(--cur)}
+.tl-item > .prow{transition:border-color .5s, box-shadow .5s, background-color .2s}
+.tl-item.on > .prow{border-color:color-mix(in srgb, var(--acc) 45%, transparent); box-shadow:var(--shadow-card), 0 0 40px color-mix(in srgb, var(--acc) 10%, transparent)}
 .tl-item{position:relative; display:grid; grid-template-columns:var(--side) var(--dotc) minmax(0,1fr); column-gap:var(--g); align-items:start}
 .tl-side{text-align:right; padding-top:22px; visibility:hidden}
 @media(min-width:821px){.ptl .tl-item .tl-dot{visibility:hidden}}
@@ -288,12 +299,12 @@ section{padding:126px 0; position:relative}
 .tl-now-in{position:sticky; top:110px; padding-top:22px; text-align:right; transition:opacity .22s ease, transform .22s ease}
 .tl-now-in.out{opacity:0; transform:translateY(-10px)}
 .tl-now-in.pre{opacity:0; transform:translateY(10px); transition:none}
-.tl-now .tl-name{color:var(--ink)}
-.tl-now-in::after{content:""; position:absolute; top:26px; right:calc(-1 * (var(--g) + var(--dotc)/2 + 6px)); width:12px; height:12px; border-radius:50%; background:var(--cy); box-shadow:0 0 0 4px var(--cy-soft), 0 0 14px var(--cy)}
+.tl-now .tl-name{color:var(--ink)} .tl-now .tl-date{color:var(--cur)}
+.tl-now-in::after{content:""; position:absolute; top:26px; right:calc(-1 * (var(--g) + var(--dotc)/2 + 6px)); width:12px; height:12px; border-radius:50%; background:var(--cur); box-shadow:0 0 0 4px color-mix(in srgb, var(--cur) 18%, transparent), 0 0 14px var(--cur)}
 .tl-name{display:block; font-size:14px; font-weight:600; line-height:1.4; color:var(--body); transition:color .4s}
 .tl-date{display:block; margin-top:4px; font-size:14px; color:var(--muted); font-variant-numeric:tabular-nums}
 .tl-dot{position:relative; z-index:1; width:var(--dotc); height:var(--dotc); margin-top:25px; border-radius:50%; background:var(--bg); border:2px solid var(--muted); transition:background .5s, border-color .5s, box-shadow .5s}
-.tl-item.on .tl-dot{background:var(--cy); border-color:var(--cy); box-shadow:0 0 0 5px var(--cy-soft), 0 0 18px color-mix(in srgb, var(--cy) 70%, transparent)}
+.tl-item.on .tl-dot{background:var(--acc); border-color:var(--acc); box-shadow:0 0 0 5px color-mix(in srgb, var(--acc) 18%, transparent), 0 0 18px color-mix(in srgb, var(--acc) 70%, transparent)}
 .tl-item.on .tl-name{color:var(--ink)}
 /* back office hangs off DoNa as a smaller branch */
 .tl-item.tl-child{margin-top:-14px}
@@ -595,7 +606,7 @@ footer a:hover{color:var(--cy2)}
       <div class="plist ptl">
         <div class="tl-line" aria-hidden="true"><i></i></div>
         <div class="tl-now" aria-hidden="true"><div class="tl-now-in"></div></div>
-        <div class="tl-item">
+        <div class="tl-item" data-acc="1">
           <div class="tl-side"><b class="tl-name"><span class="ko">두나 · 개발 및 운영</span><span class="en">DoNa · build &amp; run</span></b><span class="tl-date">2025.08–<span class="ko">현재</span><span class="en">now</span></span></div>
           <div class="tl-dot" aria-hidden="true"></div>
         <article class="pcard prow exp" id="feature-dona" data-cat="product">
@@ -709,7 +720,7 @@ footer a:hover{color:var(--cy2)}
           </div>
         </article>
         </div>
-        <div class="tl-item tl-child">
+        <div class="tl-item tl-child" data-acc="2">
           <div class="tl-side"><b class="tl-name"><span class="ko">관리자 백오피스</span><span class="en">Admin back office</span></b><span class="tl-date"><span class="ko">두나 운영 도구</span><span class="en">DoNa ops tool</span></span></div>
           <div class="tl-dot" aria-hidden="true"></div>
         <article class="pcard prow exp" data-cat="product">
@@ -747,7 +758,7 @@ footer a:hover{color:var(--cy2)}
           </div>
         </article>
         </div>
-        <div class="tl-item">
+        <div class="tl-item" data-acc="3">
           <div class="tl-side"><b class="tl-name">QuoteCrate</b><span class="tl-date"><span class="ko">2026.10 출시</span><span class="en">Shipped Oct 2026</span></span></div>
           <div class="tl-dot" aria-hidden="true"></div>
         <article class="pcard prow exp" data-cat="product">
@@ -990,8 +1001,8 @@ footer a:hover{color:var(--cy2)}
     function swap(k){
       if(k===shown) return;
       var html=items[k].querySelector('.tl-side').innerHTML;
-      if(shown<0){ now.innerHTML=html; shown=k; return; }
-      shown=k; busy=true; now.classList.add('out');
+      if(shown<0){ now.innerHTML=html; shown=k; tl.style.setProperty('--cur','var(--a'+items[k].getAttribute('data-acc')+')'); return; }
+      shown=k; busy=true; now.classList.add('out'); tl.style.setProperty('--cur','var(--a'+items[k].getAttribute('data-acc')+')');
       setTimeout(function(){
         now.innerHTML=items[shown].querySelector('.tl-side').innerHTML;
         now.classList.remove('out'); now.classList.add('pre');
@@ -1017,7 +1028,7 @@ footer a:hover{color:var(--cy2)}
       t=setTimeout(function(){
         var y=window.scrollY, end=document.documentElement.scrollHeight-innerHeight;
         if(y>hero.offsetHeight*.6 && y<end-innerHeight*.9) f.classList.add('show');
-      },900);
+      },300);
     }
     window.addEventListener('scroll',onScroll,{passive:true});
     f.addEventListener('click',function(){ window.scrollBy({top:innerHeight*.8, behavior:'smooth'}); });
