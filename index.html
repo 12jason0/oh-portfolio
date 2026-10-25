@@ -8,7 +8,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="오승용 — Full-stack Developer">
 <meta property="og:description" content="두나(웹·iOS·Android)와 QuoteCrate(Shopify App Store)를 혼자 기획·개발해 출시했고, 지금도 직접 운영하고 있습니다.">
-<meta property="og:image" content="https://oh-portfolio-omega.vercel.app/og.png">
+<meta property="og:url" content="https://oh-seungyong.vercel.app">
+<meta property="og:image" content="https://oh-seungyong.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,8 +254,9 @@ section{padding:126px 0; position:relative}
 
 /* capabilities */
 .cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:44px}
-.about p{max-width:64ch; font-size:16.5px; color:var(--muted)}
-.about p b{color:var(--ink); font-weight:500}
+.about .lines{margin-top:32px}
+.about .lines p{max-width:64ch; font-size:16.5px; line-height:1.7; color:var(--ink); margin:0 0 22px}
+.about .lines p b{color:var(--ink); font-weight:500}
 
 /* cta */
 .cta-band{text-align:center; background:var(--bg2); border-top:1px solid var(--line2)}
@@ -361,6 +363,7 @@ footer a:hover{color:var(--cy2)}
       <a href="#work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
       <a href="#case-study"><span class="ko">문제 해결</span><span class="en">Case Study</span></a>
       <a href="#ai-workflow"><span class="ko">AI 활용</span><span class="en">AI Workflow</span></a>
+      <a href="#about"><span class="ko">소개</span><span class="en">About</span></a>
       <a href="#timeline"><span class="ko">경력</span><span class="en">Experience</span></a>
       <a href="#contact"><span class="ko">연락</span><span class="en">Contact</span></a>
     </div>
@@ -776,6 +779,18 @@ footer a:hover{color:var(--cy2)}
     </div>
   </section>
 
+  <section id="about" class="about" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker"><span class="ko">소개</span><span class="en">About</span></p>
+      <h2 class="h2"><span class="ko">두나를 만든 이유</span><span class="en">Why I built DoNa</span></h2>
+      <div class="lines">
+        <p><span class="ko">데이트 정보는 많은데, 다들 비슷한 장소 하나씩만 보여줬습니다.</span><span class="en">There was plenty of date information out there, but every service just showed one similar spot at a time.</span></p>
+        <p><span class="ko">그래서 사람마다 다른 하루를 코스로 짜주는 두나를 만들었습니다.</span><span class="en">So I built DoNa, which plans a different day for each person as a full course.</span></p>
+        <p><span class="ko">장소는 직접 가서 찍고, 웹·앱·서버와 운영 도구까지 혼자 만들어 운영합니다.</span><span class="en">I visit and photograph the places myself, and I build and run the web, apps, server, and admin tools on my own.</span></p>
+      </div>
+    </div>
+  </section>
+
   <section id="timeline" style="padding-top:0">
     <div class="wrap">
       <p class="kicker"><span class="ko">경력</span><span class="en">Experience</span></p>
@@ -888,6 +903,7 @@ footer a:hover{color:var(--cy2)}
       ['#work .kicker','#work .h2','#work .sub','#work .prow','#work .other-label','#work .archive-bar'],
       ['#case-study .kicker','#case-study .h2','#case-study .sub','#case-study .case'],
       ['#ai-workflow .kicker','#ai-workflow .h2','#ai-workflow .sub'],
+      ['#about .kicker','#about .h2','#about .lines p'],
       ['#timeline .kicker','#timeline .h2','.timeline .trow'],
       ['.cta-band h2','.cta-band p','.cta-band .cta','.cta-band .fill']
     ];
