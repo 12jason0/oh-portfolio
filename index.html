@@ -655,7 +655,7 @@ footer a:hover{color:var(--cy2)}
             <div class="pblock">
               <p class="pblock-h"><span class="ko">주요 성과</span><span class="en">Highlights</span></p>
               <ul class="points pdid">
-                <li><span class="ko">로그인 토큰을 httpOnly 쿠키로 옮겨 인증 구조 개선</span><span class="en">Moved login tokens to httpOnly cookies</span></li>
+                <li><span class="ko">로그인 토큰을 httpOnly 쿠키로 옮기고, 로그아웃하면 서버에서 바로 무효화</span><span class="en">Moved login tokens to httpOnly cookies and made logout revoke them server-side</span></li>
                 <li><span class="ko">항목마다 반복하던 조회(N+1)를 relation include 한 번으로 통합</span><span class="en">Folded per-item N+1 lookups into one relation-include query</span></li>
                 <li><span class="ko">Upstash Redis로 요청 속도 제한(Rate Limiting) 적용</span><span class="en">Request rate limiting on Upstash Redis</span></li>
                 <li><span class="ko">TossPayments·RevenueCat 구독 결제 연동</span><span class="en">TossPayments and RevenueCat subscription billing</span></li>
@@ -711,7 +711,7 @@ footer a:hover{color:var(--cy2)}
                     <dd class="key"><span class="ko">Android 빌드 정상화, 배포 진행</span><span class="en">Android build fixed and shipped</span></dd>
                   </dl>
                 </div>
-                <a class="case-link" href="#case-study" data-close><span class="ko">로그인 보안 개선(JWT → httpOnly 쿠키) 사례 보기 →</span><span class="en">See the login security case (JWT → httpOnly cookie) →</span></a>
+                <a class="case-link" href="#case-study" data-close><span class="ko">로그인 보안 개선(httpOnly 쿠키 → 로그아웃 무효화) 사례 보기 →</span><span class="en">See the login security case (JWT → httpOnly cookie) →</span></a>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">수요 검증</span><span class="en">Validating demand</span></p>
@@ -924,22 +924,39 @@ footer a:hover{color:var(--cy2)}
       <h2 class="h2" style="max-width:34ch; text-wrap:pretty"><span class="ko">동작하는 코드보다,<br>운영할 수 있는 구조를 고민합니다</span><span class="en">I build for operability, not just functionality.</span></h2>
       <div class="cs-grid">
         <div class="case cs-case">
-          <p class="case-h"><span class="ko">JWT 인증 구조 개선 · localStorage → httpOnly Cookie</span><span class="en">JWT Auth Hardening · localStorage → httpOnly Cookie</span></p>
+          <p class="case-h"><span class="ko">1단계 · JWT를 localStorage에서 httpOnly 쿠키로</span><span class="en">Step 1 · JWT from localStorage to an httpOnly cookie</span></p>
           <dl>
             <dt class="key"><span class="ko">문제</span><span class="en">Problem</span></dt>
             <dd class="key"><span class="ko">JWT를 localStorage에 저장해, XSS가 나면 토큰이 그대로 노출될 수 있었습니다.</span><span class="en">The JWT lived in localStorage, so any XSS could expose it directly.</span></dd>
             <dt><span class="ko">선택</span><span class="en">Choice</span></dt>
             <dd><span class="ko">localStorage·sessionStorage·httpOnly Cookie를 SameSite·CSRF까지 따져 비교하고, JS가 접근할 수 없는 httpOnly Cookie를 골랐습니다.</span><span class="en">Compared localStorage, sessionStorage and an httpOnly cookie, including SameSite/CSRF, and picked the cookie since JS can't reach it.</span></dd>
             <dt><span class="ko">설정</span><span class="en">Config</span></dt>
-            <dd><pre class="cs-code">response.cookies.set("auth", token, {
+            <dd><pre class="cs-code">res.cookies.set("auth", token, {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
   sameSite: "lax",
   path: "/",
-  maxAge: 60 * 60 * 24 * 365,
+  maxAge: serverConfig.authTokenMaxAgeSec,
 });</pre></dd>
             <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
             <dd class="key"><span class="ko">클라이언트 JavaScript가 토큰에 접근하는 경로를 없앴습니다.</span><span class="en">Client-side JavaScript can no longer reach the token.</span></dd>
+          </dl>
+        </div>
+        <div class="case cs-case">
+          <p class="case-h"><span class="ko">2단계 · 로그아웃해도 살아 있던 토큰 막기 (token_version)</span><span class="en">Step 2 · Revoking tokens that survived logout (token_version)</span></p>
+          <dl>
+            <dt class="key"><span class="ko">문제</span><span class="en">Problem</span></dt>
+            <dd class="key"><span class="ko">쿠키로 옮긴 뒤에도 토큰은 1년 동안 유효했고, 로그아웃해도 서버에서 끊지 않았습니다. 탈취되면 최대 1년 동안 쓰일 수 있었습니다.</span><span class="en">Even after the move, a token stayed valid for a year and logout never revoked it server-side, so a stolen token could work for up to a year.</span></dd>
+            <dt><span class="ko">선택</span><span class="en">Choice</span></dt>
+            <dd><span class="ko">기간을 줄이면 앱에서 자주 다시 로그인해야 해서, 1년 자동 로그인은 두고 서버에서 끊을 수 있게 했습니다.</span><span class="en">Shortening the lifetime would force frequent re-login in the app, so I kept the one-year login and made it revocable on the server.</span></dd>
+            <dt><span class="ko">구현</span><span class="en">Build</span></dt>
+            <dd><span class="ko">users에 token_version을 두고 JWT에 넣어, 요청마다 DB 값과 비교합니다. 로그아웃·비밀번호 변경 때 1을 올립니다. 로그인 7곳에 흩어진 발급 코드는 함수 하나로 합쳤고, 번호가 없는 기존 토큰은 0으로 봐서 기존 사용자가 튕기지 않게 했습니다.</span><span class="en">users.token_version goes into the JWT and is compared with the DB on each request; logout and password changes bump it. I merged token issuing from 7 login paths into one function, and tokens without a version count as 0 so existing users stay signed in.</span></dd>
+            <dt><span class="ko">대가</span><span class="en">Trade-off</span></dt>
+            <dd><span class="ko">확인할 때마다 DB 조회가 한 번 늘고, 로그아웃하면 모든 기기에서 같이 로그아웃됩니다.</span><span class="en">One extra DB lookup per check, and logging out signs you out on every device.</span></dd>
+            <dt><span class="ko">배포 후</span><span class="en">After deploy</span></dt>
+            <dd><span class="ko">미들웨어가 운영에서 실행되지 않는 문제를 응답 헤더로 확인해 찾고, 원래 런타임으로 되돌려 바로 고쳤습니다.</span><span class="en">Spotted from response headers that the middleware had stopped running in production, and fixed it by restoring the original runtime.</span></dd>
+            <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
+            <dd class="key"><span class="ko">한 기기에서 로그아웃하면 다른 기기의 예전 토큰이 바로 거부되는 걸 확인하고 운영에 반영했습니다.</span><span class="en">Verified that logging out on one device immediately rejects the old token on another, then shipped it.</span></dd>
           </dl>
         </div>
       </div>
