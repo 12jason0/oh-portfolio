@@ -2,7 +2,7 @@
 
 풀스택 개발자 오승용의 포트폴리오 사이트입니다.
 
-**사이트:** https://oh-portfolio-omega.vercel.app
+**사이트:** https://oh-seungyong.vercel.app
 
 ## 담긴 내용
 
