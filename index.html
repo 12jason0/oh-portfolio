@@ -435,6 +435,9 @@ section{padding:126px 0; position:relative}
 .proof{max-width:min(720px,54vw)}
 @media(max-width:820px){.core .hline,.proof{max-width:none}}
 
+.dc-flow{margin-top:14px; justify-content:flex-start; flex-wrap:wrap; gap:6px 8px}
+.dc-flow .step{font-size:12.5px; padding:7px 12px}
+@media(max-width:640px){.dc-flow{flex-direction:row; align-items:center} .dc-head .dc-top{flex-direction:column; align-items:flex-start; gap:8px} .dc-no{white-space:nowrap}}
 /* contact form */
 .cform{max-width:620px; margin:8px auto 0; text-align:left; display:flex; flex-direction:column; gap:14px}
 .cf-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
@@ -936,8 +939,8 @@ footer a:hover{color:var(--pk)}
             <div class="pblock">
               <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
               <ul class="points pdid">
-                <li><span class="ko">텔레그램으로 장소 사진과 이름을 보내면 주소와 4개 언어 번역을 채워 등록합니다.</span><span class="en">Send a place photo and name on Telegram and it fills in the address and 4 languages.</span></li>
-                <li><span class="ko">블로그 후기를 바탕으로 팁 후보를 생성하고 사람이 검수합니다. 후보 자동 처리 시간은 장소당 평균 26초, Claude 비용은 약 58원입니다.</span><span class="en">Tip candidates are drafted from blog reviews and checked by a person. Automated drafting takes 26s per place on average, about ₩58 of Claude cost.</span></li>
+                <li><span class="ko">텔레그램으로 장소 사진과 지역을 보내면 봇이 장소를 찾아 주소를 확인받고, 블로그 후기로 팁을 분석해 4개 언어 설명까지 채워 저장합니다.</span><span class="en">Send a place photo and area on Telegram: the bot finds the place, confirms the address with me, analyses blog reviews for tips and writes 4-language descriptions.</span></li>
+                <li><span class="ko">장소 1곳 등록 시간이 약 20분에서 평균 26초로 줄었습니다. 자동으로 만든 내용은 제가 최종 확인한 뒤 반영합니다.</span><span class="en">Registering a place went from about 20 minutes to 26 seconds on average. I give everything a final check before it goes live.</span></li>
                 <li><span class="ko">코스·지도 경로 편집, 카드뉴스, 분석, 제보, 환불, 푸시 관리를 한곳에 모았습니다.</span><span class="en">Course & map-route editing, card news, stats, reports, refunds and push in one place.</span></li>
               </ul>
             </div>
@@ -955,13 +958,13 @@ footer a:hover{color:var(--pk)}
                 <p class="sec-label"><span class="ko">내가 한 일</span><span class="en">What I did</span></p>
                 <ul class="points">
                   <li><span class="ko">네이버·카카오 블로그 후기로 Claude가 장소 팁 후보를 만들고, 사람이 검수해 승인</span><span class="en">Claude drafts place tips from Naver and Kakao blog reviews; a person reviews and approves</span></li>
-                  <li><span class="ko">텔레그램으로 장소 사진·이름을 보내면 주소와 4개 언어 번역까지 채워서 등록</span><span class="en">Send a place photo and name on Telegram and it fills in the address and 4 languages</span></li>
+                  <li><span class="ko">텔레그램 봇: 사진·지역 전송 → 장소 찾기·주소 확인 → 팁 분석 → 4개 언어 설명 생성 → 최종 확인</span><span class="en">Telegram bot: photo & area → find place, confirm address → analyse tips → 4-language descriptions → final check</span></li>
                   <li><span class="ko">코스 편집(지도 경로)·카드뉴스·분석·제보 검토·환불·푸시를 한곳에서 관리</span><span class="en">Course editing with map routes, card news, stats, reports, refunds and push in one place</span></li>
                 </ul>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">결과</span><span class="en">Result</span></p>
-                <p class="role"><span class="ko">팁 후보 자동 처리 시간은 장소당 평균 26초, Claude 비용은 장소당 약 58원입니다. 사람의 검수 시간이나 서비스 전체 운영비를 포함한 수치는 아닙니다. 두나 운영에 매일 사용하고 있습니다.</span><span class="en">Automated tip drafting takes 26s per place on average, about ₩58 of Claude cost. That excludes human review time and overall running costs. I use it daily to run DoNa.</span></p>
+                <p class="role"><span class="ko">장소 1곳 등록 시간이 약 20분에서 평균 26초로 줄었고, Claude 비용은 장소당 약 58원입니다. 26초는 자동 처리 시간이며 제가 확인하는 시간은 포함하지 않았습니다. 두나 운영에 매일 사용하고 있습니다.</span><span class="en">Registering one place went from about 20 minutes to 26 seconds on average, at about ₩58 of Claude cost. The 26s is automated processing only, not my review time. I use it daily to run DoNa.</span></p>
               </div>
               <div class="stack">
                 <span class="stk"><b>Web</b> Next.js · TypeScript</span>
@@ -1093,37 +1096,42 @@ footer a:hover{color:var(--pk)}
         </article>
         <article class="dc">
           <div class="dc-head">
-            <div class="dc-top"><span class="dc-no"><span class="ko">03 · 운영 흐름 설계</span><span class="en">03 · Ops flow design</span></span><span class="dc-tag">Claude API · Review</span></div>
-            <h3 class="dc-title"><span class="ko">팁 후보 생성과 사람의 검수를 연결하기</span><span class="en">Connecting AI-drafted tips with human review</span></h3>
+            <div class="dc-top"><span class="dc-no"><span class="ko">03 · 운영 자동화</span><span class="en">03 · Ops automation</span></span><span class="dc-tag">Telegram Bot · Claude API</span></div>
+            <h3 class="dc-title"><span class="ko">장소 등록을 텔레그램 봇으로 자동화하기</span><span class="en">Automating place registration with a Telegram bot</span></h3>
           </div>
           <div class="dc-body">
             <div class="dc-row dc-prob">
               <p class="dc-k">Problem</p>
-              <p class="dc-v"><span class="ko">두나를 운영하며 장소 정보와 팁을 DB에서 직접 고치는 반복 작업이 많았습니다.</span><span class="en">Running DoNa meant a lot of repetitive work editing place info and tips straight in the database.</span></p>
+              <p class="dc-v"><span class="ko">장소 하나를 등록하려면 주소 확인, 팁 정리, 4개 언어 설명 작성을 모두 손으로 해야 해서 약 20분이 걸렸습니다.</span><span class="en">Registering one place meant checking the address, gathering tips and writing descriptions in 4 languages by hand, about 20 minutes each.</span></p>
             </div>
             <div class="dc-row dc-sol">
               <p class="dc-k">Solution</p>
-              <p class="dc-h"><span class="ko">Claude가 후보를 만들고, 사람이 검수해 반영</span><span class="en">Claude drafts candidates, a person reviews before they go live</span></p>
-              <p class="dc-v"><span class="ko">블로그 후기를 바탕으로 Claude가 장소 팁 후보를 만들고, 관리자 화면에서 사람이 확인한 것만 서비스에 반영합니다.</span><span class="en">Claude drafts place tips from blog reviews, and only what a person approves in the admin screen goes into the service.</span></p>
+              <p class="dc-h"><span class="ko">사진과 지역만 보내면 봇이 채우고, 사람은 확인만</span><span class="en">Send a photo and area; the bot fills it in, a person just checks</span></p>
+              <p class="dc-v"><span class="ko">텔레그램으로 사진과 지역을 보내면 Claude가 장소를 찾아 주소가 맞는지 묻습니다. '맞음'을 누르면 블로그 후기로 팁을 분석하고, 주소·4개 언어 설명을 정해 둔 양식으로 만들어 저장합니다.</span><span class="en">Send a photo and area on Telegram and Claude finds the place and asks if the address is right. Tap 'correct' and it analyses blog reviews for tips, then writes the address and 4-language descriptions in a fixed format and saves them.</span></p>
+              <div class="ai-flow dc-flow"><span class="step"><span class="ko">사진·지역 전송</span><span class="en">Photo & area</span></span><span class="arrow">→</span><span class="step"><span class="ko">장소 찾기 · 주소 확인</span><span class="en">Find place · confirm address</span></span><span class="arrow">→</span><span class="step"><span class="ko">블로그 후기로 팁 분석</span><span class="en">Tips from blog reviews</span></span><span class="arrow">→</span><span class="step"><span class="ko">4개 언어 설명 생성·저장</span><span class="en">4-language copy, saved</span></span><span class="arrow">→</span><span class="step hl"><span class="ko">사람이 최종 확인</span><span class="en">Human final check</span></span></div>
             </div>
             <div class="dc-res">
               <p class="dc-k">Result</p>
-              <p class="dc-r"><span class="ko">팁 후보 자동 처리 장소당 평균 26초 · Claude 비용 약 58원, 매일 운영에 사용</span><span class="en">Automated drafting: 26s and about ₩58 of Claude cost per place on average, used daily</span></p>
+              <p class="dc-r"><span class="ko">장소 1곳 등록 약 20분 → 평균 26초 · Claude 비용 약 58원, 매일 운영에 사용</span><span class="en">One place: about 20 min → 26 s on average, about ₩58 of Claude cost, used daily</span></p>
             </div>
             <details class="dc-more">
-              <summary><span class="ko">자동화 범위와 처리 결과 보기</span><span class="en">Scope and numbers</span></summary>
+              <summary><span class="ko">설계 판단과 수치 범위 보기</span><span class="en">Design calls and what the numbers cover</span></summary>
               <div class="dc-mbody">
                 <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">왜 사람이 검수하나</span><span class="en">Why a human step</span></p>
-                  <p class="dc-mv"><span class="ko">생성된 내용을 그대로 내보내지 않고 확인할 수 있도록 자동 처리와 검수를 나눴습니다.</span><span class="en">Drafting and review are split so nothing generated goes out unchecked.</span></p>
+                  <p class="dc-mk"><span class="ko">왜 사람이 마지막에 확인하나</span><span class="en">Why a human final check</span></p>
+                  <p class="dc-mv"><span class="ko">AI가 장소를 잘못 찾거나 설명을 틀리게 쓸 수 있어서, 주소는 중간에 버튼으로 확인받고 저장된 내용도 제가 최종 확인합니다.</span><span class="en">AI can pick the wrong place or get a description wrong, so the address is confirmed with a button midway and I check the saved result at the end.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">주소 검색</span><span class="en">Address lookup</span></p>
+                  <p class="dc-mv"><span class="ko">한국 주소 정확도를 보고 Google Places 대신 카카오 로컬 API를 골랐습니다.</span><span class="en">For Korean addresses I chose the Kakao Local API over Google Places.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">사진 처리</span><span class="en">Photos</span></p>
+                  <p class="dc-mv"><span class="ko">아이폰 사진(HEIC)은 Claude Vision이 읽을 수 있게 sharp로 JPEG로 바꿔서 넘깁니다.</span><span class="en">iPhone photos (HEIC) are converted to JPEG with sharp so Claude Vision can read them.</span></p>
                 </div>
                 <div class="dc-mrow">
                   <p class="dc-mk"><span class="ko">수치의 범위</span><span class="en">What the numbers cover</span></p>
-                  <p class="dc-mv"><span class="ko">26초·58원은 장소당 팁 후보 자동 처리 시간과 Claude 비용입니다. 사람의 검수 시간이나 서비스 전체 운영비는 포함하지 않았습니다.</span><span class="en">26s and ₩58 are the automated drafting time and Claude cost per place. Human review time and overall running costs are not included.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">함께 자동화한 것</span><span class="en">Also automated</span></p>
-                  <p class="dc-mv"><span class="ko">텔레그램으로 장소 사진과 이름을 보내면 주소와 4개 언어 번역을 채워 등록합니다.</span><span class="en">Send a place photo and name on Telegram, and it fills in the address and 4-language translations.</span></p>
+                  <p class="dc-mv"><span class="ko">26초는 장소 1곳의 자동 처리 시간, 58원은 그때 드는 Claude 비용입니다. 제가 확인하는 시간이나 서비스 전체 운영비는 포함하지 않았습니다.</span><span class="en">26s is the automated processing time per place and ₩58 its Claude cost. My review time and overall running costs are not included.</span></p>
                 </div>
                 <a class="dc-link" href="https://dona-admin-demo.vercel.app/admin" target="_blank" rel="noopener"><span class="ko">관리자 도구 데모 체험 ↗</span><span class="en">Try the admin demo ↗</span></a>
               </div>
