@@ -715,9 +715,9 @@ body{word-break:keep-all; overflow-wrap:break-word}
     <p class="hline"><span class="ko">웹과 앱을 만들고,<br>출시 이후의 운영까지 맡습니다.</span><span class="en">I build web and mobile apps, and keep running them after launch.</span></p>
     <p class="echo"><span class="ko">데이트 코스 서비스 두나와 Shopify 견적 앱 QuoteCrate를 개발해 출시했습니다. 웹·모바일 앱, 인증·결제, 관리자 도구를 연결하며 서비스를 운영하고 있습니다.</span><span class="en">I built and shipped DoNa, a date-course service, and QuoteCrate, a Shopify quote app. I run them end to end: web and mobile apps, auth and payments, and admin tools.</span></p>
     <div class="proof">
-      <a href="#feature-dona"><b>DoNa</b><span>Web · iOS · Android</span></a>
+      <a href="#feature-dona"><b>DoNa</b><span><span class="ko">다운로드 100+</span><span class="en">100+ downloads</span></span></a>
       <a href="#qc-card"><b>QuoteCrate</b><span>Shopify App Store</span></a>
-      <a href="#admin-card"><b><span class="ko">운영 도구</span><span class="en">Ops tool</span></b><span><span class="ko">직접 개발해 매일 사용</span><span class="en">built and used daily</span></span></a>
+      <a href="#admin-card"><b><span class="ko">운영 자동화</span><span class="en">Ops automation</span></b><span><span class="ko">20분 → 26초 (AI 처리)</span><span class="en">20 min → 26 s with AI</span></span></a>
     </div>
     <div class="cta">
       <a class="btn solid" href="#work"><span class="ko">프로젝트 보기</span><span class="en">View work</span></a>
@@ -758,7 +758,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
             <div class="pblock">
               <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
               <ul class="points pdid">
-                <li><span class="ko">웹 서비스와 iOS·Android 앱을 출시하고 데이트 코스 40개를 제작했습니다.</span><span class="en">Shipped the web service and iOS/Android apps, with 40 date courses made.</span></li>
+                <li><span class="ko">웹 서비스와 iOS·Android 앱을 출시해 누적 다운로드 100+를 기록했고, 데이트 코스 40개를 제작했습니다.</span><span class="en">Shipped the web service and iOS/Android apps: 100+ downloads so far, with 40 date courses made.</span></li>
                 <li><span class="ko">TossPayments와 RevenueCat을 연동해 구독 결제를 구현했습니다.</span><span class="en">Built subscription payments with TossPayments and RevenueCat.</span></li>
                 <li><span class="ko">로그인 토큰의 저장 방식과 무효화 로직을 개선하고, Redis 기반 요청 속도 제한을 적용했습니다.</span><span class="en">Reworked how login tokens are stored and revoked, and added Redis-based rate limiting.</span></li>
               </ul>
@@ -955,8 +955,8 @@ body{word-break:keep-all; overflow-wrap:break-word}
             <div class="pblock">
               <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
               <ul class="points pdid">
-                <li><span class="ko">텔레그램으로 장소 사진과 지역을 보내면 봇이 장소를 찾아 주소를 확인받고, 블로그 후기로 팁을 분석해 4개 언어 설명까지 채워 저장합니다.</span><span class="en">Send a place photo and area on Telegram: the bot finds the place, confirms the address with me, analyses blog reviews for tips and writes 4-language descriptions.</span></li>
-                <li><span class="ko">장소 1곳 등록 시간이 약 20분에서 평균 26초로 줄었습니다. 자동으로 만든 내용은 제가 최종 확인한 뒤 반영합니다.</span><span class="en">Registering a place went from about 20 minutes to 26 seconds on average. I give everything a final check before it goes live.</span></li>
+                <li><span class="ko">텔레그램 봇으로 장소 등록을 자동화했습니다. 과정은 아래 '문제 해결 03'에 정리했습니다.</span><span class="en">Automated place registration with a Telegram bot. The full flow is in Case 03 below.</span></li>
+                <li><span class="ko">손으로 약 20분 걸리던 장소 1곳 자료 정리를 AI 자동 처리 평균 26초로 줄였습니다. 결과는 제가 검수한 뒤 반영합니다.</span><span class="en">Preparing one place took about 20 minutes by hand; AI now does it in 26 seconds on average. I review every result before it goes live.</span></li>
                 <li><span class="ko">코스·지도 경로 편집, 카드뉴스, 분석, 제보, 환불, 푸시 관리를 한곳에 모았습니다.</span><span class="en">Course & map-route editing, card news, stats, reports, refunds and push in one place.</span></li>
               </ul>
             </div>
@@ -1128,7 +1128,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
             </div>
             <div class="dc-res">
               <p class="dc-k">Result</p>
-              <p class="dc-r"><span class="ko">장소 1곳 등록 약 20분 → 평균 26초 · Claude 비용 약 58원, 매일 운영에 사용</span><span class="en">One place: about 20 min → 26 s on average, about ₩58 of Claude cost, used daily</span></p>
+              <p class="dc-r"><span class="ko">자료 정리 약 20분 → AI 자동 처리 평균 26초 (검수 별도) · 장소당 Claude 비용 약 58원, 매일 운영에 사용</span><span class="en">Prep for one place: about 20 min by hand → 26 s of AI processing on average (review not included) · about ₩58 of Claude cost, used daily</span></p>
             </div>
             <details class="dc-more">
               <summary><span class="ko">설계 판단과 수치 범위 보기</span><span class="en">Design calls and what the numbers cover</span></summary>
@@ -1178,8 +1178,8 @@ body{word-break:keep-all; overflow-wrap:break-word}
         <div class="trow">
           <div class="tdate">2026.09 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
           <div>
-            <h3><span class="ko">프리랜서 개발</span><span class="en">Freelance development</span> <span style="font-family:var(--f-mono); font-size:14px; font-weight:400; color:var(--faint)">· Upwork · Wishket · Freemoa · Kmong · Soomgo</span></h3>
-            <p><span class="ko">첫 외주 프로젝트로 OO수학 학원 웹사이트를 개발해 납품했습니다.</span><span class="en">My first client project: built and delivered a website for a local math academy.</span></p>
+            <h3><span class="ko">프리랜서 개발</span><span class="en">Freelance development</span></h3>
+            <p><span class="ko">OO수학 학원 웹사이트 1건 납품 — 기획·디자인·개발을 혼자 맡고, 상담 신청이 텔레그램과 이메일로 오도록 연동했습니다.</span><span class="en">Delivered a website for a local math academy — planned, designed and built it solo, with consultation requests sent to Telegram and email.</span></p>
           </div>
         </div>
         <div class="trow">
@@ -1226,8 +1226,8 @@ body{word-break:keep-all; overflow-wrap:break-word}
 
   <section class="cta-band" id="contact">
     <div class="wrap">
-      <h2><span class="ko">함께 만들 제품이나 해결할 개발 과제가<br>있다면 연락해 주세요.</span><span class="en">Have a product to build or<br>a problem to solve? Get in touch.</span></h2>
-      <p><span class="ko">프로젝트의 목적과 현재 상태, 필요한 작업 범위를 알려주시면 대화를 시작하기 좋습니다.</span><span class="en">Tell me the goal, where it stands now and what needs doing, and we can start from there.</span></p>
+      <h2><span class="ko">채용이나 프로젝트 관련해<br>편하게 연락 주세요.</span><span class="en">Hiring, or have a project in mind?<br>Feel free to reach out.</span></h2>
+      <p><span class="ko">이메일이나 아래 양식으로 보내 주시면 확인하고 답장드리겠습니다.</span><span class="en">Email me or use the form below.</span></p>
       <form class="cform" id="cform" novalidate>
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
         <div class="cf-row">
