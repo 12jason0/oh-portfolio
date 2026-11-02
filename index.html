@@ -242,7 +242,7 @@ section{padding:126px 0; position:relative}
 .phone::after{content:''; position:absolute; left:-2px; top:54px; width:3px; height:28px; background:#151b28; border-radius:2px 0 0 2px; box-shadow:0 42px 0 0 #151b28, -1px 0 1px rgba(255,255,255,.06)}
 @media(prefers-reduced-motion:reduce){.phone{transform:none!important}}
 .phone .ph-screen{position:relative; width:100%; aspect-ratio:420/911; border-radius:22px; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(0,0,0,.35)}
-.phone .ph-shot{position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .7s ease-in-out}
+.phone .ph-shot{position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .4s ease-in-out}
 .phone .ph-shot.active{opacity:1}
 @media(prefers-reduced-motion:reduce){.phone .ph-shot{transition:none}}
 .phone .notch{position:absolute; top:17px; left:50%; transform:translateX(-50%); width:58px; height:18px; border-radius:10px; background:#000; z-index:2; box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
@@ -1550,7 +1550,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
         hiddenShot.classList.add('active');
         activeShot.classList.remove('active');
       });
-    }, 3000);
+    }, 1500);
   })();
 
 })();
