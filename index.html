@@ -526,6 +526,17 @@ body{word-break:keep-all; overflow-wrap:break-word}
 
 /* 5) 연락 섹션 제목 줄 간격 */
 .cta-band h2{line-height:1.3}
+/* ===== 가독성 2차 ===== */
+/* 1) 카드의 기간·역할 줄은 회색으로 (강조색은 카테고리·링크·버튼에만) */
+.pmeta{color:var(--muted)}
+/* 2) 본문 속 핵심 숫자 강조 */
+.points li b{color:var(--ink)}
+/* 3) 문제 해결의 '해결' 설명도 본문 색으로 */
+.dc-sol .dc-v{color:var(--body)}
+/* 4) 너무 작은 글씨 키우기 (12.5px → 13~14px) */
+.dc-flow .step{font-size:14px}
+.dc-tag{font-size:13px}
+.dc-k{font-size:13px; letter-spacing:.04em}
 </style>
 </head>
 <body>
@@ -758,7 +769,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
             <div class="pblock">
               <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
               <ul class="points pdid">
-                <li><span class="ko">웹 서비스와 iOS·Android 앱을 출시해 누적 다운로드 100+를 기록했고, 데이트 코스 40개를 제작했습니다.</span><span class="en">Shipped the web service and iOS/Android apps: 100+ downloads so far, with 40 date courses made.</span></li>
+                <li><span class="ko">웹 서비스와 iOS·Android 앱을 출시해 누적 다운로드 <b>100+</b>를 기록했고, 데이트 코스 <b>40개</b>를 제작했습니다.</span><span class="en">Shipped the web service and iOS/Android apps: <b>100+ downloads</b> so far, with <b>40 date courses</b> made.</span></li>
                 <li><span class="ko">TossPayments와 RevenueCat을 연동해 구독 결제를 구현했습니다.</span><span class="en">Built subscription payments with TossPayments and RevenueCat.</span></li>
                 <li><span class="ko">로그인 토큰의 저장 방식과 무효화 로직을 개선하고, Redis 기반 요청 속도 제한을 적용했습니다.</span><span class="en">Reworked how login tokens are stored and revoked, and added Redis-based rate limiting.</span></li>
               </ul>
@@ -956,7 +967,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
               <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
               <ul class="points pdid">
                 <li><span class="ko">텔레그램 봇으로 장소 등록을 자동화했습니다. 과정은 아래 '문제 해결 03'에 정리했습니다.</span><span class="en">Automated place registration with a Telegram bot. The full flow is in Case 03 below.</span></li>
-                <li><span class="ko">손으로 약 20분 걸리던 장소 1곳 자료 정리를 AI 자동 처리 평균 26초로 줄였습니다. 결과는 제가 검수한 뒤 반영합니다.</span><span class="en">Preparing one place took about 20 minutes by hand; AI now does it in 26 seconds on average. I review every result before it goes live.</span></li>
+                <li><span class="ko">손으로 <b>약 20분</b> 걸리던 장소 1곳 자료 정리를 AI 자동 처리 <b>평균 26초</b>로 줄였습니다. 결과는 제가 검수한 뒤 반영합니다.</span><span class="en">Preparing one place took <b>about 20 minutes</b> by hand; AI now does it in <b>26 seconds</b> on average. I review every result before it goes live.</span></li>
                 <li><span class="ko">코스·지도 경로 편집, 카드뉴스, 분석, 제보, 환불, 푸시 관리를 한곳에 모았습니다.</span><span class="en">Course & map-route editing, card news, stats, reports, refunds and push in one place.</span></li>
               </ul>
             </div>
@@ -1008,7 +1019,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
 
   <section id="case-study">
     <div class="wrap">
-      <p class="kicker">Technical Decisions</p>
+      <p class="kicker"><span class="ko">문제 해결</span><span class="en">Technical decisions</span></p>
       <h2 class="h2" style="max-width:34ch; text-wrap:pretty"><span class="ko">운영 중 만난 문제와,<br>해결을 위해 내린 판단</span><span class="en">Problems I hit in production,<br>and the calls I made</span></h2>
       <div class="dc-list">
         <article class="dc">
@@ -1018,16 +1029,16 @@ body{word-break:keep-all; overflow-wrap:break-word}
           </div>
           <div class="dc-body">
             <div class="dc-row dc-prob">
-              <p class="dc-k">Problem</p>
-              <p class="dc-v"><span class="ko">JWT를 localStorage에 저장해 JavaScript가 읽을 수 있었고, 로그아웃해도 토큰은 1년 만료 전까지 그대로 유효했습니다.</span><span class="en">The JWT sat in localStorage where JavaScript could read it, and it stayed valid for its full year even after logout.</span></p>
+              <p class="dc-k"><span class="ko">문제</span><span class="en">Problem</span></p>
+              <p class="dc-v"><span class="ko">로그인 토큰(JWT)을 localStorage에 저장해서 JavaScript로 읽을 수 있었습니다. 로그아웃해도 토큰은 1년 만료 전까지 그대로 유효했습니다.</span><span class="en">The JWT sat in localStorage where JavaScript could read it, and it stayed valid for its full year even after logout.</span></p>
             </div>
             <div class="dc-row dc-sol">
-              <p class="dc-k">Solution</p>
+              <p class="dc-k"><span class="ko">해결</span><span class="en">Solution</span></p>
               <p class="dc-h"><span class="ko">HttpOnly 쿠키 + 서버의 token_version 검증</span><span class="en">HttpOnly cookie + a server-side token_version check</span></p>
-              <p class="dc-v"><span class="ko">토큰을 HttpOnly 쿠키로 옮겨 JavaScript의 직접 접근을 막고, 로그아웃·비밀번호 변경 때 버전을 올려 이전 토큰을 거부합니다.</span><span class="en">The token moved into an HttpOnly cookie so JavaScript can't read it, and logout or a password change bumps the version so older tokens are rejected.</span></p>
+              <p class="dc-v"><span class="ko">토큰을 HttpOnly 쿠키로 옮겨 JavaScript가 직접 읽지 못하게 했습니다. 로그아웃하거나 비밀번호를 바꾸면 버전을 올려 이전 토큰을 거부합니다.</span><span class="en">The token moved into an HttpOnly cookie so JavaScript can't read it, and logout or a password change bumps the version so older tokens are rejected.</span></p>
             </div>
             <div class="dc-res">
-              <p class="dc-k">Result</p>
+              <p class="dc-k"><span class="ko">결과</span><span class="en">Result</span></p>
               <p class="dc-r"><span class="ko">배포 후, 한 기기에서 로그아웃하면 다른 기기의 이전 토큰이 거부되는 것을 확인</span><span class="en">After deploy: logging out on one device rejects the old token on another</span></p>
             </div>
             <details class="dc-more">
@@ -1078,16 +1089,16 @@ body{word-break:keep-all; overflow-wrap:break-word}
           </div>
           <div class="dc-body">
             <div class="dc-row dc-prob">
-              <p class="dc-k">Problem</p>
+              <p class="dc-k"><span class="ko">문제</span><span class="en">Problem</span></p>
               <p class="dc-v"><span class="ko">QuoteCrate 앱 안에서 결제 요청이 401로 실패했습니다. 처음에는 인증 토큰 문제라고 보고, 이틀 동안 그 가설로 원인을 찾았습니다.</span><span class="en">Inside QuoteCrate, the checkout request failed with 401. I assumed the auth token was at fault and spent two days on that theory.</span></p>
             </div>
             <div class="dc-row dc-sol">
-              <p class="dc-k">Solution</p>
+              <p class="dc-k"><span class="ko">해결</span><span class="en">Solution</span></p>
               <p class="dc-h"><span class="ko">성공·실패 요청을 나란히 비교해 가설 수정</span><span class="en">Compared good and failing requests side by side and changed the theory</span></p>
               <p class="dc-v"><span class="ko">iframe 안에서 외부 결제 화면으로 이동하는 과정이 막힌 것이 원인이었습니다. Shopify App Bridge로 상위 창에서 이동하도록 바꿨습니다.</span><span class="en">The redirect to the external checkout was being blocked inside the iframe. I moved it to the top window with Shopify App Bridge.</span></p>
             </div>
             <div class="dc-res">
-              <p class="dc-k">Result</p>
+              <p class="dc-k"><span class="ko">결과</span><span class="en">Result</span></p>
               <p class="dc-r"><span class="ko">결제 흐름을 복구하고 Shopify App Store에 출시</span><span class="en">Checkout restored, and the app shipped on the Shopify App Store</span></p>
             </div>
             <details class="dc-more">
@@ -1117,17 +1128,17 @@ body{word-break:keep-all; overflow-wrap:break-word}
           </div>
           <div class="dc-body">
             <div class="dc-row dc-prob">
-              <p class="dc-k">Problem</p>
+              <p class="dc-k"><span class="ko">문제</span><span class="en">Problem</span></p>
               <p class="dc-v"><span class="ko">장소 하나를 등록하려면 주소 확인, 팁 정리, 4개 언어 설명 작성을 모두 손으로 해야 해서 약 20분이 걸렸습니다.</span><span class="en">Registering one place meant checking the address, gathering tips and writing descriptions in 4 languages by hand, about 20 minutes each.</span></p>
             </div>
             <div class="dc-row dc-sol">
-              <p class="dc-k">Solution</p>
+              <p class="dc-k"><span class="ko">해결</span><span class="en">Solution</span></p>
               <p class="dc-h"><span class="ko">사진과 지역만 보내면 봇이 채우고, 사람은 확인만</span><span class="en">Send a photo and area; the bot fills it in, a person just checks</span></p>
               <p class="dc-v"><span class="ko">텔레그램으로 사진과 지역을 보내면 Claude가 장소를 찾아 주소가 맞는지 묻습니다. '맞음'을 누르면 블로그 후기로 팁을 분석하고, 주소·4개 언어 설명을 정해 둔 양식으로 만들어 저장합니다.</span><span class="en">Send a photo and area on Telegram and Claude finds the place and asks if the address is right. Tap 'correct' and it analyses blog reviews for tips, then writes the address and 4-language descriptions in a fixed format and saves them.</span></p>
               <div class="ai-flow dc-flow"><span class="step"><span class="ko">사진·지역 전송</span><span class="en">Photo & area</span></span><span class="arrow">→</span><span class="step"><span class="ko">장소 찾기 · 주소 확인</span><span class="en">Find place · confirm address</span></span><span class="arrow">→</span><span class="step"><span class="ko">블로그 후기로 팁 분석</span><span class="en">Tips from blog reviews</span></span><span class="arrow">→</span><span class="step"><span class="ko">4개 언어 설명 생성·저장</span><span class="en">4-language copy, saved</span></span><span class="arrow">→</span><span class="step hl"><span class="ko">사람이 최종 확인</span><span class="en">Human final check</span></span></div>
             </div>
             <div class="dc-res">
-              <p class="dc-k">Result</p>
+              <p class="dc-k"><span class="ko">결과</span><span class="en">Result</span></p>
               <p class="dc-r"><span class="ko">자료 정리 약 20분 → AI 자동 처리 평균 26초 (검수 별도) · 장소당 Claude 비용 약 58원, 매일 운영에 사용</span><span class="en">Prep for one place: about 20 min by hand → 26 s of AI processing on average (review not included) · about ₩58 of Claude cost, used daily</span></p>
             </div>
             <details class="dc-more">
