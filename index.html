@@ -451,7 +451,8 @@ section{padding:126px 0; position:relative}
 .dd-cal span.p{background:var(--pk)} .dd-cal span.f{background:color-mix(in srgb, var(--a4) 55%, transparent)} .dd-cal span.o{background:var(--a4)}
 .dd-note{grid-column:1/-1; margin:6px 0 0; text-align:center; font-size:12px; color:var(--faint)}
 @media(max-width:600px){.dd-flow{grid-template-columns:1fr; gap:10px} .dd-cal{width:100%; max-width:220px; margin:0 auto}}
-.modal-left .dd-flow{margin:auto}
+.modal .dd-flow{margin:4px 0 0; max-width:520px}
+.modal .qc-gallery img[src^="/dearday/"]{aspect-ratio:420/911; object-fit:cover; object-position:top}
 
 /* contact form */
 .cform{max-width:620px; margin:8px auto 0; text-align:left; display:flex; flex-direction:column; gap:14px}
@@ -1032,15 +1033,9 @@ body{word-break:keep-all; overflow-wrap:break-word}
           <div class="tl-dot" aria-hidden="true"></div>
         <article class="pcard prow exp" id="dearday-card" data-cat="product">
           <div class="exp-visual">
-            <div class="dd-flow" aria-label="기록자와 파트너가 같은 달력을 보고 배려를 주고받는 구조">
-              <div class="dd-node"><b class="dd-h"><span class="ko">기록하는 사람</span><span class="en">The tracker</span></b><span class="dd-sub"><span class="ko">주기·통증·기분 기록</span><span class="en">Logs cycle, pain, mood</span></span></div>
-              <div class="dd-mid">
-                <div class="dd-arrow"><span class="ko">예측 날짜만 공유</span><span class="en">Only predicted dates shared</span><i>→</i></div>
-                <div class="dd-cal" aria-hidden="true"><span class=""></span><span class=""></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class=""></span><span class=""></span><span class=""></span><span class="f"></span><span class="f"></span><span class="o"></span><span class="f"></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div>
-                <div class="dd-arrow back"><i>←</i><span class="ko">배려 요청 · 답장</span><span class="en">Care requests · replies</span></div>
-              </div>
-              <div class="dd-node"><b class="dd-h"><span class="ko">파트너</span><span class="en">The partner</span></b><span class="dd-sub"><span class="ko">같은 달력 · 알림 받기</span><span class="en">Same calendar · notifications</span></span></div>
-              <p class="dd-note"><span class="ko">서비스 구조 설명 그림</span><span class="en">How the service works (diagram)</span></p>
+            <div class="phone">
+              <div class="notch"></div>
+              <div class="ph-screen" data-frames="[&quot;/dearday/dd-1-home.webp&quot;, &quot;/dearday/dd-2-partner.webp&quot;, &quot;/dearday/dd-3-calendar.webp&quot;]"><img class="ph-shot ph-a active" src="/dearday/dd-1-home.webp" alt="디어데이 기록하는 사람 홈 화면" loading="lazy"><img class="ph-shot ph-b" src="/dearday/dd-1-home.webp" alt="" loading="lazy"></div><div class="home-bar"></div>
             </div>
           </div>
           <div class="exp-foot">
@@ -1066,6 +1061,28 @@ body{word-break:keep-all; overflow-wrap:break-word}
               <div class="sec">
                 <p class="sec-label"><span class="ko">왜 만들었나</span><span class="en">Why</span></p>
                 <p class="role"><span class="ko">생리 주기는 기록하는 사람만 알고, 연인은 언제 무엇을 해주면 좋을지 모르는 경우가 많습니다. 기록하는 사람이 적으면 파트너가 같은 달력을 보고, 필요한 배려를 버튼 하나로 주고받게 만들었습니다.</span><span class="en">Usually only the person tracking knows the cycle, and the partner doesn't know when or how to help. Here the tracker logs, the partner sees the same calendar, and care is requested and answered with one tap.</span></p>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">구조</span><span class="en">How it works</span></p>
+                <div class="dd-flow" aria-label="기록자와 파트너가 같은 달력을 보고 배려를 주고받는 구조">
+              <div class="dd-node"><b class="dd-h"><span class="ko">기록하는 사람</span><span class="en">The tracker</span></b><span class="dd-sub"><span class="ko">주기·통증·기분 기록</span><span class="en">Logs cycle, pain, mood</span></span></div>
+              <div class="dd-mid">
+                <div class="dd-arrow"><span class="ko">예측 날짜만 공유</span><span class="en">Only predicted dates shared</span><i>→</i></div>
+                <div class="dd-cal" aria-hidden="true"><span class=""></span><span class=""></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class=""></span><span class=""></span><span class=""></span><span class="f"></span><span class="f"></span><span class="o"></span><span class="f"></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div>
+                <div class="dd-arrow back"><i>←</i><span class="ko">배려 요청 · 답장</span><span class="en">Care requests · replies</span></div>
+              </div>
+              <div class="dd-node"><b class="dd-h"><span class="ko">파트너</span><span class="en">The partner</span></b><span class="dd-sub"><span class="ko">같은 달력 · 알림 받기</span><span class="en">Same calendar · notifications</span></span></div>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">화면</span><span class="en">Screens</span></p>
+                <div class="qc-gallery">
+                  <img src="/dearday/dd-1-home.webp" alt="기록하는 사람 홈 — 주기 띠 달력, 통증·기분, 배려 요청" loading="lazy">
+                  <img src="/dearday/dd-2-partner.webp" alt="파트너 홈 — 같은 달력과 배려 요청 답장" loading="lazy">
+                  <img src="/dearday/dd-3-calendar.webp" alt="달력 — 생리·가임기·배란일 예측" loading="lazy">
+                  <img src="/dearday/dd-4-community.webp" alt="파트너 커뮤니티(남친톡)" loading="lazy">
+                  <img src="/dearday/dd-5-info.webp" alt="주기 상식" loading="lazy">
+                </div>
+                <p class="role note"><span class="ko">베타 테스트 계정 화면입니다.</span><span class="en">Screens from a beta test account.</span></p>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">주요 기능</span><span class="en">Features</span></p>
