@@ -307,10 +307,10 @@ section{padding:126px 0; position:relative}
 .ptl{--side:118px; --dotc:16px; --g:18px; position:relative; display:flex; flex-direction:column; gap:40px}
 .tl-line{position:absolute; top:28px; bottom:40px; left:calc(var(--side) + var(--g) + var(--dotc)/2 - .5px); width:1px; background:var(--line)}
 @property --cur{syntax:'<color>'; inherits:true; initial-value:#1A9BD0}
-:root{--a1:#1A9BD0; --a2:#5CC0E6; --a3:#FF2D95}
-:root[data-theme="light"]{--a1:#006A90; --a2:#0F7FAE; --a3:#D6006F}
+:root{--a1:#1A9BD0; --a2:#5CC0E6; --a3:#FF2D95; --a4:#B49CFF}
+:root[data-theme="light"]{--a1:#006A90; --a2:#0F7FAE; --a3:#D6006F; --a4:#6A4FD8}
 .ptl{--cur:var(--a1); transition:--cur .6s ease}
-.tl-item[data-acc="1"]{--acc:var(--a1)} .tl-item[data-acc="2"]{--acc:var(--a2)} .tl-item[data-acc="3"]{--acc:var(--a3)}
+.tl-item[data-acc="1"]{--acc:var(--a1)} .tl-item[data-acc="2"]{--acc:var(--a2)} .tl-item[data-acc="3"]{--acc:var(--a3)} .tl-item[data-acc="4"]{--acc:var(--a4)}
 .tl-item .points li::before{background:var(--acc)}
 .tl-item .quicklinks a{color:var(--acc); border-bottom-color:color-mix(in srgb, var(--acc) 40%, transparent)}
 .tl-item .quicklinks a:hover{border-bottom-color:var(--acc)}
@@ -438,6 +438,21 @@ section{padding:126px 0; position:relative}
 .dc-flow{margin-top:14px; justify-content:flex-start; flex-wrap:wrap; gap:6px 8px}
 .dc-flow .step{font-size:12.5px; padding:7px 12px}
 @media(max-width:640px){.dc-flow{flex-direction:row; align-items:center} .dc-head .dc-top{flex-direction:column; align-items:flex-start; gap:8px} .dc-no{white-space:nowrap}}
+/* Dear Day card: a how-it-works diagram (not a screenshot) */
+.dd-flow{width:100%; max-width:560px; display:grid; grid-template-columns:1fr 1.3fr 1fr; align-items:center; gap:14px}
+.dd-node{border:1px solid color-mix(in srgb, var(--a4) 45%, var(--line)); background:var(--panel); border-radius:14px; padding:16px 12px; text-align:center}
+.dd-node .dd-h{display:block; font-size:15px; color:var(--ink)}
+.dd-node .dd-sub{display:block; margin-top:6px; font-size:12.5px; line-height:1.45; color:var(--muted); word-break:keep-all}
+.dd-mid{display:flex; flex-direction:column; gap:10px; align-items:stretch}
+.dd-arrow{font-size:12px; color:var(--body); text-align:center; display:flex; align-items:center; justify-content:center; gap:6px; word-break:keep-all}
+.dd-arrow i{font-style:normal; color:var(--a4); font-size:16px}
+.dd-cal{display:grid; grid-template-columns:repeat(7,1fr); gap:4px; padding:10px; border-radius:10px; background:var(--panel2); border:1px solid var(--line)}
+.dd-cal span{aspect-ratio:1; border-radius:4px; background:color-mix(in srgb, var(--ink) 7%, transparent)}
+.dd-cal span.p{background:var(--pk)} .dd-cal span.f{background:color-mix(in srgb, var(--a4) 55%, transparent)} .dd-cal span.o{background:var(--a4)}
+.dd-note{grid-column:1/-1; margin:6px 0 0; text-align:center; font-size:12px; color:var(--faint)}
+@media(max-width:600px){.dd-flow{grid-template-columns:1fr; gap:10px} .dd-cal{width:100%; max-width:220px; margin:0 auto}}
+.modal-left .dd-flow{margin:auto}
+
 /* contact form */
 .cform{max-width:620px; margin:8px auto 0; text-align:left; display:flex; flex-direction:column; gap:14px}
 .cf-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
@@ -1012,6 +1027,83 @@ body{word-break:keep-all; overflow-wrap:break-word}
           </div>
         </article>
         </div>
+        <div class="tl-item" data-acc="4">
+          <div class="tl-side"><b class="tl-name"><span class="ko">디어데이</span><span class="en">Dear Day</span></b><span class="tl-date">2026.10–<span class="ko">진행 중</span><span class="en">now</span></span></div>
+          <div class="tl-dot" aria-hidden="true"></div>
+        <article class="pcard prow exp" id="dearday-card" data-cat="product">
+          <div class="exp-visual">
+            <div class="dd-flow" aria-label="기록자와 파트너가 같은 달력을 보고 배려를 주고받는 구조">
+              <div class="dd-node"><b class="dd-h"><span class="ko">기록하는 사람</span><span class="en">The tracker</span></b><span class="dd-sub"><span class="ko">주기·통증·기분 기록</span><span class="en">Logs cycle, pain, mood</span></span></div>
+              <div class="dd-mid">
+                <div class="dd-arrow"><span class="ko">예측 날짜만 공유</span><span class="en">Only predicted dates shared</span><i>→</i></div>
+                <div class="dd-cal" aria-hidden="true"><span class=""></span><span class=""></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class=""></span><span class=""></span><span class=""></span><span class="f"></span><span class="f"></span><span class="o"></span><span class="f"></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div>
+                <div class="dd-arrow back"><i>←</i><span class="ko">배려 요청 · 답장</span><span class="en">Care requests · replies</span></div>
+              </div>
+              <div class="dd-node"><b class="dd-h"><span class="ko">파트너</span><span class="en">The partner</span></b><span class="dd-sub"><span class="ko">같은 달력 · 알림 받기</span><span class="en">Same calendar · notifications</span></span></div>
+              <p class="dd-note"><span class="ko">서비스 구조 설명 그림</span><span class="en">How the service works (diagram)</span></p>
+            </div>
+          </div>
+          <div class="exp-foot">
+            <p class="ptag"><span class="ko">커플 웹앱 · PWA</span><span class="en">Couples web app · PWA</span></p>
+            <div class="top"><h3><span class="ko">디어데이 (Dear Day)</span><span class="en">Dear Day</span></h3><span class="chip-tag camp"><span class="ko">베타</span><span class="en">Beta</span></span></div>
+            <p class="ppurpose"><span class="ko">생리 주기를 기록하면 연인이 같은 달력을 보고, 필요한 배려를 버튼 하나로 주고받는 웹앱입니다.</span><span class="en">Log a cycle and your partner sees the same calendar, and you trade the care you need with one tap.</span></p>
+            <p class="pmeta"><span class="ko">2026.10–진행 중 · 1인 개발 · 베타</span><span class="en">Oct 2026–now · solo · beta</span></p>
+            <p class="pdesc2"><span class="ko">생리 주기는 기록하는 사람만 알고, 연인은 언제 무엇을 해주면 좋을지 모르는 경우가 많습니다. 기획·디자인·프론트엔드·백엔드·DB·배포를 혼자 맡았습니다.</span><span class="en">Usually only the person tracking knows the cycle, and the partner doesn't know when or how to help. I did the planning, design, frontend, backend, DB and deployment solo.</span></p>
+            <div class="pblock">
+              <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
+              <ul class="points pdid">
+                <li><span class="ko">최근 <b>6개 주기 가중 평균</b>으로 다음 생리일·가임기를 예측하고, 튀는 주기는 빼고 ±범위와 예측 오차를 함께 보여줍니다.</span><span class="en">Predicts the next period and fertile window from a <b>weighted average of the last 6 cycles</b>, drops outliers, and shows a ± range and past prediction error.</span></li>
+                <li><span class="ko">파트너에게는 <b>결과 날짜만</b> 보내고, 요청마다 서버에서 공유 권한을 다시 확인합니다. 잠금화면 알림에는 건강 관련 단어를 넣지 않습니다.</span><span class="en">The partner only receives <b>resulting dates</b>, sharing rights are rechecked on the server on every request, and lock-screen notifications avoid health terms.</span></li>
+                <li><span class="ko">비밀번호 scrypt 해시, 세션·초대 코드 해시 저장, 로그인·코드 입력 횟수 제한을 적용하고 <b>자동 테스트 235개</b>로 확인합니다.</span><span class="en">scrypt password hashing, hashed sessions and invite codes, rate limits on login and code entry, checked by <b>235 automated tests</b>.</span></li>
+              </ul>
+            </div>
+            <div class="pstack pstack-flat"><span>Next.js</span><span>TypeScript</span><span>Tailwind CSS</span><span>PostgreSQL (Neon)</span><span>Drizzle ORM</span><span>Web Push</span><span>Vitest</span></div>
+            <div class="quicklinks">
+              <a href="https://dearday-couple.vercel.app" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="ko">베타 보기 ↗</span><span class="en">Beta ↗</span></a>
+              <div class="more"><span class="ko">설계 과정 보기</span><span class="en">How it's designed</span><span class="arrow">→</span></div>
+            </div>
+            <div class="exp-detail">
+              <div class="sec">
+                <p class="sec-label"><span class="ko">왜 만들었나</span><span class="en">Why</span></p>
+                <p class="role"><span class="ko">생리 주기는 기록하는 사람만 알고, 연인은 언제 무엇을 해주면 좋을지 모르는 경우가 많습니다. 기록하는 사람이 적으면 파트너가 같은 달력을 보고, 필요한 배려를 버튼 하나로 주고받게 만들었습니다.</span><span class="en">Usually only the person tracking knows the cycle, and the partner doesn't know when or how to help. Here the tracker logs, the partner sees the same calendar, and care is requested and answered with one tap.</span></p>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">주요 기능</span><span class="en">Features</span></p>
+                <ul class="points">
+                  <li><span class="ko">주기 기록·예측: 시작/종료, 통증·기분, 다음 생리일·가임기·배란일 예측</span><span class="en">Cycle log & prediction: start/end, pain & mood, next period, fertile window, ovulation</span></li>
+                  <li><span class="ko">파트너 연결: 8자리 코드(15분, 1회용), 잠시 멈추기, 연결 끊기</span><span class="en">Partner link: 8-character code (15 min, single use), pause, unlink</span></li>
+                  <li><span class="ko">배려 요청: 칩 한 번으로 요청 → 파트너 답장(봤어요 / 도와줄게요 / 했어요)</span><span class="en">Care requests: one-tap chips → partner replies (seen / on it / done)</span></li>
+                  <li><span class="ko">푸시 알림: 배려 요청·답장·예정일 (웹 푸시 + 매일 예약 작업)</span><span class="en">Push: requests, replies and upcoming dates (web push + daily scheduled job)</span></li>
+                  <li><span class="ko">리포트: 평균 주기·기간·예측 오차, 주기 차트, 지난 기록 표</span><span class="en">Reports: average cycle and length, prediction error, cycle chart, history table</span></li>
+                  <li><span class="ko">파트너 커뮤니티: 게시판, 댓글·답글, 신고 3회 자동 숨김, 차단, 운영자 신고 관리</span><span class="en">Partner community: board, comments & replies, auto-hide after 3 reports, blocking, admin report review</span></li>
+                  <li><span class="ko">계정: 이메일·카카오 로그인, 비밀번호 변경, 회원 탈퇴</span><span class="en">Accounts: email & Kakao login, password change, account deletion</span></li>
+                </ul>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">기술적으로 신경 쓴 부분</span><span class="en">Engineering decisions</span></p>
+                <ul class="points">
+                  <li><span class="ko">개인 맞춤 예측: 최근 6개 주기 가중 평균, 튀는 주기 자동 제외, 기록이 적을 때는 평소 주기와 섞어 쓰고 ±범위 표시, 과거 기록으로 예측 오차 계산</span><span class="en">Personal prediction: weighted average of the last 6 cycles, outliers dropped, blended with the usual cycle when data is thin, ± range shown, error measured against past records</span></li>
+                  <li><span class="ko">건강 정보 보호: 파트너에게는 결과 날짜만 전송, 요청마다 서버에서 공유 권한 재확인, 잠금화면 알림에 건강 단어 제외</span><span class="en">Health data: partner gets dates only, sharing rights rechecked server-side per request, no health words on lock-screen notifications</span></li>
+                  <li><span class="ko">보안: scrypt 비밀번호 해시, 세션·초대 코드 해시 저장, 로그인·가입·코드 입력 횟수 제한, 탈퇴 시 데이터 삭제 + 카카오 연결 해제</span><span class="en">Security: scrypt hashing, hashed sessions and invite codes, rate limits on login, signup and code entry, data deletion plus Kakao unlink on account removal</span></li>
+                  <li><span class="ko">동시성: 연결·끊기·탈퇴가 동시에 일어나도 꼬이지 않게 트랜잭션과 잠금 순서를 설계</span><span class="en">Concurrency: transactions and lock ordering so link, unlink and deletion can't collide</span></li>
+                  <li><span class="ko">성능: 서버와 DB를 같은 지역(싱가포르)에 두고, 서비스 워커 캐시로 재방문 때 받는 파일을 20개 → 4개로 줄임</span><span class="en">Performance: server and DB in the same region (Singapore); service-worker cache cuts files fetched on a revisit from 20 to 4</span></li>
+                  <li><span class="ko">법적 준비: 개인정보처리방침, 민감정보·국외 이전 동의 분리, 만 14세 확인</span><span class="en">Legal: privacy policy, separate consent for sensitive data and overseas transfer, age-14 check</span></li>
+                  <li><span class="ko">테스트: 자동 테스트 235개 (Vitest)</span><span class="en">Tests: 235 automated tests (Vitest)</span></li>
+                </ul>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">개발 방식</span><span class="en">How I built it</span></p>
+                <p class="role"><span class="ko">구현은 AI 코딩 도구(Claude Code)로 했고, 기획·설계 결정과 검증은 제가 직접 했습니다. 아직 베타라 실사용자는 없습니다.</span><span class="en">I implemented it with an AI coding tool (Claude Code); the planning, design decisions and verification are mine. It is still in beta with no real users yet.</span></p>
+              </div>
+              <div class="stack">
+                <span class="stk"><b>Web</b> Next.js (App Router) · TypeScript · Tailwind CSS</span>
+                <span class="stk"><b>Data</b> PostgreSQL (Neon) · Drizzle ORM</span>
+                <span class="stk"><b>Infra</b> Vercel · Web Push · <span class="ko">카카오 로그인</span><span class="en">Kakao login</span> · Vitest</span>
+              </div>
+            </div>
+          </div>
+        </article>
+        </div>
       </div>
 
     </div>
@@ -1186,6 +1278,13 @@ body{word-break:keep-all; overflow-wrap:break-word}
       <p class="kicker"><span class="ko">경력</span><span class="en">Experience</span></p>
       <h2 class="h2"><span class="ko">지금까지 걸어온 길</span><span class="en">Where I've been</span></h2>
       <div class="timeline">
+        <div class="trow">
+          <div class="tdate">2026.10 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
+          <div>
+            <h3><span class="ko">디어데이 · 1인 개발</span><span class="en">Dear Day — Solo build</span> <span style="font-family:var(--f-mono); font-size:14px; font-weight:400; color:var(--faint)">· <span class="ko">베타</span><span class="en">Beta</span></span></h3>
+            <p><span class="ko">커플이 함께 쓰는 생리 주기 기록·배려 공유 웹앱(PWA)을 기획부터 배포까지 혼자 만들고 있습니다.</span><span class="en">Building a couples web app (PWA) for cycle tracking and sharing care, from planning to deployment, solo.</span></p>
+          </div>
+        </div>
         <div class="trow">
           <div class="tdate">2026.09 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
           <div>
