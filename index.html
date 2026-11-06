@@ -506,6 +506,43 @@ section{padding:126px 0; position:relative}
 .cf-type input:checked + span{border-color:var(--cy); background:var(--cy-soft); color:var(--ink); font-weight:600}
 .cf-type input:focus-visible + span{outline:2px solid var(--cy); outline-offset:2px}
 
+/* client story: delivered site → found pain → 공부방노트 */
+.story-rail{display:flex; gap:10px; list-style:none; padding:0; margin:28px 0 0; flex-wrap:wrap}
+.story-rail li{display:flex; align-items:center; gap:8px; padding:8px 14px; border-radius:999px; border:1px solid var(--line); font-size:14px; color:var(--body)}
+.story-rail li b{font-family:var(--f-tag); font-size:12px; color:var(--muted)}
+.story-rail li.done{border-color:var(--cy-line)} .story-rail li.done b{color:var(--cy2)}
+.story-rail li.now{border-color:var(--pk-line); background:var(--pk-soft); color:var(--ink); font-weight:600} .story-rail li.now b{color:var(--pk)}
+.story-step{margin:40px 0 0; font-size:14px; font-weight:700; color:var(--muted); letter-spacing:.02em}
+.story-step + .cw,.story-step + .finding,.story-step + .gn{margin-top:14px}
+.finding{display:grid; grid-template-columns:1.1fr 1fr 1.1fr; gap:14px}
+.f-col{border:1px solid var(--line); border-radius:14px; background:var(--panel); padding:20px 22px}
+.f-k{margin:0 0 10px; font-size:13px; font-weight:700; color:var(--muted)}
+.f-col ul{margin:0; padding-left:18px; color:var(--body); font-size:15.5px; line-height:1.8} .f-col li b{color:var(--ink)}
+.f-quote{margin:0; font-size:17px; line-height:1.6; color:var(--ink); font-weight:600; word-break:keep-all}
+.f-decide{border-color:var(--cy-line); background:var(--cy-soft)} .f-decide .f-k{color:var(--cy2)}
+.f-d{margin:0; font-size:16px; line-height:1.65; color:var(--ink); word-break:keep-all} .f-d b{color:var(--cy2)}
+.gn{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); border:1px solid var(--pk-line); border-radius:16px; background:var(--panel); overflow:hidden}
+.gn-visual{display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:14px; padding:28px 24px; background:var(--visual); border-right:1px solid var(--line2)}
+.gn-node{border:1px solid var(--cy-line); background:var(--panel); border-radius:12px; padding:14px; text-align:center}
+.gn-node b{display:block; font-size:14.5px; color:var(--ink)} .gn-node > span{display:block; margin-top:4px; font-size:12.5px; color:var(--muted)}
+.gn-arrow{color:var(--pk); font-size:20px}
+.gn-kakao{display:flex; flex-direction:column; gap:8px}
+.gn-msg{background:#FEE500; color:#191919; border-radius:12px 12px 12px 4px; padding:9px 12px; font-size:13px; font-weight:600}
+.gn-cap{grid-column:1/-1; margin:6px 0 0; text-align:center; font-size:12px; color:var(--faint)}
+.gn-body{padding:28px 30px}
+.gn-body .top{display:flex; justify-content:space-between; align-items:center; gap:12px} .gn-body .top h3{margin:0; font-size:22px}
+.gn-chip{background:var(--pk-soft); color:var(--pk); border:1px solid var(--pk-line)}
+.gn-head{margin:12px 0 0; font-family:var(--f-head); font-size:21px; font-weight:700; line-height:1.4; color:var(--ink); word-break:keep-all}
+.gn-desc{margin:10px 0 0; font-size:15.5px; line-height:1.7; color:var(--body); word-break:keep-all}
+.gn-feat{list-style:none; padding:0; margin:18px 0 0; display:flex; flex-direction:column; gap:8px; counter-reset:f}
+.gn-feat li{display:flex; gap:10px; align-items:baseline; padding:10px 14px; border-radius:10px; border:1px solid var(--line); counter-increment:f}
+.gn-feat li::before{content:counter(f); font-family:var(--f-tag); font-size:12px; color:var(--muted)}
+.gn-feat li b{font-size:15px; color:var(--ink); white-space:nowrap} .gn-feat li > span{font-size:13.5px; color:var(--muted)}
+.gn-feat li.main{border-color:var(--pk-line); background:var(--pk-soft)} .gn-feat li.main::before{color:var(--pk)}
+.gn-check{margin-top:18px} .gn-check ul{margin:0; padding-left:18px; font-size:15px; line-height:1.8; color:var(--body)}
+.gn-note{margin:16px 0 0; font-size:13.5px; color:var(--faint)}
+@media(max-width:860px){.finding{grid-template-columns:1fr} .gn{grid-template-columns:1fr} .gn-visual{border-right:0; border-bottom:1px solid var(--line2)} .gn-body{padding:22px 20px} .gn-feat li{flex-wrap:wrap}}
+
 /* contact form */
 .cform{max-width:620px; margin:8px auto 0; text-align:left; display:flex; flex-direction:column; gap:14px}
 .cf-row{display:grid; grid-template-columns:1fr 1fr; gap:14px}
@@ -1155,8 +1192,14 @@ body{word-break:keep-all; overflow-wrap:break-word}
 
   <section id="client-work">
     <div class="wrap">
-      <p class="kicker"><span class="ko">외주 납품 사례</span><span class="en">Client work</span></p>
-      <h2 class="h2"><span class="ko">요청을 받아,<br>웹사이트를 만들어 납품했습니다</span><span class="en">A client asked,<br>I built and delivered the site</span></h2>
+      <p class="kicker"><span class="ko">외주에서 시작한 서비스</span><span class="en">From client work to a product</span></p>
+      <h2 class="h2"><span class="ko">홈페이지를 납품하고,<br>원장님의 다음 문제까지 풀고 있습니다</span><span class="en">I delivered the website,<br>then took on the client's next problem</span></h2>
+      <ol class="story-rail">
+        <li class="done"><b>01</b><span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></li>
+        <li class="done"><b>02</b><span class="ko">운영 문제 발견</span><span class="en">Found the real pain</span></li>
+        <li class="now"><b>03</b><span class="ko">공부방노트 개발 중</span><span class="en">Building 공부방노트</span></li>
+      </ol>
+      <p class="story-step">01 · <span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></p>
       <article class="cw">
         <div class="cw-visual">
           <div class="cw-shot"><img id="cwBig" src="/client/cw-1-home.webp" alt="납품한 공부방 웹사이트 첫 화면 (업체명·로고 가림)" loading="lazy"></div>
@@ -1181,6 +1224,58 @@ body{word-break:keep-all; overflow-wrap:break-word}
           </dl>
           <p class="cw-note"><span class="ko">원장님 동의를 받아 공개했고, 업체 이름과 로고는 가렸습니다.</span><span class="en">Shared with the owner's permission; the name and logo are blurred.</span></p>
           <a class="btn solid cw-cta" href="#contact" data-inquiry="project"><span class="ko">비슷한 웹사이트 의뢰하기</span><span class="en">Ask for a site like this</span></a>
+        </div>
+      </article>
+
+      <p class="story-step">02 · <span class="ko">운영 문제 발견</span><span class="en">Finding the real pain</span></p>
+      <div class="finding">
+        <div class="f-col">
+          <p class="f-k"><span class="ko">원장님과 대화하며 들은 불편</span><span class="en">What the director told me</span></p>
+          <ul>
+            <li><span class="ko">학부모에게 공지를 <b>한 명씩 따로</b> 보냄</span><span class="en">Sends notices to parents <b>one by one</b></span></li>
+            <li><span class="ko">출결과 원비 장부를 <b>손으로</b> 관리</span><span class="en">Keeps attendance and fees <b>by hand</b></span></li>
+          </ul>
+        </div>
+        <div class="f-col f-why">
+          <p class="f-k"><span class="ko">기존 관리 앱을 안 쓰는 이유</span><span class="en">Why existing apps go unused</span></p>
+          <p class="f-quote"><span class="ko">학부모가 앱을 따로 설치해야 해서, 결국 안 쓰게 된다</span><span class="en">Parents have to install an app, so it never gets used</span></p>
+        </div>
+        <div class="f-col f-decide">
+          <p class="f-k"><span class="ko">그래서 정한 설계</span><span class="en">So the design is</span></p>
+          <p class="f-d"><span class="ko">원장님은 <b>웹</b>에서 처리하고,<br>학부모는 앱 설치 없이 <b>카카오톡</b>으로 받기</span><span class="en">The director works on the <b>web</b>;<br>parents get it on <b>KakaoTalk</b>, no install</span></p>
+        </div>
+      </div>
+
+      <p class="story-step">03 · <span class="ko">공부방노트 · 개발 중</span><span class="en">공부방노트 · in development</span></p>
+      <article class="gn">
+        <div class="gn-visual" aria-hidden="true">
+          <div class="gn-node gn-web"><b><span class="ko">원장님 · 웹</span><span class="en">Director · web</span></b><span><span class="ko">공지 1번 작성</span><span class="en">Writes one notice</span></span></div>
+          <div class="gn-arrow">→</div>
+          <div class="gn-kakao">
+            <div class="gn-msg"><span class="ko">학부모 A · 카카오톡</span><span class="en">Parent A · KakaoTalk</span></div>
+            <div class="gn-msg"><span class="ko">학부모 B · 카카오톡</span><span class="en">Parent B · KakaoTalk</span></div>
+            <div class="gn-msg"><span class="ko">학부모 C · 카카오톡</span><span class="en">Parent C · KakaoTalk</span></div>
+          </div>
+          <p class="gn-cap"><span class="ko">구조 설명 그림 · 실제 화면은 개발 후 추가</span><span class="en">Diagram · real screens to come</span></p>
+        </div>
+        <div class="gn-body">
+          <div class="top"><h3><span class="ko">공부방노트</span><span class="en">공부방노트</span></h3><span class="chip-tag gn-chip"><span class="ko">현재 주력 개발</span><span class="en">Current focus</span></span></div>
+          <p class="gn-head"><span class="ko">학부모 앱 설치 없이,<br>한 명씩 보내던 공지를 한 번에.</span><span class="en">No app for parents.<br>One notice instead of one-by-one.</span></p>
+          <p class="gn-desc"><span class="ko">공부방 원장님의 반복 업무를 줄이는 웹 서비스입니다. 학부모별 카카오톡 공지와 출결·원비 관리를 한곳에 모았습니다.</span><span class="en">A web service that cuts a tutor's repetitive admin: per-parent KakaoTalk notices plus attendance and fees in one place.</span></p>
+          <ol class="gn-feat">
+            <li class="main"><b><span class="ko">학부모별 카카오톡 공지</span><span class="en">Per-parent KakaoTalk notices</span></b><span><span class="ko">가장 시간이 많이 드는 일 → 먼저 만들고 먼저 보여줌</span><span class="en">The most time-consuming task, built and shown first</span></span></li>
+            <li><b><span class="ko">출결 · 원비 장부</span><span class="en">Attendance & fees</span></b><span><span class="ko">수기 장부를 웹으로</span><span class="en">Paper ledger to the web</span></span></li>
+            <li><b><span class="ko">달력 · 상담 예약</span><span class="en">Calendar & bookings</span></b><span><span class="ko">상세 기능</span><span class="en">Secondary</span></span></li>
+          </ol>
+          <div class="gn-check">
+            <p class="f-k"><span class="ko">다음 검증</span><span class="en">Next to verify</span></p>
+            <ul>
+              <li><span class="ko">원장님이 공지 한 번을 혼자 끝까지 보내는지</span><span class="en">Can the director send one notice end to end alone?</span></li>
+              <li><span class="ko">기존 방식과 비교: 걸린 시간 · 수정한 부분 · 전송 누락</span><span class="en">Versus today: time taken, edits needed, missed sends</span></li>
+              <li><span class="ko">다음 공지 때도 스스로 다시 쓰는지</span><span class="en">Does she use it again for the next notice?</span></li>
+            </ul>
+          </div>
+          <p class="gn-note"><span class="ko">수익 모델: 월 5,900원 / 9,900원 — 실제 결제와 재이용은 아직 확인 전입니다.</span><span class="en">Pricing model: ₩5,900 / ₩9,900 a month — no payments or renewals confirmed yet.</span></p>
         </div>
       </article>
     </div>
