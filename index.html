@@ -476,6 +476,13 @@ section{padding:126px 0; position:relative}
 .cw-cta{margin-top:20px}
 @media(max-width:820px){.cw{grid-template-columns:1fr} .cw-visual{border-right:0; border-bottom:1px solid var(--line2)} .cw-body{padding:24px 20px} .cw-dl{grid-template-columns:1fr; gap:4px} .cw-dl dt{padding-top:10px}}
 
+.cw-visual{padding:22px; gap:12px; align-items:stretch; justify-content:center}
+.cw-shot{border-radius:10px; overflow:hidden; border:1px solid var(--line); aspect-ratio:1408/732; background:#fff}
+.cw-shot img{display:block; width:100%; height:100%; object-fit:cover; object-position:top; transition:opacity .15s}
+.cw-thumbs{display:flex; gap:8px; flex-wrap:wrap}
+.cw-thumbs button{font:inherit; font-size:13px; padding:7px 12px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--body); cursor:pointer}
+.cw-thumbs button.on{border-color:var(--cy); background:var(--cy-soft); color:var(--ink); font-weight:600}
+@media(min-width:821px){.cw{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
 /* additional project: compact card */
 .mini-list{margin-top:20px}
 .pcard.mini{flex-direction:row; align-items:stretch}
@@ -1151,27 +1158,28 @@ body{word-break:keep-all; overflow-wrap:break-word}
       <p class="kicker"><span class="ko">외주 납품 사례</span><span class="en">Client work</span></p>
       <h2 class="h2"><span class="ko">요청을 받아,<br>웹사이트를 만들어 납품했습니다</span><span class="en">A client asked,<br>I built and delivered the site</span></h2>
       <article class="cw">
-        <div class="cw-visual" aria-hidden="true">
-          <div class="cw-step"><b><span class="ko">상담 신청 폼</span><span class="en">Inquiry form</span></b><em class="cw-sub"><span class="ko">학부모가 웹사이트에서 작성</span><span class="en">Filled in by a parent on the site</span></em></div>
-          <i>↓</i>
-          <div class="cw-split">
-            <div class="cw-step hl"><b><span class="ko">텔레그램 알림</span><span class="en">Telegram alert</span></b></div>
-            <div class="cw-step hl"><b><span class="ko">이메일 알림</span><span class="en">Email alert</span></b></div>
+        <div class="cw-visual">
+          <div class="cw-shot"><img id="cwBig" src="/client/cw-1-home.webp" alt="납품한 공부방 웹사이트 첫 화면 (업체명·로고 가림)" loading="lazy"></div>
+          <div class="cw-thumbs" role="group" aria-label="화면 선택">
+            <button type="button" class="on" data-src="/client/cw-1-home.webp" data-alt="첫 화면"><span class="ko">첫 화면</span><span class="en">Home</span></button>
+            <button type="button" data-src="/client/cw-2-schedule.webp" data-alt="수업 시간·교습비"><span class="ko">수업·교습비</span><span class="en">Classes & fees</span></button>
+            <button type="button" data-src="/client/cw-3-form.webp" data-alt="상담 신청서"><span class="ko">상담 신청서</span><span class="en">Inquiry form</span></button>
           </div>
-          <p class="cw-cap"><span class="ko">원장님이 바로 확인</span><span class="en">The director sees it right away</span></p>
         </div>
         <div class="cw-body">
-          <div class="top"><h3><span class="ko">OO수학 학원 웹사이트</span><span class="en">Math academy website</span></h3><span class="chip-tag live"><span class="ko">납품 완료</span><span class="en">Delivered</span></span></div>
+          <div class="top"><h3><span class="ko">영어·수학 공부방 웹사이트</span><span class="en">English & math tutoring site</span></h3><span class="chip-tag live"><span class="ko">납품 완료</span><span class="en">Delivered</span></span></div>
           <p class="pmeta"><span class="ko">2026.10 · 외주 · 1인 제작</span><span class="en">Oct 2026 · client project · solo</span></p>
           <dl class="cw-dl">
             <dt><span class="ko">고객 요청</span><span class="en">The ask</span></dt>
-            <dd><span class="ko">홈페이지가 없던 학원의 웹사이트 제작</span><span class="en">A website for an academy that had none</span></dd>
+            <dd><span class="ko">홈페이지가 없던 영어·수학 공부방의 웹사이트 제작</span><span class="en">A website for an English & math tutoring room that had none</span></dd>
             <dt><span class="ko">직접 한 일</span><span class="en">What I did</span></dt>
             <dd><span class="ko">기획, 디자인, 개발을 혼자 맡아 의뢰 후 하루 만에 완성해 납품</span><span class="en">Planned, designed and built it solo, delivered the day after the request</span></dd>
+            <dt><span class="ko">화면 구성</span><span class="en">Pages</span></dt>
+            <dd><span class="ko">학년별 수업 소개 탭, 수업 시간·교습비 표, 자주 묻는 질문, 개인정보 동의가 들어간 상담 신청서, 카카오톡 상담 연결</span><span class="en">Class tabs by grade, schedule & fee tables, FAQ, an inquiry form with privacy consent, KakaoTalk chat link</span></dd>
             <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
             <dd class="key"><span class="ko">상담 신청 폼을 제출하면 원장님께 텔레그램과 이메일로 바로 알림이 가도록 연동</span><span class="en">Submitting the inquiry form instantly notifies the director on Telegram and by email</span></dd>
           </dl>
-          <p class="cw-note"><span class="ko">업체 이름은 가렸습니다.</span><span class="en">The client's name is withheld.</span></p>
+          <p class="cw-note"><span class="ko">원장님 동의를 받아 공개했고, 업체 이름과 로고는 가렸습니다.</span><span class="en">Shared with the owner's permission; the name and logo are blurred.</span></p>
           <a class="btn solid cw-cta" href="#contact" data-inquiry="project"><span class="ko">비슷한 웹사이트 의뢰하기</span><span class="en">Ask for a site like this</span></a>
         </div>
       </article>
@@ -1296,7 +1304,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
           <div class="tdate">2026.09 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
           <div>
             <h3><span class="ko">프리랜서 개발</span><span class="en">Freelance development</span></h3>
-            <p><span class="ko">OO수학 학원 웹사이트 1건 납품 — 기획·디자인·개발을 혼자 맡고, 상담 신청이 텔레그램과 이메일로 오도록 연동했습니다.</span><span class="en">Delivered a website for a local math academy — planned, designed and built it solo, with consultation requests sent to Telegram and email.</span></p>
+            <p><span class="ko">영어·수학 공부방 웹사이트 1건 납품 — 기획·디자인·개발을 혼자 맡고, 상담 신청이 텔레그램과 이메일로 오도록 연동했습니다.</span><span class="en">Delivered a website for an English & math tutoring room — planned, designed and built it solo, with inquiries sent to Telegram and email.</span></p>
           </div>
         </div>
         <div class="trow">
@@ -1457,6 +1465,10 @@ body{word-break:keep-all; overflow-wrap:break-word}
         else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
       }
     }); }
+  (function(){ var big=document.getElementById('cwBig'); if(!big) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.cw-thumbs button'),function(b){
+      b.addEventListener('click',function(){ big.style.opacity='0'; setTimeout(function(){ big.src=b.getAttribute('data-src'); big.alt=b.getAttribute('data-alt'); big.style.opacity='1'; },120);
+        Array.prototype.forEach.call(document.querySelectorAll('.cw-thumbs button'),function(x){ x.classList.toggle('on', x===b); }); }); }); })();
   Array.prototype.forEach.call(document.querySelectorAll('[data-inquiry]'),function(a){
     a.addEventListener('click',function(){ var r=document.querySelector('.cf-type input[value="'+(a.getAttribute('data-inquiry')==='project'?'프로젝트 의뢰':'채용 제안')+'"]'); if(r) r.checked=true; });
   });
