@@ -521,15 +521,16 @@ section{padding:126px 0; position:relative}
 .f-quote{margin:0; font-size:17px; line-height:1.6; color:var(--ink); font-weight:600; word-break:keep-all}
 .f-decide{border-color:var(--cy-line); background:var(--cy-soft)} .f-decide .f-k{color:var(--cy2)}
 .f-d{margin:0; font-size:16px; line-height:1.65; color:var(--ink); word-break:keep-all} .f-d b{color:var(--cy2)}
-.gn{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); border:1px solid var(--pk-line); border-radius:16px; background:var(--panel); overflow:hidden}
-.gn-visual{display:grid; grid-template-columns:auto auto 1fr; align-items:center; gap:14px; padding:28px 24px; background:var(--visual); border-right:1px solid var(--line2)}
-.gn-node{border:1px solid var(--cy-line); background:var(--panel); border-radius:12px; padding:14px; text-align:center}
-.gn-node b{display:block; font-size:14.5px; color:var(--ink)} .gn-node > span{display:block; margin-top:4px; font-size:12.5px; color:var(--muted)}
-.gn-arrow{color:var(--pk); font-size:20px}
-.gn-kakao{display:flex; flex-direction:column; gap:8px}
-.gn-msg{background:#FEE500; color:#191919; border-radius:12px 12px 12px 4px; padding:9px 12px; font-size:13px; font-weight:600}
-.gn-cap{grid-column:1/-1; margin:6px 0 0; text-align:center; font-size:12px; color:var(--faint)}
-.gn-body{padding:28px 30px}
+.gn{border:1px solid var(--pk-line); border-radius:16px; background:var(--panel); overflow:hidden}
+.gn-visual{padding:22px 24px 16px; background:var(--visual); border-bottom:1px solid var(--line2)}
+.gn-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px}
+.gn-tabs button{font:inherit; font-size:13.5px; padding:8px 14px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--body); cursor:pointer}
+.gn-tabs button:hover{border-color:var(--pk-line); color:var(--ink)}
+.gn-tabs button.on{border-color:var(--pk); background:var(--pk-soft); color:var(--ink); font-weight:600}
+.gn-shot{border-radius:10px; overflow:hidden; border:1px solid var(--line); aspect-ratio:1496/639; background:#eef2ea}
+.gn-shot img{display:block; width:100%; height:100%; object-fit:cover; object-position:top left; transition:opacity .15s}
+.gn-cap{margin:10px 0 0; font-size:12.5px; color:var(--faint)}
+.gn-body{padding:28px 30px} .gn-cols{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:32px; margin-top:4px} .gn-cols .gn-check{margin-top:12px}
 .gn-body .top{display:flex; justify-content:space-between; align-items:center; gap:12px} .gn-body .top h3{margin:0; font-size:22px}
 .gn-chip{background:var(--pk-soft); color:var(--pk); border:1px solid var(--pk-line)}
 .gn-head{margin:12px 0 0; font-family:var(--f-head); font-size:21px; font-weight:700; line-height:1.4; color:var(--ink); word-break:keep-all}
@@ -541,7 +542,7 @@ section{padding:126px 0; position:relative}
 .gn-feat li.main{border-color:var(--pk-line); background:var(--pk-soft)} .gn-feat li.main::before{color:var(--pk)}
 .gn-check{margin-top:18px} .gn-check ul{margin:0; padding-left:18px; font-size:15px; line-height:1.8; color:var(--body)}
 .gn-note{margin:16px 0 0; font-size:13.5px; color:var(--faint)}
-@media(max-width:860px){.finding{grid-template-columns:1fr} .gn{grid-template-columns:1fr} .gn-visual{border-right:0; border-bottom:1px solid var(--line2)} .gn-body{padding:22px 20px} .gn-feat li{flex-wrap:wrap}}
+@media(max-width:860px){.finding{grid-template-columns:1fr} .gn-cols{grid-template-columns:1fr; gap:0} .gn-visual{padding:16px 14px 12px} .gn-shot{aspect-ratio:auto; overflow-x:auto} .gn-shot img{width:auto; height:280px; max-width:none} .gn-body{padding:22px 20px} .gn-feat li{flex-wrap:wrap}}
 
 /* contact form */
 .cform{max-width:620px; margin:8px auto 0; text-align:left; display:flex; flex-direction:column; gap:14px}
@@ -1248,25 +1249,28 @@ body{word-break:keep-all; overflow-wrap:break-word}
 
       <p class="story-step">03 · <span class="ko">공부방노트 · 개발 중</span><span class="en">공부방노트 · in development</span></p>
       <article class="gn">
-        <div class="gn-visual" aria-hidden="true">
-          <div class="gn-node gn-web"><b><span class="ko">원장님 · 웹</span><span class="en">Director · web</span></b><span><span class="ko">공지 1번 작성</span><span class="en">Writes one notice</span></span></div>
-          <div class="gn-arrow">→</div>
-          <div class="gn-kakao">
-            <div class="gn-msg"><span class="ko">학부모 A · 카카오톡</span><span class="en">Parent A · KakaoTalk</span></div>
-            <div class="gn-msg"><span class="ko">학부모 B · 카카오톡</span><span class="en">Parent B · KakaoTalk</span></div>
-            <div class="gn-msg"><span class="ko">학부모 C · 카카오톡</span><span class="en">Parent C · KakaoTalk</span></div>
+        <div class="gn-visual">
+          <div class="gn-tabs" role="group" aria-label="공부방노트 화면 선택">
+            <button type="button" class="on" data-src="/gongbubang/gn-1-notice.webp" data-alt="단체 공지 작성 화면: 받는 반 선택, 자주 쓰는 문구, 학부모 휴대폰 미리보기"><span class="ko">공지 쓰기</span><span class="en">Write notice</span></button>
+            <button type="button" data-src="/gongbubang/gn-2-confirm.webp" data-alt="보내기 전 확인: 전체 학부모 20명, 카톡 20통"><span class="ko">보내기 전 확인</span><span class="en">Confirm</span></button>
+            <button type="button" data-src="/gongbubang/gn-3-attendance.webp" data-alt="오늘 출석부: 9 출석, 1 결석, 2 남음"><span class="ko">출석부</span><span class="en">Attendance</span></button>
+            <button type="button" data-src="/gongbubang/gn-4-fees.webp" data-alt="월별 원비 장부: 납부 6명, 미납 3명"><span class="ko">원비</span><span class="en">Fees</span></button>
+            <button type="button" data-src="/gongbubang/gn-5-calendar.webp" data-alt="달력: 반별 수업 시간과 납부일"><span class="ko">달력</span><span class="en">Calendar</span></button>
           </div>
-          <p class="gn-cap"><span class="ko">구조 설명 그림 · 실제 화면은 개발 후 추가</span><span class="en">Diagram · real screens to come</span></p>
+          <div class="gn-shot"><img id="gnBig" src="/gongbubang/gn-1-notice.webp" alt="단체 공지 작성 화면: 받는 반 선택, 자주 쓰는 문구, 학부모 휴대폰 미리보기" loading="lazy"></div>
+          <p class="gn-cap"><span class="ko">실제 서비스 화면 · 테스트 모드라 문자는 나가지 않고, 학생 이름과 번호는 예시 데이터입니다.</span><span class="en">Real screens in test mode: nothing is sent, and the students are sample data.</span></p>
         </div>
         <div class="gn-body">
           <div class="top"><h3><span class="ko">공부방노트</span><span class="en">공부방노트</span></h3><span class="chip-tag gn-chip"><span class="ko">현재 주력 개발</span><span class="en">Current focus</span></span></div>
+          <div class="gn-cols"><div>
           <p class="gn-head"><span class="ko">학부모 앱 설치 없이,<br>한 명씩 보내던 공지를 한 번에.</span><span class="en">No app for parents.<br>One notice instead of one-by-one.</span></p>
           <p class="gn-desc"><span class="ko">공부방 원장님의 반복 업무를 줄이는 웹 서비스입니다. 학부모별 카카오톡 공지와 출결·원비 관리를 한곳에 모았습니다.</span><span class="en">A web service that cuts a tutor's repetitive admin: per-parent KakaoTalk notices plus attendance and fees in one place.</span></p>
           <ol class="gn-feat">
             <li class="main"><b><span class="ko">학부모별 카카오톡 공지</span><span class="en">Per-parent KakaoTalk notices</span></b><span><span class="ko">가장 시간이 많이 드는 일 → 먼저 만들고 먼저 보여줌</span><span class="en">The most time-consuming task, built and shown first</span></span></li>
             <li><b><span class="ko">출결 · 원비 장부</span><span class="en">Attendance & fees</span></b><span><span class="ko">수기 장부를 웹으로</span><span class="en">Paper ledger to the web</span></span></li>
-            <li><b><span class="ko">달력 · 상담 예약</span><span class="en">Calendar & bookings</span></b><span><span class="ko">상세 기능</span><span class="en">Secondary</span></span></li>
+            <li><b><span class="ko">달력 · 보강 일정</span><span class="en">Calendar & make-up classes</span></b><span><span class="ko">반별 시간표와 납부일을 한눈에</span><span class="en">Class times and due dates at a glance</span></span></li>
           </ol>
+          </div><div>
           <div class="gn-check">
             <p class="f-k"><span class="ko">다음 검증</span><span class="en">Next to verify</span></p>
             <ul>
@@ -1276,6 +1280,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
             </ul>
           </div>
           <p class="gn-note"><span class="ko">수익 모델: 월 5,900원 / 9,900원 — 실제 결제와 재이용은 아직 확인 전입니다.</span><span class="en">Pricing model: ₩5,900 / ₩9,900 a month — no payments or renewals confirmed yet.</span></p>
+          </div></div>
         </div>
       </article>
     </div>
@@ -1560,6 +1565,9 @@ body{word-break:keep-all; overflow-wrap:break-word}
         else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
       }
     }); }
+  (function(){ var big=document.getElementById('gnBig'); if(!big) return; var bs=document.querySelectorAll('.gn-tabs button');
+    Array.prototype.forEach.call(bs,function(b){ b.addEventListener('click',function(){ big.style.opacity=0; setTimeout(function(){ big.src=b.dataset.src; big.alt=b.dataset.alt; big.style.opacity=1; },120);
+        Array.prototype.forEach.call(bs,function(x){ x.classList.toggle('on', x===b); }); }); }); })();
   (function(){ var big=document.getElementById('cwBig'); if(!big) return;
     Array.prototype.forEach.call(document.querySelectorAll('.cw-thumbs button'),function(b){
       b.addEventListener('click',function(){ big.style.opacity='0'; setTimeout(function(){ big.src=b.getAttribute('data-src'); big.alt=b.getAttribute('data-alt'); big.style.opacity='1'; },120);
