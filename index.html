@@ -514,6 +514,7 @@ section{padding:126px 0; position:relative}
 .story-rail li.now{border-color:var(--pk-line); background:var(--pk-soft); color:var(--ink); font-weight:600} .story-rail li.now b{color:var(--pk)}
 .story-step{margin:40px 0 0; font-size:14px; font-weight:700; color:var(--muted); letter-spacing:.02em}
 .story-step + .cw,.story-step + .finding,.story-step + .gn{margin-top:14px}
+.cw + .story-rail{margin-top:48px}
 .finding{display:grid; grid-template-columns:1.1fr 1fr 1.1fr; gap:14px}
 .f-col{border:1px solid var(--line); border-radius:14px; background:var(--panel); padding:20px 22px}
 .f-k{margin:0 0 10px; font-size:13px; font-weight:700; color:var(--muted)}
@@ -1195,12 +1196,6 @@ body{word-break:keep-all; overflow-wrap:break-word}
     <div class="wrap">
       <p class="kicker"><span class="ko">외주에서 시작한 서비스</span><span class="en">From client work to a product</span></p>
       <h2 class="h2"><span class="ko">홈페이지를 납품하고,<br>원장님의 다음 문제까지 풀고 있습니다</span><span class="en">I delivered the website,<br>then took on the client's next problem</span></h2>
-      <ol class="story-rail">
-        <li class="done"><b>01</b><span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></li>
-        <li class="done"><b>02</b><span class="ko">운영 문제 발견</span><span class="en">Found the real pain</span></li>
-        <li class="now"><b>03</b><span class="ko">공부방노트 개발 중</span><span class="en">Building 공부방노트</span></li>
-      </ol>
-      <p class="story-step">01 · <span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></p>
       <article class="cw">
         <div class="cw-visual">
           <div class="cw-shot"><img class="cw-big" src="/client/yonsei-1-home.webp" alt="대전 연세의원 홈페이지 첫 화면" loading="lazy"></div>
@@ -1223,11 +1218,16 @@ body{word-break:keep-all; overflow-wrap:break-word}
             <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
             <dd class="key"><span class="ko">주문 3일 만에 납품, 리뷰 5.0. 원장님이 관리자 페이지에서 고치면 1분 안에 홈페이지에 반영</span><span class="en">Delivered 3 days after the order, rated 5.0. Edits the director makes in the admin page go live within a minute</span></dd>
           </dl>
-          <p class="cw-note"><span class="ko">전화번호가 보이는 부분은 화면에서 잘라냈습니다.</span><span class="en">Parts showing phone numbers are cropped out.</span></p>
           <a class="btn solid cw-cta" href="https://www.yonseidaejeon.com" target="_blank" rel="noopener"><span class="ko">실제 사이트 보기 ↗</span><span class="en">Visit the live site ↗</span></a>
         </div>
       </article>
 
+      <ol class="story-rail">
+        <li class="done"><b>01</b><span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></li>
+        <li class="done"><b>02</b><span class="ko">운영 문제 발견</span><span class="en">Found the real pain</span></li>
+        <li class="now"><b>03</b><span class="ko">공부방노트 개발 중</span><span class="en">Building 공부방노트</span></li>
+      </ol>
+      <p class="story-step">01 · <span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></p>
       <article class="cw">
         <div class="cw-visual">
           <div class="cw-shot"><img class="cw-big" src="/client/cw-1-home.webp" alt="납품한 공부방 웹사이트 첫 화면 (업체명·로고 가림)" loading="lazy"></div>
