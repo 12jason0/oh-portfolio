@@ -831,7 +831,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
     <p class="namebadge">Full-stack Developer · Portfolio 2026</p>
     <h1 class="hname"><span class="ko">오승용</span><span class="en">Oh Seungyong</span></h1>
     <p class="hline"><span class="ko">웹 서비스를 개발하고,<br>출시 이후의 운영까지 책임집니다.</span><span class="en">I build web services and stay<br>responsible for them after launch.</span></p>
-    <p class="echo"><span class="ko">React·Next.js 기반 풀스택 개발자 오승용입니다. 두나와 QuoteCrate를 개발·출시했으며, 고객 웹사이트 납품과 운영 자동화 경험이 있습니다.</span><span class="en">I'm Oh Seungyong, a full-stack developer working in React and Next.js. I built and shipped DoNa and QuoteCrate, and I have delivered a client website and built ops automation.</span></p>
+    <p class="echo"><span class="ko">React·Next.js 기반 풀스택 개발자 오승용입니다. 두나와 QuoteCrate를 개발·출시했으며, 고객 웹사이트 2건 납품과 운영 자동화 경험이 있습니다.</span><span class="en">I'm Oh Seungyong, a full-stack developer working in React and Next.js. I built and shipped DoNa and QuoteCrate, and I have delivered two client websites and built ops automation.</span></p>
     <div class="proof">
       <a href="#feature-dona"><b>DoNa</b><span><span class="ko">다운로드 100+</span><span class="en">100+ downloads</span></span></a>
       <a href="#qc-card"><b>QuoteCrate</b><span>Shopify App Store</span></a>
@@ -1203,7 +1203,34 @@ body{word-break:keep-all; overflow-wrap:break-word}
       <p class="story-step">01 · <span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></p>
       <article class="cw">
         <div class="cw-visual">
-          <div class="cw-shot"><img id="cwBig" src="/client/cw-1-home.webp" alt="납품한 공부방 웹사이트 첫 화면 (업체명·로고 가림)" loading="lazy"></div>
+          <div class="cw-shot"><img class="cw-big" src="/client/yonsei-1-home.webp" alt="대전 연세의원 홈페이지 첫 화면" loading="lazy"></div>
+          <div class="cw-thumbs" role="group" aria-label="화면 선택">
+            <button type="button" class="on" data-src="/client/yonsei-1-home.webp" data-alt="대전 연세의원 홈페이지 첫 화면"><span class="ko">첫 화면</span><span class="en">Home</span></button>
+            <button type="button" data-src="/client/yonsei-2-fees.webp" data-alt="비급여 진료비 가격표"><span class="ko">비급여 가격표</span><span class="en">Price list</span></button>
+            <button type="button" data-src="/client/yonsei-3-hours.webp" data-alt="공지사항·진료시간"><span class="ko">공지·진료시간</span><span class="en">Notices & hours</span></button>
+          </div>
+        </div>
+        <div class="cw-body">
+          <div class="top"><h3><span class="ko">대전 연세의원 병원 홈페이지</span><span class="en">Yonsei Clinic website, Daejeon</span></h3><span class="chip-tag live"><span class="ko">납품 완료</span><span class="en">Delivered</span></span></div>
+          <p class="pmeta"><span class="ko">2026.11 · 크몽 외주 · 1인 제작</span><span class="en">Nov 2026 · client project via Kmong · solo</span></p>
+          <dl class="cw-dl">
+            <dt><span class="ko">고객 요청</span><span class="en">The ask</span></dt>
+            <dd><span class="ko">환자는 네이버 지도에서 병원을 찾아 들어오는데, 진료 시간·비급여 가격·위치를 한눈에 볼 곳이 없었습니다. 휴진이나 가격이 바뀌면 원장님이 업체 없이 직접 고칠 수 있어야 했습니다.</span><span class="en">Patients found the clinic on Naver Map, but there was no single place to see hours, non-covered prices and directions. The director also needed to update closures and prices without calling an agency.</span></dd>
+            <dt><span class="ko">직접 한 일</span><span class="en">What I did</span></dt>
+            <dd><span class="ko">4페이지 반응형 홈페이지와 원장 전용 관리자 페이지(공지, 비급여 가격표, 진료 시간)를 만들고, 네이버 지도 API와 카카오톡 채널 자동 응답을 연결</span><span class="en">A responsive 4-page site plus a director-only admin page (notices, price list, hours), with Naver Maps API and KakaoTalk channel auto-replies</span></dd>
+            <dt><span class="ko">사용 기술</span><span class="en">Stack</span></dt>
+            <dd><span class="ko">HTML, CSS, JavaScript, Node.js, Vercel(Blob, Deploy Hook), NAVER Cloud Maps API</span><span class="en">HTML, CSS, JavaScript, Node.js, Vercel (Blob, Deploy Hook), NAVER Cloud Maps API</span></dd>
+            <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
+            <dd class="key"><span class="ko">주문 3일 만에 납품, 리뷰 5.0. 원장님이 관리자 페이지에서 고치면 1분 안에 홈페이지에 반영</span><span class="en">Delivered 3 days after the order, rated 5.0. Edits the director makes in the admin page go live within a minute</span></dd>
+          </dl>
+          <p class="cw-note"><span class="ko">전화번호가 보이는 부분은 화면에서 잘라냈습니다.</span><span class="en">Parts showing phone numbers are cropped out.</span></p>
+          <a class="btn solid cw-cta" href="https://www.yonseidaejeon.com" target="_blank" rel="noopener"><span class="ko">실제 사이트 보기 ↗</span><span class="en">Visit the live site ↗</span></a>
+        </div>
+      </article>
+
+      <article class="cw">
+        <div class="cw-visual">
+          <div class="cw-shot"><img class="cw-big" src="/client/cw-1-home.webp" alt="납품한 공부방 웹사이트 첫 화면 (업체명·로고 가림)" loading="lazy"></div>
           <div class="cw-thumbs" role="group" aria-label="화면 선택">
             <button type="button" class="on" data-src="/client/cw-1-home.webp" data-alt="첫 화면"><span class="ko">첫 화면</span><span class="en">Home</span></button>
             <button type="button" data-src="/client/cw-2-schedule.webp" data-alt="수업 시간·교습비"><span class="ko">수업·교습비</span><span class="en">Classes & fees</span></button>
@@ -1404,7 +1431,9 @@ body{word-break:keep-all; overflow-wrap:break-word}
           <div class="tdate">2026.09 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
           <div>
             <h3><span class="ko">프리랜서 개발</span><span class="en">Freelance development</span></h3>
-            <p><span class="ko">영어·수학 공부방 웹사이트 1건 납품 — 기획·디자인·개발을 혼자 맡고, 상담 신청이 텔레그램과 이메일로 오도록 연동했습니다. 납품 후 원장님의 운영 불편에서 출발한 공부방노트(학부모 공지·출결·원비 웹 서비스)를 개발하고 있습니다.</span><span class="en">Delivered a website for an English & math tutoring room — planned, designed and built it solo, with inquiries sent to Telegram and email. Now building 공부방노트 (parent notices, attendance and fees) from the director's day-to-day pain points.</span></p>
+            <p><span class="ko">웹사이트 2건 납품</span><span class="en">Delivered two websites</span></p>
+            <p><span class="ko">· 대전 내과·피부과 의원 홈페이지 + 원장 전용 관리자 페이지 제작·납품 (2026.11, 3일, 리뷰&nbsp;5.0)</span><span class="en">· Website plus a director-only admin page for an internal medicine & dermatology clinic in Daejeon (Nov 2026, 3 days, rated 5.0)</span></p>
+            <p><span class="ko">· 영어·수학 공부방 웹사이트 — 기획·디자인·개발을 혼자 맡고, 상담 신청이 텔레그램과 이메일로 오도록 연동했습니다. 납품 후 원장님의 운영 불편에서 출발한 공부방노트(학부모 공지·출결·원비 웹 서비스)를 개발하고 있습니다.</span><span class="en">· Website for an English & math tutoring room — planned, designed and built it solo, with inquiries sent to Telegram and email. Now building 공부방노트 (parent notices, attendance and fees) from the director's day-to-day pain points.</span></p>
           </div>
         </div>
         <div class="trow">
@@ -1568,10 +1597,11 @@ body{word-break:keep-all; overflow-wrap:break-word}
   (function(){ var big=document.getElementById('gnBig'); if(!big) return; var bs=document.querySelectorAll('.gn-tabs button');
     Array.prototype.forEach.call(bs,function(b){ b.addEventListener('click',function(){ big.style.opacity=0; setTimeout(function(){ big.src=b.dataset.src; big.alt=b.dataset.alt; big.style.opacity=1; },120);
         Array.prototype.forEach.call(bs,function(x){ x.classList.toggle('on', x===b); }); }); }); })();
-  (function(){ var big=document.getElementById('cwBig'); if(!big) return;
-    Array.prototype.forEach.call(document.querySelectorAll('.cw-thumbs button'),function(b){
+  Array.prototype.forEach.call(document.querySelectorAll('.cw-visual'),function(v){
+    var big=v.querySelector('.cw-big'); if(!big) return; var bs=v.querySelectorAll('.cw-thumbs button');
+    Array.prototype.forEach.call(bs,function(b){
       b.addEventListener('click',function(){ big.style.opacity='0'; setTimeout(function(){ big.src=b.getAttribute('data-src'); big.alt=b.getAttribute('data-alt'); big.style.opacity='1'; },120);
-        Array.prototype.forEach.call(document.querySelectorAll('.cw-thumbs button'),function(x){ x.classList.toggle('on', x===b); }); }); }); })();
+        Array.prototype.forEach.call(bs,function(x){ x.classList.toggle('on', x===b); }); }); }); });
   Array.prototype.forEach.call(document.querySelectorAll('[data-inquiry]'),function(a){
     a.addEventListener('click',function(){ var r=document.querySelector('.cf-type input[value="'+(a.getAttribute('data-inquiry')==='project'?'프로젝트 의뢰':'채용 제안')+'"]'); if(r) r.checked=true; });
   });
