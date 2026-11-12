@@ -452,6 +452,20 @@ section{padding:126px 0; position:relative}
 .dd-note{grid-column:1/-1; margin:6px 0 0; text-align:center; font-size:12px; color:var(--faint)}
 @media(max-width:600px){.dd-flow{grid-template-columns:1fr; gap:10px} .dd-cal{width:100%; max-width:220px; margin:0 auto}}
 .modal .dd-flow{margin:4px 0 0; max-width:520px}
+.dd-shots{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; align-items:start}
+.dd-more{margin-top:12px}
+.dd-shots figure{margin:0}
+.dd-zoom{display:block; width:100%; padding:0; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:none; cursor:zoom-in; transition:border-color .2s}
+.dd-zoom:hover,.dd-zoom:focus-visible{border-color:var(--a4)} .dd-zoom:focus-visible{outline:2px solid var(--a4); outline-offset:2px}
+.dd-zoom img{display:block; width:100%; height:auto}
+.dd-shots figcaption{margin-top:8px; font-size:13.5px; color:var(--muted); text-align:center}
+@media(max-width:600px){.dd-shots{grid-template-columns:1fr}}
+.lb{position:fixed; inset:0; z-index:200; display:none; flex-direction:column; align-items:center; justify-content:center; gap:12px; padding:56px 16px 20px; background:rgba(0,0,0,.88); cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{display:block; max-width:min(100%,760px); max-height:calc(100vh - 120px); width:auto; height:auto; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.lb-cap{margin:0; font-size:14px; color:#e9e6ef}
+.lb-close{position:absolute; top:12px; right:12px; width:40px; height:40px; border-radius:50%; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.08); color:#fff; font-size:22px; line-height:1; cursor:pointer}
+.lb-close:focus-visible{outline:2px solid var(--a4); outline-offset:2px}
 .modal .qc-gallery img[src^="/dearday/"]{aspect-ratio:420/911; object-fit:cover; object-position:top}
 
 /* client work */
@@ -1337,8 +1351,8 @@ body{word-break:keep-all; overflow-wrap:break-word}
             <div class="top"><h3><span class="ko">디어데이 (Dear Day)</span><span class="en">Dear Day</span></h3><span class="chip-tag camp"><span class="ko">베타</span><span class="en">Beta</span></span></div>
             <p class="mini-desc"><span class="ko">생리 주기를 기록하면 연인이 같은 달력을 보고, 필요한 배려를 버튼 하나로 주고받는 웹앱입니다. 2026.10부터 혼자 만들고 있습니다.</span><span class="en">Log a cycle and your partner sees the same calendar and trades care with one tap. Building it solo since Oct 2026.</span></p>
             <ul class="mini-points">
-              <li><span class="ko">공유 권한을 요청마다 서버에서 다시 확인하고, 파트너에게는 결과 날짜만 전송</span><span class="en">Sharing rights rechecked server-side per request; the partner gets dates only</span></li>
-              <li><span class="ko">최근 6개 주기 가중 평균 예측 · 자동 테스트 235개</span><span class="en">Weighted 6-cycle prediction · 235 automated tests</span></li>
+              <li><span class="ko">파트너가 볼 수 있는 범위를 요청마다 서버에서 다시 확인</span><span class="en">What the partner may see is rechecked server-side on every request</span></li>
+              <li><span class="ko">최근 6개 주기 가중 평균 예측 · 자동 테스트 260개</span><span class="en">Weighted 6-cycle prediction · 260 automated tests</span></li>
             </ul>
             <div class="quicklinks">
               <a href="https://dearday-couple.vercel.app" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="ko">베타 보기 ↗</span><span class="en">Beta ↗</span></a>
@@ -1348,51 +1362,46 @@ body{word-break:keep-all; overflow-wrap:break-word}
               <div class="sec">
                 <p class="sec-label"><span class="ko">왜 만들었나</span><span class="en">Why</span></p>
                 <p class="role"><span class="ko">생리 주기는 기록하는 사람만 알고, 연인은 언제 무엇을 해주면 좋을지 모르는 경우가 많습니다. 기록하는 사람이 적으면 파트너가 같은 달력을 보고, 필요한 배려를 버튼 하나로 주고받게 만들었습니다.</span><span class="en">Usually only the person tracking knows the cycle, and the partner doesn't know when or how to help. Here the tracker logs, the partner sees the same calendar, and care is requested and answered with one tap.</span></p>
+                <p class="role dd-more"><span class="ko">기존 앱 리뷰에서 '파트너가 내가 얼마나 아픈지 모른다'는 불만이 반복돼서, 오늘 상태와 부탁을 파트너 화면에 따로 보여주고 쪽지로 주고받는 구조로 만들었습니다.</span><span class="en">Reviews of existing apps kept repeating the same complaint: "my partner has no idea how much it hurts." So today's state and asks get their own place on the partner's screen, and the two trade short notes.</span></p>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">실제 화면</span><span class="en">Screens</span></p>
+                <div class="dd-shots">
+                  <figure><button type="button" class="dd-zoom" data-full="/dearday/dd-k1-tracker.webp" aria-label="기록하는 사람 화면 크게 보기"><img src="/dearday/dd-k1-tracker.webp" alt="기록하는 사람 홈 화면: 한 주 달력, 오늘 통증·기분, 필요한 배려 버튼" width="1080" height="1398" loading="lazy" decoding="async"></button><figcaption><span class="ko">기록하는 사람</span><span class="en">The tracker</span></figcaption></figure>
+                  <figure><button type="button" class="dd-zoom" data-full="/dearday/dd-k2-partner.webp" aria-label="함께 보는 사람 화면 크게 보기"><img src="/dearday/dd-k2-partner.webp" alt="함께 보는 사람 화면: 상대의 오늘 상태, 오늘의 쪽지, 같은 달력" width="1080" height="1432" loading="lazy" decoding="async"></button><figcaption><span class="ko">함께 보는 사람</span><span class="en">The partner</span></figcaption></figure>
+                  <figure><button type="button" class="dd-zoom" data-full="/dearday/dd-k3-report.webp" aria-label="리포트 화면 크게 보기"><img src="/dearday/dd-k3-report.webp" alt="리포트 화면: 평균 주기·기간·다음 생리 요약, 주기 체크, 기록 표" width="1080" height="1370" loading="lazy" decoding="async"></button><figcaption><span class="ko">리포트</span><span class="en">Report</span></figcaption></figure>
+                  <figure><button type="button" class="dd-zoom" data-full="/dearday/dd-k4-community.webp" aria-label="커뮤니티 화면 크게 보기"><img src="/dearday/dd-k4-community.webp" alt="파트너 커뮤니티 화면: 말머리, 공지, 글 카드, 글 상세" width="1080" height="1640" loading="lazy" decoding="async"></button><figcaption><span class="ko">커뮤니티</span><span class="en">Community</span></figcaption></figure>
+                </div>
+                <p class="role note"><span class="ko">베타 테스트 계정 화면입니다. 누르면 크게 볼 수 있습니다.</span><span class="en">Screens from a beta test account. Tap to enlarge.</span></p>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">구조</span><span class="en">How it works</span></p>
-                <div class="dd-flow" aria-label="기록자와 파트너가 같은 달력을 보고 배려를 주고받는 구조">
+                <div class="dd-flow" aria-label="기록하는 사람과 파트너가 같은 달력과 오늘 상태를 보고 쪽지를 주고받는 구조">
               <div class="dd-node"><b class="dd-h"><span class="ko">기록하는 사람</span><span class="en">The tracker</span></b><span class="dd-sub"><span class="ko">주기·통증·기분 기록</span><span class="en">Logs cycle, pain, mood</span></span></div>
               <div class="dd-mid">
-                <div class="dd-arrow"><span class="ko">예측 날짜만 공유</span><span class="en">Only predicted dates shared</span><i>→</i></div>
+                <div class="dd-arrow"><span class="ko">달력 · 오늘 상태 · 부탁</span><span class="en">Calendar · today's state · asks</span><i>→</i></div>
                 <div class="dd-cal" aria-hidden="true"><span class=""></span><span class=""></span><span class="p"></span><span class="p"></span><span class="p"></span><span class="p"></span><span class=""></span><span class=""></span><span class=""></span><span class="f"></span><span class="f"></span><span class="o"></span><span class="f"></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div>
-                <div class="dd-arrow back"><i>←</i><span class="ko">배려 요청 · 답장</span><span class="en">Care requests · replies</span></div>
+                <div class="dd-arrow back"><i>←</i><span class="ko">오늘의 쪽지 (하루 3장)</span><span class="en">Today's notes (3 a day)</span></div>
               </div>
-              <div class="dd-node"><b class="dd-h"><span class="ko">파트너</span><span class="en">The partner</span></b><span class="dd-sub"><span class="ko">같은 달력 · 알림 받기</span><span class="en">Same calendar · notifications</span></span></div>
-              </div>
-              <div class="sec">
-                <p class="sec-label"><span class="ko">화면</span><span class="en">Screens</span></p>
-                <div class="qc-gallery">
-                  <img src="/dearday/dd-1-home.webp" alt="기록하는 사람 홈 — 주기 띠 달력, 통증·기분, 배려 요청" loading="lazy">
-                  <img src="/dearday/dd-2-partner.webp" alt="파트너 홈 — 같은 달력과 배려 요청 답장" loading="lazy">
-                  <img src="/dearday/dd-3-calendar.webp" alt="달력 — 생리·가임기·배란일 예측" loading="lazy">
-                  <img src="/dearday/dd-4-community.webp" alt="파트너 커뮤니티(남친톡)" loading="lazy">
-                  <img src="/dearday/dd-5-info.webp" alt="주기 상식" loading="lazy">
-                </div>
-                <p class="role note"><span class="ko">베타 테스트 계정 화면입니다.</span><span class="en">Screens from a beta test account.</span></p>
+              <div class="dd-node"><b class="dd-h"><span class="ko">파트너</span><span class="en">The partner</span></b><span class="dd-sub"><span class="ko">같은 달력 · 주기 알림</span><span class="en">Same calendar · cycle alerts</span></span></div>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">주요 기능</span><span class="en">Features</span></p>
                 <ul class="points">
-                  <li><span class="ko">주기 기록·예측: 시작/종료, 통증·기분, 다음 생리일·가임기·배란일 예측</span><span class="en">Cycle log & prediction: start/end, pain & mood, next period, fertile window, ovulation</span></li>
-                  <li><span class="ko">파트너 연결: 8자리 코드(15분, 1회용), 잠시 멈추기, 연결 끊기</span><span class="en">Partner link: 8-character code (15 min, single use), pause, unlink</span></li>
-                  <li><span class="ko">배려 요청: 칩 한 번으로 요청 → 파트너 답장(봤어요 / 도와줄게요 / 했어요)</span><span class="en">Care requests: one-tap chips → partner replies (seen / on it / done)</span></li>
-                  <li><span class="ko">푸시 알림: 배려 요청·답장·예정일 (웹 푸시 + 매일 예약 작업)</span><span class="en">Push: requests, replies and upcoming dates (web push + daily scheduled job)</span></li>
-                  <li><span class="ko">리포트: 평균 주기·기간·예측 오차, 주기 차트, 지난 기록 표</span><span class="en">Reports: average cycle and length, prediction error, cycle chart, history table</span></li>
-                  <li><span class="ko">파트너 커뮤니티: 게시판, 댓글·답글, 신고 3회 자동 숨김, 차단, 운영자 신고 관리</span><span class="en">Partner community: board, comments & replies, auto-hide after 3 reports, blocking, admin report review</span></li>
-                  <li><span class="ko">계정: 이메일·카카오 로그인, 비밀번호 변경, 회원 탈퇴</span><span class="en">Accounts: email & Kakao login, password change, account deletion</span></li>
+                  <li><span class="ko">소셜 / 이메일 로그인, 초대 링크로 두 사람 바로 연결</span><span class="en">Social or email login; an invite link connects the two of you right away</span></li>
+                  <li><span class="ko">파트너 주기 알림 (시작 · 예정일 하루 전 · 끝, 파트너가 직접 켜고 끄기)</span><span class="en">Cycle alerts for the partner (start, the day before it's due, end), switched on and off by the partner</span></li>
+                  <li><span class="ko">오늘의 쪽지: 하루 3장, 상태에 맞는 예시 문장</span><span class="en">Today's notes: 3 a day, with example lines that fit the current state</span></li>
+                  <li><span class="ko">리포트: 평균 주기, 보통 범위와 비교하는 주기 체크</span><span class="en">Report: average cycle, plus a cycle check against the typical range</span></li>
+                  <li><span class="ko">파트너 커뮤니티: 말머리, 공지, 댓글, 공감, 신고·차단</span><span class="en">Partner community: tags, notices, comments, likes, report and block</span></li>
+                  <li><span class="ko">앱스토어 없이 홈 화면에 설치 (PWA)</span><span class="en">Installs to the home screen without an app store (PWA)</span></li>
                 </ul>
               </div>
               <div class="sec">
-                <p class="sec-label"><span class="ko">기술적으로 신경 쓴 부분</span><span class="en">Engineering decisions</span></p>
+                <p class="sec-label"><span class="ko">신경 쓴 부분</span><span class="en">What I paid attention to</span></p>
                 <ul class="points">
-                  <li><span class="ko">개인 맞춤 예측: 최근 6개 주기 가중 평균, 튀는 주기 자동 제외, 기록이 적을 때는 평소 주기와 섞어 쓰고 ±범위 표시, 과거 기록으로 예측 오차 계산</span><span class="en">Personal prediction: weighted average of the last 6 cycles, outliers dropped, blended with the usual cycle when data is thin, ± range shown, error measured against past records</span></li>
-                  <li><span class="ko">건강 정보 보호: 파트너에게는 결과 날짜만 전송, 요청마다 서버에서 공유 권한 재확인, 잠금화면 알림에 건강 단어 제외</span><span class="en">Health data: partner gets dates only, sharing rights rechecked server-side per request, no health words on lock-screen notifications</span></li>
-                  <li><span class="ko">보안: scrypt 비밀번호 해시, 세션·초대 코드 해시 저장, 로그인·가입·코드 입력 횟수 제한, 탈퇴 시 데이터 삭제 + 카카오 연결 해제</span><span class="en">Security: scrypt hashing, hashed sessions and invite codes, rate limits on login, signup and code entry, data deletion plus Kakao unlink on account removal</span></li>
-                  <li><span class="ko">동시성: 연결·끊기·탈퇴가 동시에 일어나도 꼬이지 않게 트랜잭션과 잠금 순서를 설계</span><span class="en">Concurrency: transactions and lock ordering so link, unlink and deletion can't collide</span></li>
-                  <li><span class="ko">성능: 서버와 DB를 같은 지역(싱가포르)에 두고, 서비스 워커 캐시로 재방문 때 받는 파일을 20개 → 4개로 줄임</span><span class="en">Performance: server and DB in the same region (Singapore); service-worker cache cuts files fetched on a revisit from 20 to 4</span></li>
-                  <li><span class="ko">법적 준비: 개인정보처리방침, 민감정보·국외 이전 동의 분리, 만 14세 확인</span><span class="en">Legal: privacy policy, separate consent for sensitive data and overseas transfer, age-14 check</span></li>
-                  <li><span class="ko">테스트: 자동 테스트 235개 (Vitest)</span><span class="en">Tests: 235 automated tests (Vitest)</span></li>
+                  <li><span class="ko">최근 6개 주기 가중 평균 + 튀는 주기 제외로 개인 맞춤 예측</span><span class="en">Personal prediction: weighted average of the last 6 cycles, with outlier cycles left out</span></li>
+                  <li><span class="ko">파트너가 볼 수 있는 범위를 요청마다 서버에서 다시 확인, 잠금화면 알림에 건강 단어 안 넣기</span><span class="en">What the partner may see is rechecked server-side on every request; lock-screen notifications carry no health words</span></li>
+                  <li><span class="ko">자동 테스트 260개</span><span class="en">260 automated tests</span></li>
                 </ul>
               </div>
               <div class="sec">
@@ -1400,9 +1409,13 @@ body{word-break:keep-all; overflow-wrap:break-word}
                 <p class="role"><span class="ko">구현은 AI 코딩 도구(Claude Code)로 했고, 기획·설계 결정과 검증은 제가 직접 했습니다. 아직 베타라 실사용자는 없습니다.</span><span class="en">I implemented it with an AI coding tool (Claude Code); the planning, design decisions and verification are mine. It is still in beta with no real users yet.</span></p>
               </div>
               <div class="stack">
-                <span class="stk"><b>Web</b> Next.js (App Router) · TypeScript · Tailwind CSS</span>
-                <span class="stk"><b>Data</b> PostgreSQL (Neon) · Drizzle ORM</span>
-                <span class="stk"><b>Infra</b> Vercel · Web Push · <span class="ko">카카오 로그인</span><span class="en">Kakao login</span> · Vitest</span>
+                <span class="stk">Next.js</span>
+                <span class="stk">TypeScript</span>
+                <span class="stk">Tailwind CSS</span>
+                <span class="stk">PostgreSQL</span>
+                <span class="stk">Drizzle ORM</span>
+                <span class="stk">Web Push</span>
+                <span class="stk">Vercel</span>
               </div>
             </div>
           </div>
@@ -1610,6 +1623,22 @@ body{word-break:keep-all; overflow-wrap:break-word}
     Array.prototype.forEach.call(bs,function(b){
       b.addEventListener('click',function(){ big.style.opacity='0'; setTimeout(function(){ big.src=b.getAttribute('data-src'); big.alt=b.getAttribute('data-alt'); big.style.opacity='1'; },120);
         Array.prototype.forEach.call(bs,function(x){ x.classList.toggle('on', x===b); }); }); }); });
+  // Dear Day screens: click to view large (works inside the project modal too)
+  (function(){
+    var lb=document.createElement('div'); lb.className='lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label','화면 크게 보기');
+    lb.innerHTML='<button type="button" class="lb-close" aria-label="닫기">×</button><img alt=""><p class="lb-cap"></p>';
+    document.body.appendChild(lb);
+    var img=lb.querySelector('img'), cap=lb.querySelector('.lb-cap'), btn=lb.querySelector('.lb-close'), back=null;
+    function close(){ if(!lb.classList.contains('open')) return; lb.classList.remove('open'); img.removeAttribute('src'); if(back && back.focus) back.focus(); }
+    document.addEventListener('click',function(e){ var z=e.target.closest && e.target.closest('.dd-zoom'); if(!z) return; e.preventDefault(); e.stopPropagation();
+      var th=z.querySelector('img'), fc=z.parentNode.querySelector('figcaption'); back=z;
+      img.src=z.getAttribute('data-full'); img.alt=th ? th.alt : ''; cap.innerHTML=fc ? fc.innerHTML : '';
+      lb.classList.add('open'); setTimeout(function(){ btn.focus(); },30); }, true);
+    lb.addEventListener('click',close);
+    window.addEventListener('keydown',function(e){ if(!lb.classList.contains('open')) return;
+      if(e.key==='Escape'){ e.stopImmediatePropagation(); e.preventDefault(); close(); }
+      else if(e.key==='Tab'){ e.stopImmediatePropagation(); e.preventDefault(); btn.focus(); } }, true);
+  })();
   Array.prototype.forEach.call(document.querySelectorAll('[data-inquiry]'),function(a){
     a.addEventListener('click',function(){ var r=document.querySelector('.cf-type input[value="'+(a.getAttribute('data-inquiry')==='project'?'프로젝트 의뢰':'채용 제안')+'"]'); if(r) r.checked=true; });
   });
