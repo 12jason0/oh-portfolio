@@ -502,7 +502,7 @@ section{padding:126px 0; position:relative}
 .cf-type{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px}
 .cf-type label{cursor:pointer}
 .cf-type input{position:absolute; opacity:0; pointer-events:none}
-.cf-type span{display:inline-block; padding:9px 16px; border:1px solid var(--line); border-radius:999px; font-size:14px; color:var(--body); transition:border-color .2s, background-color .2s}
+.cf-type label > span{display:inline-block; padding:9px 16px; border:1px solid var(--line); border-radius:999px; font-size:14px; color:var(--body); transition:border-color .2s, background-color .2s}
 .cf-type input:checked + span{border-color:var(--cy); background:var(--cy-soft); color:var(--ink); font-weight:600}
 .cf-type input:focus-visible + span{outline:2px solid var(--cy); outline-offset:2px}
 
@@ -644,6 +644,48 @@ body{word-break:keep-all; overflow-wrap:break-word}
 .dc-flow .step{font-size:14px}
 .dc-tag{font-size:13px}
 .dc-k{font-size:13px; letter-spacing:.04em}
+
+/* short main page: compact cards, details in the modal */
+section{padding:96px 0}
+.pg{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-top:32px}
+.pg3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pc .exp-visual{height:280px; min-height:0; padding:20px}
+.pc .exp-visual .phone{width:118px}
+.pc .exp-visual .shot{max-width:100%}
+.pg3 .pc .exp-visual{height:200px; padding:16px}
+.pc .exp-foot{flex:1; display:flex; flex-direction:column; padding:22px 24px 22px}
+.pc .top h3{font-size:22px}
+.pg3 .pc .top h3{font-size:19px}
+.pc-purpose{margin:8px 0 0; font-size:15.5px; line-height:1.55; color:var(--ink); font-weight:600; word-break:keep-all}
+.pc .pmeta{font-size:13px; margin-top:6px}
+.pc-kpi{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:6px}
+.pc-kpi li{position:relative; padding-left:15px; font-size:14.5px; line-height:1.55; color:var(--body); word-break:keep-all}
+.pc-kpi li::before{content:""; position:absolute; left:2px; top:9px; width:5px; height:5px; border-radius:50%; background:var(--acc)}
+.pc-kpi b{color:var(--ink)}
+.pc .quicklinks{margin-top:auto; padding-top:16px; align-items:center; gap:14px}
+.pc .quicklinks a{color:var(--acc); border-bottom-color:color-mix(in srgb, var(--acc) 40%, transparent); font-size:13.5px}
+.pc .quicklinks .more{margin-left:auto; color:var(--acc); padding:7px 13px; border:1px solid color-mix(in srgb, var(--acc) 45%, transparent); border-radius:999px; font-weight:600; font-size:13.5px}
+.pc:hover .quicklinks .more{background:color-mix(in srgb, var(--acc) 14%, transparent)}
+.pc .ptag{color:var(--acc)}
+.modal .finding{margin:4px 0 0; grid-template-columns:1fr}
+.modal .gn-feat{margin-top:14px}
+.modal .gn-checks .gn-check:first-child{margin-top:0}
+.modal .cw-dl{margin:0}
+.modal .dc-more{margin-top:12px}
+.tl2{margin-top:18px; border-top:1px solid var(--line2)}
+.tl2 .r{display:grid; grid-template-columns:150px minmax(0,auto) minmax(0,1fr); gap:18px; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--line2)}
+.tl2 .d{font-family:var(--f-mono); font-size:13.5px; color:var(--faint)}
+.tl2 b{font-family:var(--f-head); font-weight:600; font-size:16px; color:var(--ink); white-space:nowrap}
+.tl2 .x{font-size:15px; color:var(--body); word-break:keep-all}
+.ct-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:48px; align-items:start; text-align:left}
+.ct-grid .cta-band h2, .ct-left h2{text-align:left}
+.ct-left p{margin:0 0 22px; max-width:none}
+.ct-left .links{justify-content:flex-start; margin-top:0}
+.ct-right{min-width:0} .ct-right .cform{margin:0; max-width:none} .ct-right .cform input[type=text],.ct-right .cform input[type=email],.ct-right .cform input:not([type]),.ct-right .cform textarea{width:100%; min-width:0; box-sizing:border-box} .cf-row > label{min-width:0}
+.ct-left h2{font-size:clamp(26px,3vw,36px)}
+#more-projects{padding-top:0}
+@media(max-width:1000px){.pg3{grid-template-columns:1fr 1fr} .pg3 .pc:last-child{grid-column:1/-1}}
+@media(max-width:760px){.pg,.pg3{grid-template-columns:1fr} .pg3 .pc:last-child{grid-column:auto} section{padding:72px 0} .ct-grid{grid-template-columns:1fr; gap:28px} .tl2 .r{grid-template-columns:1fr; gap:2px} .tl2 b{white-space:normal} .pc .exp-visual{height:240px}}
 </style>
 </head>
 <body>
@@ -697,9 +739,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
     <a class="logo" href="#top">OH<b>.</b>dev</a>
     <div class="nav-links">
       <a href="#work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
-      <a href="#case-study"><span class="ko">문제 해결</span><span class="en">Problem solving</span></a>
       <a href="#client-work"><span class="ko">외주·공부방노트</span><span class="en">Client work</span></a>
-      <a href="#about"><span class="ko">소개</span><span class="en">About</span></a>
       <a href="#timeline"><span class="ko">경력</span><span class="en">Experience</span></a>
       <a href="#contact"><span class="ko">연락</span><span class="en">Contact</span></a>
     </div>
@@ -851,16 +891,9 @@ body{word-break:keep-all; overflow-wrap:break-word}
   <section id="work">
     <div class="wrap">
       <p class="kicker"><span class="ko">출시·운영 경험</span><span class="en">Shipped &amp; running</span></p>
-      <h2 class="h2" style="max-width:26ch"><span class="ko">직접 개발하고<br>출시한 서비스</span><span class="en">Services I built<br>and shipped</span></h2>
-      <p class="sub"><span class="ko">두나는 웹·모바일 출시부터 결제와 운영 개선까지, QuoteCrate는 Shopify 안에서 견적·주문·결제 흐름을 구현했습니다.</span><span class="en">DoNa: web and mobile launch through payments and ops improvements. QuoteCrate: the quote, order and payment flow inside Shopify.</span></p>
-
-      <div class="plist ptl">
-        <div class="tl-line" aria-hidden="true"><i></i></div>
-        <div class="tl-now" aria-hidden="true"><div class="tl-now-in"></div></div>
-        <div class="tl-item" data-acc="1">
-          <div class="tl-side"><b class="tl-name"><span class="ko">두나 · 개발 및 운영</span><span class="en">DoNa · build &amp; run</span></b><span class="tl-date">2025.08–<span class="ko">현재</span><span class="en">now</span></span></div>
-          <div class="tl-dot" aria-hidden="true"></div>
-        <article class="pcard prow exp" id="feature-dona" data-cat="product">
+      <h2 class="h2"><span class="ko">직접 개발하고 출시한 서비스</span><span class="en">Services I built and shipped</span></h2>
+      <div class="pg">
+        <article class="pcard exp pc" id="feature-dona" data-cat="product" style="--acc:var(--a1)">
           <div class="exp-visual">
             <div class="phone">
               <div class="notch"></div>
@@ -870,25 +903,14 @@ body{word-break:keep-all; overflow-wrap:break-word}
           <div class="exp-foot">
             <p class="ptag"><span class="ko">웹·앱 서비스</span><span class="en">Web & mobile service</span></p>
             <div class="top"><h3><span class="ko">두나 (DoNa)</span><span class="en">DoNa</span></h3><span class="chip-tag live">LIVE</span></div>
-            <p class="ppurpose"><span class="ko">장소 선택부터 이동 순서까지, 하루의 데이트를 코스로 연결했습니다.</span><span class="en">From picking places to the order you visit them, a whole date day as one course.</span></p>
-            <p class="pmeta"><span class="ko">2025.08–현재 · 1인 개발 · 웹·iOS·Android 운영</span><span class="en">Aug 2025–now · solo · running on web, iOS and Android</span></p>
-            <p class="pdesc2"><span class="ko">장소를 찾은 뒤에도 방문 순서와 동선을 따로 고민해야 하는 불편에서 시작했습니다. 데이트 코스를 제공하는 웹과 모바일 앱을 만들고, 콘텐츠 등록부터 결제까지 필요한 기능을 구현했습니다.</span><span class="en">It started from the hassle of still having to plan the order and route after finding places. I built the web and mobile apps that serve date courses, with everything from content entry to payments.</span></p>
-            <div class="pblock">
-              <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
-              <ul class="points pdid">
-                <li><span class="ko">웹 서비스와 iOS·Android 앱을 출시해 누적 다운로드 <b>100+</b>를 기록했고, 데이트 코스 <b>40개</b>를 제작했습니다.</span><span class="en">Shipped the web service and iOS/Android apps: <b>100+ downloads</b> so far, with <b>40 date courses</b> made.</span></li>
-                <li><span class="ko">TossPayments와 RevenueCat을 연동해 구독 결제를 구현했습니다.</span><span class="en">Built subscription payments with TossPayments and RevenueCat.</span></li>
-                <li><span class="ko">로그인 토큰의 저장 방식과 무효화 로직을 개선하고, Redis 기반 요청 속도 제한을 적용했습니다.</span><span class="en">Reworked how login tokens are stored and revoked, and added Redis-based rate limiting.</span></li>
-                <li><span class="ko">운영 중 반복되던 장소 등록을 관리자 도구와 텔레그램 봇으로 옮겨, 손으로 <b>약 20분</b> 걸리던 자료 정리를 AI 자동 처리 <b>평균 26초</b>로 줄였습니다(검수 별도).</span><span class="en">Moved repetitive place entry into an admin tool and a Telegram bot: prep that took <b>about 20 minutes</b> by hand now takes <b>26 seconds</b> of AI processing on average (review separate).</span></li>
-              </ul>
-            </div>
-            <div class="pstack pstack-flat"><span>Next.js</span><span>TypeScript</span><span>React Native</span><span>PostgreSQL</span><span>Prisma</span><span>Upstash Redis</span></div>
+            <p class="pc-purpose"><span class="ko">장소 선택부터 이동 순서까지, 하루의 데이트를 코스로 연결했습니다.</span><span class="en">From picking places to the order you visit them, a whole date day as one course.</span></p>
+            <p class="pmeta"><span class="ko">2025.08–현재 · 1인 개발 · 웹·iOS·Android</span><span class="en">Aug 2025–now · solo · web, iOS, Android</span></p>
+            <ul class="pc-kpi"><li><span class="ko">누적 다운로드 <b>100+</b> · 코스 <b>40개</b></span><span class="en"><b>100+</b> downloads · <b>40</b> courses</span></li><li><span class="ko">장소 등록 <b>20분 → 26초</b> (AI 처리, 검수 별도)</span><span class="en">Place entry <b>20 min → 26 s</b> (AI, review separate)</span></li><li><span class="ko">구독 결제 · 로그인 토큰 무효화 개선</span><span class="en">Subscriptions · login token revocation</span></li></ul>
             <div class="quicklinks">
               <a href="https://dona.io.kr/" target="_blank" rel="noopener" onclick="event.stopPropagation()">LIVE ↗</a>
               <a href="https://apps.apple.com/app/id6756777886" target="_blank" rel="noopener" onclick="event.stopPropagation()">App Store ↗</a>
               <a href="https://play.google.com/store/apps/details?id=kr.io.dona.dona" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Play ↗</a>
-              <a href="https://dona-admin-demo.vercel.app/admin" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="ko">관리자 데모 ↗</span><span class="en">Admin demo ↗</span></a>
-              <div class="more"><span class="ko">개발·운영 과정 보기</span><span class="en">How it was built</span><span class="arrow">→</span></div>
+              <div class="more"><span class="ko">자세히</span><span class="en">Details</span><span class="arrow">→</span></div>
             </div>
             <div class="exp-detail">
               <div class="sec">
@@ -949,7 +971,56 @@ body{word-break:keep-all; overflow-wrap:break-word}
                     <dd class="key"><span class="ko">Android 빌드 정상화, 배포 진행</span><span class="en">Android build fixed and shipped</span></dd>
                   </dl>
                 </div>
-                <a class="case-link" href="#case-study" data-close><span class="ko">로그인 토큰 저장·무효화 개선 사례 보기 →</span><span class="en">See the login token case →</span></a>
+                <div class="case">
+                  <p class="case-h"><span class="ko">로그아웃한 토큰이 다시 사용되지 않도록</span><span class="en">Making sure a logged-out token can't be used again</span></p>
+                  <dl>
+                    <dt><span class="ko">문제</span><span class="en">Problem</span></dt>
+                    <dd><span class="ko">로그인 토큰(JWT)을 localStorage에 저장해서 JavaScript로 읽을 수 있었고, 로그아웃해도 1년 만료 전까지 그대로 유효했습니다.</span><span class="en">The JWT sat in localStorage where JavaScript could read it, and stayed valid for its full year even after logout.</span></dd>
+                    <dt><span class="ko">해결</span><span class="en">Fix</span></dt>
+                    <dd><span class="ko">HttpOnly 쿠키로 옮기고, 로그아웃·비밀번호 변경 때 서버의 token_version을 올려 이전 토큰을 거부</span><span class="en">Moved it to an HttpOnly cookie; logout or a password change bumps a server-side token_version so older tokens are rejected</span></dd>
+                    <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
+                    <dd class="key"><span class="ko">배포 후, 한 기기에서 로그아웃하면 다른 기기의 이전 토큰이 거부되는 것을 확인</span><span class="en">After deploy: logging out on one device rejects the old token on another</span></dd>
+                  </dl>
+                </div>
+                <details class="dc-more">
+                  <summary><span class="ko">판단 근거 · 대가 · 운영 확인 보기</span><span class="en">Reasoning · trade-offs · production check</span></summary>
+                  <div class="dc-mbody">
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">왜 쿠키인가</span><span class="en">Why a cookie</span></p>
+                  <p class="dc-mv"><span class="ko">localStorage·sessionStorage·HttpOnly 쿠키를 비교했습니다. 앞의 둘은 JavaScript로 읽을 수 있어서 HttpOnly 쿠키를 골랐습니다.</span><span class="en">I compared localStorage, sessionStorage and an HttpOnly cookie. The first two are readable from JavaScript, so I chose the cookie.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">왜 기간을 줄이지 않았나</span><span class="en">Why not a shorter lifetime</span></p>
+                  <p class="dc-mv"><span class="ko">토큰 기간을 줄이면 앱에서 자주 다시 로그인해야 합니다. 그래서 1년 자동 로그인은 두고, 서버에서 끊을 수 있게 만들었습니다.</span><span class="en">A shorter lifetime would force frequent re-login in the app, so I kept the one-year login and made it revocable on the server.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">구현</span><span class="en">Build</span></p>
+                  <p class="dc-mv"><span class="ko">로그인 7곳에 흩어진 토큰 발급 코드를 함수 하나로 합쳤습니다. 버전 값이 없는 기존 토큰은 0으로 처리해 전환할 때 기존 사용자가 튕기지 않게 했습니다.</span><span class="en">Merged token issuing from 7 login paths into one function. Tokens without a version count as 0, so existing users stayed signed in through the switch.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">감수한 것</span><span class="en">Trade-offs</span></p>
+                  <p class="dc-mv"><span class="ko">인증 확인마다 DB 조회가 한 번 늘고, 한 기기에서 로그아웃하면 모든 기기에서 함께 로그아웃됩니다. 쿠키는 요청에 자동으로 실리기 때문에 SameSite=Lax로 다른 사이트에서 보낸 요청에는 실리지 않게 했습니다.</span><span class="en">One extra DB lookup per check, and logging out signs you out everywhere. Cookies ride along automatically, so SameSite=Lax keeps them off requests sent from other sites.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">운영에서 확인</span><span class="en">In production</span></p>
+                  <p class="dc-mv"><span class="ko">배포 후 응답 헤더로 미들웨어가 운영 환경에서 실행되지 않는 문제를 찾아 런타임 설정을 되돌렸습니다. 그다음 한 기기에서 로그아웃했을 때 다른 기기의 이전 토큰이 거부되는지 확인했습니다.</span><span class="en">After deploy, response headers showed the middleware was not running in production, so I restored the runtime setting. Then I confirmed that logging out on one device rejects the old token on another.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">적용 범위</span><span class="en">Scope</span></p>
+                  <p class="dc-mv"><span class="ko">토큰을 JavaScript로 직접 읽는 것과 로그아웃 이후 사용을 막은 것입니다. 모든 XSS·CSRF를 해결했다는 뜻은 아닙니다.</span><span class="en">This stops JavaScript from reading the token and stops use after logout. It does not mean every XSS or CSRF risk is solved.</span></p>
+                </div>
+                <div class="dc-mrow">
+                  <p class="dc-mk"><span class="ko">설정 코드</span><span class="en">Config</span></p>
+                  <pre class="cs-code">res.cookies.set("auth", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax",
+  path: "/",
+  maxAge: serverConfig.authTokenMaxAgeSec,
+});</pre>
+                </div>
+                  </div>
+                </details>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">수요 검증</span><span class="en">Validating demand</span></p>
@@ -992,33 +1063,20 @@ body{word-break:keep-all; overflow-wrap:break-word}
             </div>
           </div>
         </article>
-        </div>
-        <div class="tl-item" data-acc="3">
-          <div class="tl-side"><b class="tl-name">QuoteCrate</b><span class="tl-date">2026.08–<span class="ko">현재</span><span class="en">now</span></span></div>
-          <div class="tl-dot" aria-hidden="true"></div>
-        <article class="pcard prow exp" id="qc-card" data-cat="product">
+        <article class="pcard exp pc" id="qc-card" data-cat="product" style="--acc:var(--a3)">
           <div class="exp-visual">
             <div class="shot"><img src="/qc/qc-2.webp" alt="QuoteCrate 관리자 견적함 화면" loading="lazy"></div>
           </div>
           <div class="exp-foot">
             <p class="ptag"><span class="ko">Shopify 앱</span><span class="en">Shopify app</span></p>
             <div class="top"><h3>QuoteCrate</h3><span class="chip-tag live">LIVE</span></div>
-            <p class="ppurpose"><span class="ko">도매 견적 요청부터 주문·결제까지 이어지는 Shopify 앱을 만들었습니다.</span><span class="en">A Shopify app that carries a wholesale quote request through to order and payment.</span></p>
-            <p class="pmeta"><span class="ko">2026.08–현재 · 1인 개발 · 2026.10 Shopify App Store 출시</span><span class="en">Aug 2026–now · solo · on the Shopify App Store since Oct 2026</span></p>
-            <p class="pdesc2"><span class="ko">구매자가 견적을 요청하고, 판매자가 가격을 제안한 뒤, 구매자가 결제하는 흐름을 하나의 앱으로 연결했습니다. 앱 개발과 구독 결제 구현, 스토어 심사 대응을 맡았습니다.</span><span class="en">The buyer requests a quote, the merchant sets the price, and the buyer pays, all in one app. I built the app, its subscription billing and handled App Store review.</span></p>
-            <div class="pblock">
-              <p class="pblock-h"><span class="ko">구현과 결과</span><span class="en">Built & shipped</span></p>
-              <ul class="points pdid">
-                <li><span class="ko">견적 요청 → 가격 책정 → 체크아웃 흐름을 구현하고 E2E 테스트로 확인했습니다.</span><span class="en">Built the quote → pricing → checkout flow and checked it with end-to-end tests.</span></li>
-                <li><span class="ko">Billing API로 앱 구독과 무료 체험을 구현했습니다.</span><span class="en">App subscription and free trial through the Billing API.</span></li>
-                <li><span class="ko">iframe 환경에서 발생한 결제 이동 문제를 추적하고, App Bridge로 결제 흐름을 복구했습니다.</span><span class="en">Tracked down a checkout redirect problem inside the iframe and restored checkout with App Bridge.</span></li>
-              </ul>
-            </div>
-            <div class="pstack pstack-flat"><span>React Router 7</span><span>React</span><span>Polaris</span><span>Node.js</span><span>Prisma</span><span>PostgreSQL</span><span>Shopify GraphQL</span></div>
+            <p class="pc-purpose"><span class="ko">도매 견적 요청부터 주문·결제까지 이어지는 Shopify 앱을 만들었습니다.</span><span class="en">A Shopify app that carries a wholesale quote request through to order and payment.</span></p>
+            <p class="pmeta"><span class="ko">2026.08–현재 · 1인 개발 · 2026.10 출시</span><span class="en">Aug 2026–now · solo · launched Oct 2026</span></p>
+            <ul class="pc-kpi"><li><span class="ko">Shopify App Store 심사 통과 · 출시</span><span class="en">Passed review, live on the Shopify App Store</span></li><li><span class="ko">견적 → 가격 → 체크아웃, E2E 테스트로 확인</span><span class="en">Quote → price → checkout, checked end to end</span></li><li><span class="ko">결제 401 오류 원인 추적 → App Bridge로 복구</span><span class="en">Traced a checkout 401 → fixed with App Bridge</span></li></ul>
             <div class="quicklinks">
               <a href="https://apps.shopify.com/quotecrate" target="_blank" rel="noopener" onclick="event.stopPropagation()">LIVE ↗</a>
               <a href="https://github.com/12jason0/quotecrate" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
-              <div class="more"><span class="ko">결제 오류 해결 과정 보기</span><span class="en">The checkout bug</span><span class="arrow">→</span></div>
+              <div class="more"><span class="ko">자세히</span><span class="en">Details</span><span class="arrow">→</span></div>
             </div>
             <div class="exp-detail">
               <div class="sec">
@@ -1047,6 +1105,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
                     <dt class="key"><span class="ko">해결</span><span class="en">Fix</span></dt>
                     <dd class="key"><span class="ko">Shopify App Bridge로 바깥 창에서 이동하게 바꿔 결제 흐름 복구</span><span class="en">Moved the redirect to the top window with App Bridge and restored checkout</span></dd>
                   </dl>
+                  <p class="role note"><span class="ko">그 뒤로는 오류 코드만으로 원인을 확정하지 않고, 성공한 요청과 실패한 요청을 먼저 나란히 놓고 봅니다.</span><span class="en">Since then I don't settle on a cause from the error code alone; I put a good and a failing request side by side first.</span></p>
                 </div>
               </div>
               <div class="stack">
@@ -1078,137 +1137,33 @@ body{word-break:keep-all; overflow-wrap:break-word}
             </div>
           </div>
         </article>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="case-study">
-    <div class="wrap">
-      <p class="kicker"><span class="ko">문제 해결</span><span class="en">Technical decisions</span></p>
-      <h2 class="h2" style="max-width:34ch; text-wrap:pretty"><span class="ko">운영 중 만난 문제와,<br>해결을 위해 내린 판단</span><span class="en">Problems I hit in production,<br>and the calls I made</span></h2>
-      <div class="dc-list">
-        <article class="dc">
-          <div class="dc-head">
-            <div class="dc-top"><span class="dc-no"><span class="ko">01 · 인증 설계</span><span class="en">01 · Auth design</span></span><span class="dc-tag">JWT · token_version</span></div>
-            <h3 class="dc-title"><span class="ko">로그아웃한 토큰이 다시 사용되지 않도록</span><span class="en">Making sure a logged-out token can't be used again</span></h3>
-          </div>
-          <div class="dc-body">
-            <div class="dc-row dc-prob">
-              <p class="dc-k"><span class="ko">문제</span><span class="en">Problem</span></p>
-              <p class="dc-v"><span class="ko">로그인 토큰(JWT)을 localStorage에 저장해서 JavaScript로 읽을 수 있었습니다. 로그아웃해도 토큰은 1년 만료 전까지 그대로 유효했습니다.</span><span class="en">The JWT sat in localStorage where JavaScript could read it, and it stayed valid for its full year even after logout.</span></p>
-            </div>
-            <div class="dc-row dc-sol">
-              <p class="dc-k"><span class="ko">해결</span><span class="en">Solution</span></p>
-              <p class="dc-h"><span class="ko">HttpOnly 쿠키 + 서버의 token_version 검증</span><span class="en">HttpOnly cookie + a server-side token_version check</span></p>
-              <p class="dc-v"><span class="ko">토큰을 HttpOnly 쿠키로 옮겨 JavaScript가 직접 읽지 못하게 했습니다. 로그아웃하거나 비밀번호를 바꾸면 버전을 올려 이전 토큰을 거부합니다.</span><span class="en">The token moved into an HttpOnly cookie so JavaScript can't read it, and logout or a password change bumps the version so older tokens are rejected.</span></p>
-            </div>
-            <div class="dc-res">
-              <p class="dc-k"><span class="ko">결과</span><span class="en">Result</span></p>
-              <p class="dc-r"><span class="ko">배포 후, 한 기기에서 로그아웃하면 다른 기기의 이전 토큰이 거부되는 것을 확인</span><span class="en">After deploy: logging out on one device rejects the old token on another</span></p>
-            </div>
-            <details class="dc-more">
-              <summary><span class="ko">판단 근거 · 대가 · 운영 확인 보기</span><span class="en">Reasoning · trade-offs · production check</span></summary>
-              <div class="dc-mbody">
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">왜 쿠키인가</span><span class="en">Why a cookie</span></p>
-                  <p class="dc-mv"><span class="ko">localStorage·sessionStorage·HttpOnly 쿠키를 비교했습니다. 앞의 둘은 JavaScript로 읽을 수 있어서 HttpOnly 쿠키를 골랐습니다.</span><span class="en">I compared localStorage, sessionStorage and an HttpOnly cookie. The first two are readable from JavaScript, so I chose the cookie.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">왜 기간을 줄이지 않았나</span><span class="en">Why not a shorter lifetime</span></p>
-                  <p class="dc-mv"><span class="ko">토큰 기간을 줄이면 앱에서 자주 다시 로그인해야 합니다. 그래서 1년 자동 로그인은 두고, 서버에서 끊을 수 있게 만들었습니다.</span><span class="en">A shorter lifetime would force frequent re-login in the app, so I kept the one-year login and made it revocable on the server.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">구현</span><span class="en">Build</span></p>
-                  <p class="dc-mv"><span class="ko">로그인 7곳에 흩어진 토큰 발급 코드를 함수 하나로 합쳤습니다. 버전 값이 없는 기존 토큰은 0으로 처리해 전환할 때 기존 사용자가 튕기지 않게 했습니다.</span><span class="en">Merged token issuing from 7 login paths into one function. Tokens without a version count as 0, so existing users stayed signed in through the switch.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">감수한 것</span><span class="en">Trade-offs</span></p>
-                  <p class="dc-mv"><span class="ko">인증 확인마다 DB 조회가 한 번 늘고, 한 기기에서 로그아웃하면 모든 기기에서 함께 로그아웃됩니다. 쿠키는 요청에 자동으로 실리기 때문에 SameSite=Lax로 다른 사이트에서 보낸 요청에는 실리지 않게 했습니다.</span><span class="en">One extra DB lookup per check, and logging out signs you out everywhere. Cookies ride along automatically, so SameSite=Lax keeps them off requests sent from other sites.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">운영에서 확인</span><span class="en">In production</span></p>
-                  <p class="dc-mv"><span class="ko">배포 후 응답 헤더로 미들웨어가 운영 환경에서 실행되지 않는 문제를 찾아 런타임 설정을 되돌렸습니다. 그다음 한 기기에서 로그아웃했을 때 다른 기기의 이전 토큰이 거부되는지 확인했습니다.</span><span class="en">After deploy, response headers showed the middleware was not running in production, so I restored the runtime setting. Then I confirmed that logging out on one device rejects the old token on another.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">적용 범위</span><span class="en">Scope</span></p>
-                  <p class="dc-mv"><span class="ko">토큰을 JavaScript로 직접 읽는 것과 로그아웃 이후 사용을 막은 것입니다. 모든 XSS·CSRF를 해결했다는 뜻은 아닙니다.</span><span class="en">This stops JavaScript from reading the token and stops use after logout. It does not mean every XSS or CSRF risk is solved.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">설정 코드</span><span class="en">Config</span></p>
-                  <pre class="cs-code">res.cookies.set("auth", token, {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "lax",
-  path: "/",
-  maxAge: serverConfig.authTokenMaxAgeSec,
-});</pre>
-                </div>
-              </div>
-            </details>
-          </div>
-        </article>
-        <article class="dc">
-          <div class="dc-head">
-            <div class="dc-top"><span class="dc-no"><span class="ko">02 · 원인 추적</span><span class="en">02 · Root-cause tracing</span></span><span class="dc-tag">Shopify · iframe</span></div>
-            <h3 class="dc-title"><span class="ko">인증 문제로 보이던 결제 오류의 원인 찾기</span><span class="en">Finding the real cause of a checkout error that looked like auth</span></h3>
-          </div>
-          <div class="dc-body">
-            <div class="dc-row dc-prob">
-              <p class="dc-k"><span class="ko">문제</span><span class="en">Problem</span></p>
-              <p class="dc-v"><span class="ko">QuoteCrate 앱 안에서 결제 요청이 401로 실패했습니다. 처음에는 인증 토큰 문제라고 보고, 이틀 동안 그 가설로 원인을 찾았습니다.</span><span class="en">Inside QuoteCrate, the checkout request failed with 401. I assumed the auth token was at fault and spent two days on that theory.</span></p>
-            </div>
-            <div class="dc-row dc-sol">
-              <p class="dc-k"><span class="ko">해결</span><span class="en">Solution</span></p>
-              <p class="dc-h"><span class="ko">성공·실패 요청을 나란히 비교해 가설 수정</span><span class="en">Compared good and failing requests side by side and changed the theory</span></p>
-              <p class="dc-v"><span class="ko">iframe 안에서 외부 결제 화면으로 이동하는 과정이 막힌 것이 원인이었습니다. Shopify App Bridge로 상위 창에서 이동하도록 바꿨습니다.</span><span class="en">The redirect to the external checkout was being blocked inside the iframe. I moved it to the top window with Shopify App Bridge.</span></p>
-            </div>
-            <div class="dc-res">
-              <p class="dc-k"><span class="ko">결과</span><span class="en">Result</span></p>
-              <p class="dc-r"><span class="ko">결제 흐름을 복구하고 Shopify App Store에 출시</span><span class="en">Checkout restored, and the app shipped on the Shopify App Store</span></p>
-            </div>
-            <details class="dc-more">
-              <summary><span class="ko">원인 추적 과정 보기</span><span class="en">How I traced it</span></summary>
-              <div class="dc-mbody">
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">처음 가설</span><span class="en">First theory</span></p>
-                  <p class="dc-mv"><span class="ko">401이라는 코드만 보고 인증 토큰이 잘못됐다고 판단했습니다.</span><span class="en">The 401 code alone made me assume the auth token was wrong.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">가설을 바꾼 근거</span><span class="en">What changed my mind</span></p>
-                  <p class="dc-mv"><span class="ko">성공한 요청과 실패한 요청을 직접 비교하면서, 인증이 아니라 iframe 안에서 외부 결제 화면으로 넘어가는 이동이 막힌다는 걸 확인했습니다.</span><span class="en">Comparing a good request with a failing one showed it was not auth: the move to the external checkout was blocked inside the iframe.</span></p>
-                </div>
-                <div class="dc-mrow">
-                  <p class="dc-mk"><span class="ko">지금 일하는 방식</span><span class="en">What I do now</span></p>
-                  <p class="dc-mv"><span class="ko">오류 코드만으로 원인을 확정하지 않고, 성공한 요청과 실패한 요청을 먼저 나란히 놓고 봅니다.</span><span class="en">I don't settle on a cause from the error code alone. I put a good and a failing request side by side first.</span></p>
-                </div>
-                <a class="dc-link" href="https://apps.shopify.com/quotecrate" target="_blank" rel="noopener"><span class="ko">Shopify App Store에서 보기 ↗</span><span class="en">View on the Shopify App Store ↗</span></a>
-              </div>
-            </details>
-          </div>
-        </article>
       </div>
     </div>
   </section>
+
 
   <section id="client-work">
     <div class="wrap">
-      <p class="kicker"><span class="ko">외주에서 시작한 서비스</span><span class="en">From client work to a product</span></p>
-      <h2 class="h2"><span class="ko">홈페이지를 납품하고,<br>원장님의 다음 문제를 푸는 서비스까지 만들었습니다</span><span class="en">I delivered the website,<br>then built a service for the client's next problem</span></h2>
-      <article class="cw">
-        <div class="cw-visual">
-          <div class="cw-shot"><img class="cw-big" src="/client/yonsei-1-home.webp" alt="대전 연세의원 홈페이지 첫 화면" loading="lazy"></div>
-          <div class="cw-thumbs" role="group" aria-label="화면 선택">
-            <button type="button" class="on" data-src="/client/yonsei-1-home.webp" data-alt="대전 연세의원 홈페이지 첫 화면"><span class="ko">첫 화면</span><span class="en">Home</span></button>
-            <button type="button" data-src="/client/yonsei-2-fees.webp" data-alt="비급여 진료비 가격표"><span class="ko">비급여 가격표</span><span class="en">Price list</span></button>
-            <button type="button" data-src="/client/yonsei-3-hours.webp" data-alt="공지사항·진료시간"><span class="ko">공지·진료시간</span><span class="en">Notices & hours</span></button>
+      <p class="kicker"><span class="ko">외주와 그다음</span><span class="en">Client work, and what came next</span></p>
+      <h2 class="h2"><span class="ko">고객 홈페이지를 납품하고,<br>그다음 문제를 푸는 서비스까지 만들었습니다</span><span class="en">I deliver client websites,<br>and built a service for the next problem</span></h2>
+      <div class="pg pg3">
+        <article class="pcard exp pc" id="yonsei-card" data-cat="product" style="--acc:var(--cy)">
+          <div class="exp-visual">
+            <div class="shot" style="aspect-ratio:1408/732"><img src="/client/yonsei-1-home.webp" alt="대전 연세의원 홈페이지 첫 화면" loading="lazy"></div>
           </div>
-        </div>
-        <div class="cw-body">
-          <div class="top"><h3><span class="ko">대전 연세의원 병원 홈페이지</span><span class="en">Yonsei Clinic website, Daejeon</span></h3><span class="chip-tag live"><span class="ko">납품 완료</span><span class="en">Delivered</span></span></div>
-          <p class="pmeta"><span class="ko">2026.11 · 크몽 외주 · 1인 제작</span><span class="en">Nov 2026 · client project via Kmong · solo</span></p>
-          <dl class="cw-dl">
+          <div class="exp-foot">
+            <p class="ptag"><span class="ko">외주 · 병원 홈페이지</span><span class="en">Client · clinic website</span></p>
+            <div class="top"><h3><span class="ko">대전 연세의원</span><span class="en">Yonsei Clinic, Daejeon</span></h3><span class="chip-tag live"><span class="ko">납품 완료</span><span class="en">Delivered</span></span></div>
+            <p class="pc-purpose"><span class="ko">홈페이지와 원장 전용 관리자 페이지를 만들었습니다.</span><span class="en">A website plus a director-only admin page.</span></p>
+            <p class="pmeta"><span class="ko">2026.11 · 크몽 외주 · 1인 제작</span><span class="en">Nov 2026 · via Kmong · solo</span></p>
+            <ul class="pc-kpi"><li><span class="ko">주문 <b>3일</b> 만에 납품 · 리뷰 <b>5.0</b></span><span class="en">Delivered in <b>3 days</b> · rated <b>5.0</b></span></li><li><span class="ko">관리자에서 고치면 1분 안에 반영</span><span class="en">Admin edits go live within a minute</span></li></ul>
+            <div class="quicklinks">
+              <a href="https://www.yonseidaejeon.com" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="ko">사이트 ↗</span><span class="en">Site ↗</span></a>
+              <div class="more"><span class="ko">자세히</span><span class="en">Details</span><span class="arrow">→</span></div>
+            </div>
+            <div class="exp-detail">
+              <div class="sec">
+                <dl class="cw-dl">
             <dt><span class="ko">고객 요청</span><span class="en">The ask</span></dt>
             <dd><span class="ko">환자는 네이버 지도에서 병원을 찾아 들어오는데, 진료 시간·비급여 가격·위치를 한눈에 볼 곳이 없었습니다. 휴진이나 가격이 바뀌면 원장님이 업체 없이 직접 고칠 수 있어야 했습니다.</span><span class="en">Patients found the clinic on Naver Map, but there was no single place to see hours, non-covered prices and directions. The director also needed to update closures and prices without calling an agency.</span></dd>
             <dt><span class="ko">직접 한 일</span><span class="en">What I did</span></dt>
@@ -1218,29 +1173,36 @@ body{word-break:keep-all; overflow-wrap:break-word}
             <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
             <dd class="key"><span class="ko">주문 3일 만에 납품, 리뷰 5.0. 원장님이 관리자 페이지에서 고치면 1분 안에 홈페이지에 반영</span><span class="en">Delivered 3 days after the order, rated 5.0. Edits the director makes in the admin page go live within a minute</span></dd>
           </dl>
-          <a class="btn solid cw-cta" href="https://www.yonseidaejeon.com" target="_blank" rel="noopener"><span class="ko">실제 사이트 보기 ↗</span><span class="en">Visit the live site ↗</span></a>
-        </div>
-      </article>
-
-      <ol class="story-rail">
-        <li class="done"><b>01</b><span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></li>
-        <li class="done"><b>02</b><span class="ko">운영 문제 발견</span><span class="en">Found the real pain</span></li>
-        <li class="now"><b>03</b><span class="ko">공부방노트 개발 완료</span><span class="en">공부방노트 shipped</span></li>
-      </ol>
-      <p class="story-step">01 · <span class="ko">홈페이지 납품</span><span class="en">Website delivered</span></p>
-      <article class="cw">
-        <div class="cw-visual">
-          <div class="cw-shot"><img class="cw-big" src="/client/cw-1-home.webp" alt="납품한 공부방 웹사이트 첫 화면 (업체명·로고 가림)" loading="lazy"></div>
-          <div class="cw-thumbs" role="group" aria-label="화면 선택">
-            <button type="button" class="on" data-src="/client/cw-1-home.webp" data-alt="첫 화면"><span class="ko">첫 화면</span><span class="en">Home</span></button>
-            <button type="button" data-src="/client/cw-2-schedule.webp" data-alt="수업 시간·교습비"><span class="ko">수업·교습비</span><span class="en">Classes & fees</span></button>
-            <button type="button" data-src="/client/cw-3-form.webp" data-alt="상담 신청서"><span class="ko">상담 신청서</span><span class="en">Inquiry form</span></button>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">화면</span><span class="en">Screens</span></p>
+                <div class="qc-gallery">
+                  <img src="/client/yonsei-1-home.webp" alt="첫 화면" loading="lazy">
+                  <img src="/client/yonsei-2-fees.webp" alt="비급여 가격표" loading="lazy">
+                  <img src="/client/yonsei-3-hours.webp" alt="공지·진료시간" loading="lazy">
+                </div>
+              </div>
+              <a class="case-link" href="https://www.yonseidaejeon.com" target="_blank" rel="noopener"><span class="ko">실제 사이트 보기 ↗</span><span class="en">Visit the live site ↗</span></a>
+            </div>
           </div>
-        </div>
-        <div class="cw-body">
-          <div class="top"><h3><span class="ko">영어·수학 공부방 웹사이트</span><span class="en">English & math tutoring site</span></h3><span class="chip-tag live"><span class="ko">납품 완료</span><span class="en">Delivered</span></span></div>
-          <p class="pmeta"><span class="ko">2026.10 · 외주 · 1인 제작</span><span class="en">Oct 2026 · client project · solo</span></p>
-          <dl class="cw-dl">
+        </article>
+        <article class="pcard exp pc" id="gongbu-site-card" data-cat="product" style="--acc:var(--cy)">
+          <div class="exp-visual">
+            <div class="shot" style="aspect-ratio:1408/732"><img src="/client/cw-1-home.webp" alt="납품한 공부방 웹사이트 첫 화면 (업체명·로고 가림)" loading="lazy"></div>
+          </div>
+          <div class="exp-foot">
+            <p class="ptag"><span class="ko">외주 · 공부방 홈페이지</span><span class="en">Client · tutoring site</span></p>
+            <div class="top"><h3><span class="ko">영어·수학 공부방</span><span class="en">English &amp; math tutoring room</span></h3><span class="chip-tag live"><span class="ko">납품 완료</span><span class="en">Delivered</span></span></div>
+            <p class="pc-purpose"><span class="ko">홈페이지가 없던 공부방의 웹사이트를 만들었습니다.</span><span class="en">A website for a tutoring room that had none.</span></p>
+            <p class="pmeta"><span class="ko">2026.10 · 외주 · 1인 제작</span><span class="en">Oct 2026 · client project · solo</span></p>
+            <ul class="pc-kpi"><li><span class="ko">의뢰 후 <b>하루</b> 만에 납품</span><span class="en">Delivered <b>the next day</b></span></li><li><span class="ko">상담 신청 → 텔레그램·이메일 알림</span><span class="en">Inquiries → Telegram &amp; email alerts</span></li></ul>
+            <div class="quicklinks">
+              
+              <div class="more"><span class="ko">자세히</span><span class="en">Details</span><span class="arrow">→</span></div>
+            </div>
+            <div class="exp-detail">
+              <div class="sec">
+                <dl class="cw-dl">
             <dt><span class="ko">고객 요청</span><span class="en">The ask</span></dt>
             <dd><span class="ko">홈페이지가 없던 영어·수학 공부방의 웹사이트 제작</span><span class="en">A website for an English & math tutoring room that had none</span></dd>
             <dt><span class="ko">직접 한 일</span><span class="en">What I did</span></dt>
@@ -1250,13 +1212,41 @@ body{word-break:keep-all; overflow-wrap:break-word}
             <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt>
             <dd class="key"><span class="ko">상담 신청 폼을 제출하면 원장님께 텔레그램과 이메일로 바로 알림이 가도록 연동</span><span class="en">Submitting the inquiry form instantly notifies the director on Telegram and by email</span></dd>
           </dl>
-          <p class="cw-note"><span class="ko">원장님 동의를 받아 공개했고, 업체 이름과 로고는 가렸습니다.</span><span class="en">Shared with the owner's permission; the name and logo are blurred.</span></p>
-          <a class="btn solid cw-cta" href="#contact" data-inquiry="project"><span class="ko">비슷한 웹사이트 의뢰하기</span><span class="en">Ask for a site like this</span></a>
-        </div>
-      </article>
-
-      <p class="story-step">02 · <span class="ko">운영 문제 발견</span><span class="en">Finding the real pain</span></p>
-      <div class="finding">
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">화면</span><span class="en">Screens</span></p>
+                <div class="qc-gallery">
+                  <img src="/client/cw-1-home.webp" alt="첫 화면" loading="lazy">
+                  <img src="/client/cw-2-schedule.webp" alt="수업 시간·교습비" loading="lazy">
+                  <img src="/client/cw-3-form.webp" alt="상담 신청서" loading="lazy">
+                </div>
+                <p class="role note"><span class="ko">원장님 동의를 받아 공개했고, 업체 이름과 로고는 가렸습니다.</span><span class="en">Shared with the owner's permission; the name and logo are blurred.</span></p>
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">그다음</span><span class="en">What came next</span></p>
+                <p class="role"><span class="ko">납품 후 원장님과 이야기하며 들은 운영 불편에서 공부방노트가 시작됐습니다.</span><span class="en">Talking with the director after delivery led to 공부방노트.</span></p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="pcard exp pc" id="gongbu-note-card" data-cat="product" style="--acc:var(--pk)">
+          <div class="exp-visual">
+            <div class="shot" style="aspect-ratio:1496/639"><img src="/gongbubang/gn-1-notice.webp" alt="공부방노트 단체 공지 작성 화면" loading="lazy"></div>
+          </div>
+          <div class="exp-foot">
+            <p class="ptag"><span class="ko">공부방 납품 후 만든 서비스</span><span class="en">Built after the tutoring site</span></p>
+            <div class="top"><h3>공부방노트</h3><span class="chip-tag gn-chip"><span class="ko">배포 완료</span><span class="en">Deployed</span></span></div>
+            <p class="pc-purpose"><span class="ko">학부모 앱 설치 없이, 한 명씩 보내던 공지를 한 번에.</span><span class="en">No app for parents. One notice instead of one-by-one.</span></p>
+            <p class="pmeta"><span class="ko">1인 개발 · 원장님이 직접 가입해서 쓰는 웹 서비스</span><span class="en">Solo · self-serve web service</span></p>
+            <ul class="pc-kpi"><li><span class="ko">카카오 알림톡 템플릿 <b>5개</b> 승인</span><span class="en"><b>5</b> AlimTalk templates approved</span></li><li><span class="ko">실제 발송 테스트 완료</span><span class="en">Real send test completed</span></li></ul>
+            <div class="quicklinks">
+              <a href="https://gongbubang-tau.vercel.app" target="_blank" rel="noopener" onclick="event.stopPropagation()"><span class="ko">서비스 ↗</span><span class="en">Service ↗</span></a>
+              <div class="more"><span class="ko">시작부터 보기</span><span class="en">The full story</span><span class="arrow">→</span></div>
+            </div>
+            <div class="exp-detail">
+              <div class="sec">
+                <p class="sec-label"><span class="ko">어떻게 시작했나</span><span class="en">How it started</span></p>
+                <div class="finding">
         <div class="f-col">
           <p class="f-k"><span class="ko">원장님과 대화하며 들은 불편</span><span class="en">What the director told me</span></p>
           <ul>
@@ -1273,39 +1263,36 @@ body{word-break:keep-all; overflow-wrap:break-word}
           <p class="f-d"><span class="ko">원장님은 <b>웹</b>에서 처리하고,<br>학부모는 앱 설치 없이 <b>카카오톡</b>으로 받기</span><span class="en">The director works on the <b>web</b>;<br>parents get it on <b>KakaoTalk</b>, no install</span></p>
         </div>
       </div>
-
-      <p class="story-step">03 · <span class="ko">공부방노트 · 개발·배포 완료</span><span class="en">공부방노트 · built &amp; deployed</span></p>
-      <article class="gn">
-        <div class="gn-visual">
-          <div class="gn-tabs" role="group" aria-label="공부방노트 화면 선택">
-            <button type="button" class="on" data-src="/gongbubang/gn-1-notice.webp" data-alt="단체 공지 작성 화면: 받는 반 선택, 자주 쓰는 문구, 학부모 휴대폰 미리보기"><span class="ko">공지 쓰기</span><span class="en">Write notice</span></button>
-            <button type="button" data-src="/gongbubang/gn-2-confirm.webp" data-alt="보내기 전 확인: 전체 학부모 20명, 카톡 20통"><span class="ko">보내기 전 확인</span><span class="en">Confirm</span></button>
-            <button type="button" data-src="/gongbubang/gn-3-attendance.webp" data-alt="오늘 출석부: 9 출석, 1 결석, 2 남음"><span class="ko">출석부</span><span class="en">Attendance</span></button>
-            <button type="button" data-src="/gongbubang/gn-4-fees.webp" data-alt="월별 원비 장부: 납부 6명, 미납 3명"><span class="ko">원비</span><span class="en">Fees</span></button>
-            <button type="button" data-src="/gongbubang/gn-5-calendar.webp" data-alt="달력: 반별 수업 시간과 납부일"><span class="ko">달력</span><span class="en">Calendar</span></button>
-          </div>
-          <div class="gn-shot"><img id="gnBig" src="/gongbubang/gn-1-notice.webp" alt="단체 공지 작성 화면: 받는 반 선택, 자주 쓰는 문구, 학부모 휴대폰 미리보기" loading="lazy"></div>
-          <p class="gn-cap"><span class="ko">실제 서비스 화면 · 테스트 모드라 문자는 나가지 않고, 학생 이름과 번호는 예시 데이터입니다.</span><span class="en">Real screens in test mode: nothing is sent, and the students are sample data.</span></p>
-        </div>
-        <div class="gn-body">
-          <div class="top"><h3><span class="ko">공부방노트</span><span class="en">공부방노트</span></h3><span class="chip-tag gn-chip"><span class="ko">개발·배포 완료</span><span class="en">Built &amp; deployed</span></span></div>
-          <div class="gn-cols"><div>
-          <p class="gn-head"><span class="ko">학부모 앱 설치 없이,<br>한 명씩 보내던 공지를 한 번에.</span><span class="en">No app for parents.<br>One notice instead of one-by-one.</span></p>
-          <p class="gn-desc"><span class="ko">공부방 원장님의 반복 업무를 줄이는 웹 서비스입니다. 원장님이 직접 가입해서 쓰고, 학부모별 카카오톡 공지와 출결·원비 관리를 한곳에 모았습니다.</span><span class="en">A web service that cuts a tutor's repetitive admin. Directors sign up and use it themselves, with per-parent KakaoTalk notices plus attendance and fees in one place.</span></p>
-          <ol class="gn-feat">
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">무엇을 만들었나</span><span class="en">What it is</span></p>
+                <p class="role"><span class="ko">공부방 원장님의 반복 업무를 줄이는 웹 서비스입니다. 원장님이 직접 가입해서 쓰고, 학부모별 카카오톡 공지와 출결·원비 관리를 한곳에 모았습니다.</span><span class="en">A web service that cuts a tutor's repetitive admin. Directors sign up and use it themselves, with per-parent KakaoTalk notices plus attendance and fees in one place.</span></p>
+                <ol class="gn-feat">
             <li class="main"><b><span class="ko">학부모별 카카오톡 공지</span><span class="en">Per-parent KakaoTalk notices</span></b><span><span class="ko">가장 시간이 많이 드는 일 → 먼저 만들고 먼저 보여줌</span><span class="en">The most time-consuming task, built and shown first</span></span></li>
             <li><b><span class="ko">출결 · 원비 장부</span><span class="en">Attendance & fees</span></b><span><span class="ko">수기 장부를 웹으로</span><span class="en">Paper ledger to the web</span></span></li>
             <li><b><span class="ko">달력 · 보강 일정</span><span class="en">Calendar & make-up classes</span></b><span><span class="ko">반별 시간표와 납부일을 한눈에</span><span class="en">Class times and due dates at a glance</span></span></li>
           </ol>
-          </div><div>
-          <div class="gn-check">
+              </div>
+              <div class="sec">
+                <p class="sec-label"><span class="ko">화면</span><span class="en">Screens</span></p>
+                <div class="qc-gallery">
+                  <img src="/gongbubang/gn-1-notice.webp" alt="공지 쓰기" loading="lazy">
+                  <img src="/gongbubang/gn-2-confirm.webp" alt="보내기 전 확인" loading="lazy">
+                  <img src="/gongbubang/gn-3-attendance.webp" alt="출석부" loading="lazy">
+                  <img src="/gongbubang/gn-4-fees.webp" alt="원비" loading="lazy">
+                  <img src="/gongbubang/gn-5-calendar.webp" alt="달력" loading="lazy">
+                </div>
+                <p class="role note"><span class="ko">실제 서비스 화면 · 테스트 모드라 문자는 나가지 않고, 학생 이름과 번호는 예시 데이터입니다.</span><span class="en">Real screens in test mode: nothing is sent, and the students are sample data.</span></p>
+              </div>
+              <div class="sec gn-checks">
+                <div class="gn-check">
             <p class="f-k"><span class="ko">확인한 것</span><span class="en">Done so far</span></p>
             <ul>
               <li><span class="ko">카카오 알림톡 템플릿 5개 승인</span><span class="en">5 KakaoTalk AlimTalk templates approved</span></li>
               <li><span class="ko">실제 발송 테스트 완료</span><span class="en">Real send test completed</span></li>
             </ul>
           </div>
-          <div class="gn-check">
+                <div class="gn-check">
             <p class="f-k"><span class="ko">다음 검증</span><span class="en">Next to verify</span></p>
             <ul>
               <li><span class="ko">원장님이 공지 한 번을 혼자 끝까지 보내는지</span><span class="en">Can the director send one notice end to end alone?</span></li>
@@ -1313,11 +1300,13 @@ body{word-break:keep-all; overflow-wrap:break-word}
               <li><span class="ko">다음 공지 때도 스스로 다시 쓰는지</span><span class="en">Does she use it again for the next notice?</span></li>
             </ul>
           </div>
-          <p class="gn-note"><span class="ko">수익 모델: 월 5,900원 / 9,900원 — 실제 결제와 재이용은 아직 확인 전입니다.</span><span class="en">Pricing model: ₩5,900 / ₩9,900 a month — no payments or renewals confirmed yet.</span></p>
-          <a class="btn solid cw-cta" href="https://gongbubang-tau.vercel.app" target="_blank" rel="noopener"><span class="ko">공부방노트 보기 ↗</span><span class="en">Open 공부방노트 ↗</span></a>
-          </div></div>
-        </div>
-      </article>
+                <p class="gn-note"><span class="ko">수익 모델: 월 5,900원 / 9,900원 — 실제 결제와 재이용은 아직 확인 전입니다.</span><span class="en">Pricing model: ₩5,900 / ₩9,900 a month — no payments or renewals confirmed yet.</span></p>
+              </div>
+              <a class="case-link" href="https://gongbubang-tau.vercel.app" target="_blank" rel="noopener"><span class="ko">공부방노트 보기 ↗</span><span class="en">Open 공부방노트 ↗</span></a>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -1359,6 +1348,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
                 <div class="dd-arrow back"><i>←</i><span class="ko">배려 요청 · 답장</span><span class="en">Care requests · replies</span></div>
               </div>
               <div class="dd-node"><b class="dd-h"><span class="ko">파트너</span><span class="en">The partner</span></b><span class="dd-sub"><span class="ko">같은 달력 · 알림 받기</span><span class="en">Same calendar · notifications</span></span></div>
+              </div>
               </div>
               <div class="sec">
                 <p class="sec-label"><span class="ko">화면</span><span class="en">Screens</span></p>
@@ -1411,85 +1401,33 @@ body{word-break:keep-all; overflow-wrap:break-word}
     </div>
   </section>
 
-  <section id="about" class="about">
-    <div class="wrap">
-      <p class="kicker"><span class="ko">소개</span><span class="en">About</span></p>
-      <h2 class="h2"><span class="ko">서비스를 직접 운영하며<br>개발의 우선순위를 배웁니다.</span><span class="en">Running my own services<br>taught me what to build first.</span></h2>
-      <div class="lines">
-        <p><span class="ko">두나와 QuoteCrate를 만들며 화면 구현부터 서버, 결제, 배포 이후의 문제 해결까지 맡았습니다. 운영에 필요한 도구도 직접 만들어 사용합니다.</span><span class="en">Building DoNa and QuoteCrate, I covered everything from the UI to the server, payments and problems after deploy. I also build the tools I need to run them.</span></p>
-        <p><span class="ko">개발 과정에서는 AI를 활용하되, 제안된 내용은 공식 문서와 실행 결과로 확인합니다. 오류가 나면 로그와 요청을 비교하고, 수정한 동작을 다시 확인합니다.</span><span class="en">I use AI while developing, but check what it suggests against official docs and real runs. When something breaks I compare logs and requests, then verify the fix.</span></p>
-        <p><span class="ko">두나를 운영하면서는 콘텐츠를 늘리는 일과 실제 수요를 확인하는 일이 다르다는 점도 배웠습니다. 구현한 기능, 확인한 결과, 아직 검증하지 못한 가정을 구분해 다음 작업을 결정합니다.</span><span class="en">Running DoNa also taught me that adding content and confirming real demand are different things. I separate what I built, what I verified and what is still an assumption before deciding what to do next.</span></p>
-      </div>
-    </div>
-  </section>
 
-  <section id="timeline" style="padding-top:0">
+  <section id="timeline">
     <div class="wrap">
       <p class="kicker"><span class="ko">경력</span><span class="en">Experience</span></p>
-      <h2 class="h2"><span class="ko">지금까지 걸어온 길</span><span class="en">Where I've been</span></h2>
-      <div class="timeline">
-        <div class="trow">
-          <div class="tdate">2026.10 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
-          <div>
-            <h3><span class="ko">디어데이 · 1인 개발</span><span class="en">Dear Day — Solo build</span> <span style="font-family:var(--f-mono); font-size:14px; font-weight:400; color:var(--faint)">· <span class="ko">베타</span><span class="en">Beta</span></span></h3>
-            <p><span class="ko">커플이 함께 쓰는 생리 주기 기록·배려 공유 웹앱(PWA)을 기획부터 배포까지 혼자 만들고 있습니다.</span><span class="en">Building a couples web app (PWA) for cycle tracking and sharing care, from planning to deployment, solo.</span></p>
-          </div>
-        </div>
-        <div class="trow">
-          <div class="tdate">2026.09 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
-          <div>
-            <h3><span class="ko">프리랜서 개발</span><span class="en">Freelance development</span></h3>
-            <p><span class="ko">웹사이트 2건 납품</span><span class="en">Delivered two websites</span></p>
-            <p><span class="ko">· 대전 내과·피부과 의원 홈페이지 + 원장 전용 관리자 페이지 제작·납품 (2026.11, 3일, 리뷰&nbsp;5.0)</span><span class="en">· Website plus a director-only admin page for an internal medicine & dermatology clinic in Daejeon (Nov 2026, 3 days, rated 5.0)</span></p>
-            <p><span class="ko">· 영어·수학 공부방 웹사이트 — 기획·디자인·개발을 혼자 맡고, 상담 신청이 텔레그램과 이메일로 오도록 연동했습니다. 납품 후 원장님의 운영 불편에서 출발한 공부방노트(학부모 공지·출결·원비 웹 서비스)를 개발·배포했습니다. 원장님이 직접 가입해서 쓰는 서비스로, 카카오 알림톡 템플릿 5개 승인과 실제 발송 테스트를 마쳤습니다.</span><span class="en">· Website for an English & math tutoring room — planned, designed and built it solo, with inquiries sent to Telegram and email. Then built and deployed 공부방노트 (parent notices, attendance and fees), a sign-up web service shaped by the director's day-to-day pain points; 5 KakaoTalk AlimTalk templates approved and a real send test completed.</span></p>
-          </div>
-        </div>
-        <div class="trow">
-          <div class="tdate">2026.08 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
-          <div>
-            <h3><span class="ko">QuoteCrate · 1인 개발 및 운영</span><span class="en">QuoteCrate — Build &amp; Run</span> <span style="font-family:var(--f-mono); font-size:14px; font-weight:400; color:var(--faint)">· Shopify App Store</span></h3>
-            <p><span class="ko">Shopify 도매 견적 앱을 개발하고 2026년 10월 Shopify App Store에 출시했습니다.</span><span class="en">Built a Shopify wholesale quote app and launched it on the Shopify App Store in Oct 2026.</span></p>
-          </div>
-        </div>
-        <div class="trow">
-          <div class="tdate">2025.08 — <span class="tnow"><span class="ko">현재</span><span class="en">Present</span></span></div>
-          <div>
-            <h3><span class="ko">두나 (DoNa) · 개발 및 운영</span><span class="en">DoNa — Build &amp; Run</span></h3>
-            <p><span class="ko">데이트 코스 서비스를 기획하고 웹·iOS·Android 앱과 관리자 도구를 개발·운영하고 있습니다.</span><span class="en">Planning a date-course service, and building and running its web, iOS and Android apps and admin tool.</span></p>
-          </div>
-        </div>
-        <div class="trow">
-          <div class="tdate">2024.07 — 2025.01</div>
-          <div>
-            <h3><span class="ko">퀀텀에이아이 · 데이터 QA 프리랜서</span><span class="en">Quantum AI — Freelance Data QA</span></h3>
-            <p><span class="ko">AI 학습용 이미지의 텍스트를 추출·검수하고 데이터 품질을 관리했습니다.</span><span class="en">Extracted and proofed text from images for AI training data and kept quality in check.</span></p>
-          </div>
-        </div>
-        <div class="trow">
-          <div class="tdate">2023.12 — 2024.06</div>
-          <div>
-            <h3><span class="ko">포스코×코딩온 K-Digital Training 11기</span><span class="en">POSCO×CodingOn K-Digital Training, Cohort 11</span></h3>
-            <p><span class="ko">개발 교육을 수료했으며, 1·2차 팀 프로젝트에서 모두 최우수상을 받았습니다.</span><span class="en">Completed the program and won the top award in both team projects.</span></p>
-          </div>
-        </div>
-      </div>
-
-      <p class="other-label" style="margin-top:34px"><span class="ko">이전 프로젝트</span><span class="en">Earlier projects</span></p>
-      <div class="archive-bar">
-        <span class="a-tag"><span class="ko">부트캠프</span><span class="en">Bootcamp</span></span>
-        <b><span class="ko">개콜</span><span class="en">GaeCall</span></b>
-        <span><span class="ko">팀 협업·관리 웹 · 4인 팀 프론트엔드 · 포스코×코딩온 최우수상</span><span class="en">Team collaboration web app · frontend in a team of 4 · POSCO×CodingOn top team award</span></span>
-        <span class="a-sep">·</span>
-        <b><span class="ko">메이킹홈</span><span class="en">MakingHome</span></b>
-        <span><span class="ko">원룸 인테리어 웹 최적화 · 2인 팀 · 데스크톱 UI 재구성</span><span class="en">Web-optimized interior service · pair project · rebuilt for desktop</span></span>
+      <div class="tl2">
+        <div class="r"><span class="d">2026.10 —</span><b><span class="ko">디어데이 · 1인 개발</span><span class="en">Dear Day · solo</span></b><span class="x"><span class="ko">커플 생리 주기 공유 웹앱 · 베타</span><span class="en">Couples cycle-sharing web app · beta</span></span></div>
+        <div class="r"><span class="d">2026.09 —</span><b><span class="ko">프리랜서 개발</span><span class="en">Freelance development</span></b><span class="x"><span class="ko">웹사이트 2건 납품 · 공부방노트 개발·배포</span><span class="en">2 websites delivered · built 공부방노트</span></span></div>
+        <div class="r"><span class="d">2026.08 —</span><b>QuoteCrate</b><span class="x"><span class="ko">Shopify 도매 견적 앱 · 2026.10 출시</span><span class="en">Shopify wholesale quote app · launched Oct 2026</span></span></div>
+        <div class="r"><span class="d">2025.08 —</span><b><span class="ko">두나 (DoNa)</span><span class="en">DoNa</span></b><span class="x"><span class="ko">데이트 코스 서비스 · 웹·iOS·Android 개발·운영</span><span class="en">Date-course service · web, iOS, Android</span></span></div>
+        <div class="r"><span class="d">2024.07 — 2025.01</span><b><span class="ko">퀀텀에이아이</span><span class="en">Quantum AI</span></b><span class="x"><span class="ko">데이터 QA 프리랜서 · AI 학습 데이터 추출·검수</span><span class="en">Freelance data QA · AI training data</span></span></div>
+        <div class="r"><span class="d">2023.12 — 2024.06</span><b><span class="ko">포스코×코딩온 K-Digital Training 11기</span><span class="en">POSCO×CodingOn KDT, Cohort 11</span></b><span class="x"><span class="ko">수료 · 1·2차 팀 프로젝트 모두 최우수상</span><span class="en">Completed · top award in both team projects</span></span></div>
       </div>
     </div>
   </section>
 
   <section class="cta-band" id="contact">
     <div class="wrap">
+      <div class="ct-grid"><div class="ct-left">
       <h2><span class="ko">채용이나 프로젝트 관련해<br>편하게 연락 주세요.</span><span class="en">Hiring, or have a project in mind?<br>Feel free to reach out.</span></h2>
-      <p><span class="ko">이메일이나 아래 양식으로 보내 주시면 확인하고 답장드리겠습니다.</span><span class="en">Email me or use the form below.</span></p>
+      <p><span class="ko">이메일이나 양식으로 보내 주시면 확인하고 답장드리겠습니다.</span><span class="en">Email me or use the form.</span></p>
+      <div class="cta links">
+        <a class="btn ghost" href="mailto:12jason@donacouse.com">12jason@donacouse.com</a>
+        <a class="btn ghost" href="https://github.com/12jason0" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn ghost" href="https://velog.io/@12jason" target="_blank" rel="noopener"><span class="ko">블로그 ↗</span><span class="en">Blog ↗</span></a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/seungyong-oh-a6b271406" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      </div><div class="ct-right">
       <form class="cform" id="cform" novalidate>
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
         <div class="cf-type" role="radiogroup" aria-label="문의 종류">
@@ -1501,18 +1439,13 @@ body{word-break:keep-all; overflow-wrap:break-word}
           <label><span><span class="ko">이름 · 회사</span><span class="en">Name · Company</span></span><input name="name" required maxlength="80" data-ph-ko="홍길동 · OO회사" data-ph-en="Jane Doe · Company"></label>
           <label><span><span class="ko">답장 받을 이메일</span><span class="en">Your email</span></span><input type="email" name="email" required maxlength="120" placeholder="you@company.com"></label>
         </div>
-        <label><span><span class="ko">메시지</span><span class="en">Message</span></span><textarea name="message" rows="5" required maxlength="3000" data-ph-ko="어떤 일인지 편하게 적어주세요." data-ph-en="Tell me a bit about what you have in mind."></textarea></label>
+        <label><span><span class="ko">메시지</span><span class="en">Message</span></span><textarea name="message" rows="4" required maxlength="3000" data-ph-ko="어떤 일인지 편하게 적어주세요." data-ph-en="Tell me a bit about what you have in mind."></textarea></label>
         <div class="cf-foot">
           <button class="btn solid" type="submit"><span class="ko">문의 보내기</span><span class="en">Send message</span></button>
           <p class="cf-msg" id="cfMsg" role="status" aria-live="polite"></p>
         </div>
       </form>
-      <div class="cta links">
-        <a class="btn ghost" href="mailto:12jason@donacouse.com">12jason@donacouse.com</a>
-        <a class="btn ghost" href="https://github.com/12jason0" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn ghost" href="https://velog.io/@12jason" target="_blank" rel="noopener"><span class="ko">블로그 ↗</span><span class="en">Blog ↗</span></a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/seungyong-oh-a6b271406" target="_blank" rel="noopener">LinkedIn ↗</a>
-      </div>
+      </div></div>
     </div>
   </section>
 </main>
@@ -1565,7 +1498,7 @@ body{word-break:keep-all; overflow-wrap:break-word}
     var vis=card.querySelector('.exp-visual'); if(vis) mLeft.appendChild(vis.cloneNode(true));
     var top=card.querySelector('.exp-foot .top'); if(top) mRight.appendChild(top.cloneNode(true));
     var det=card.querySelector('.exp-detail'); if(det) mRight.appendChild(det.cloneNode(true));
-    var ti=card.closest('.tl-item'); modal.style.setProperty('--acc', ti ? 'var(--a'+ti.getAttribute('data-acc')+')' : 'var(--cy)');
+    var ti=card.closest('.tl-item'); modal.style.setProperty('--acc', ti ? 'var(--a'+ti.getAttribute('data-acc')+')' : (card.style.getPropertyValue('--acc') || 'var(--cy)'));
     var bigImg=mLeft.querySelector('.shot img'); if(bigImg){ Array.prototype.forEach.call(mRight.querySelectorAll('.qc-gallery img'),function(im){ im.classList.toggle('on', im.getAttribute('src')===bigImg.getAttribute('src')); }); }
     lastFocus=document.activeElement; modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
     var cb=modal.querySelector('.modal-close'); if(cb) setTimeout(function(){ cb.focus(); },30); }
@@ -1698,12 +1631,10 @@ body{word-break:keep-all; overflow-wrap:break-word}
     if(reduceM || !('IntersectionObserver' in window)) return;
     root.classList.add('js-anim');
     var groups=[
-      ['#work .kicker','#work .h2','#work .sub','#work .prow'],
-      ['#case-study .kicker','#case-study .h2','#case-study .sub','#case-study .dc'],
-      ['#client-work .kicker','#client-work .h2','#client-work .cw'],
+      ['#work .kicker','#work .h2','#work .pcard'],
+      ['#client-work .kicker','#client-work .h2','#client-work .pcard'],
       ['#more-projects .kicker','#more-projects .pcard'],
-      ['#about .kicker','#about .h2','#about .lines p'],
-      ['#timeline .kicker','#timeline .h2','.timeline .trow','#timeline .other-label','#timeline .archive-bar'],
+      ['#timeline .kicker','.tl2 .r'],
       ['.cta-band h2','.cta-band .cform','.cta-band .cta']
     ];
     var io=new IntersectionObserver(function(es){ es.forEach(function(en){ en.target.classList.toggle('in', en.isIntersecting); }); },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
