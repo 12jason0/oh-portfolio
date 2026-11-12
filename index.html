@@ -686,6 +686,18 @@ section{padding:96px 0}
 #more-projects{padding-top:0}
 @media(max-width:1000px){.pg3{grid-template-columns:1fr 1fr} .pg3 .pc:last-child{grid-column:1/-1}}
 @media(max-width:760px){.pg,.pg3{grid-template-columns:1fr} .pg3 .pc:last-child{grid-column:auto} section{padding:72px 0} .ct-grid{grid-template-columns:1fr; gap:28px} .tl2 .r{grid-template-columns:1fr; gap:2px} .tl2 b{white-space:normal} .pc .exp-visual{height:240px}}
+.cs2-list{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-top:28px}
+.cs2{border:1px solid var(--line); border-radius:14px; background:var(--panel); padding:22px 24px; border-top:3px solid var(--acc)}
+.cs2-top{display:flex; justify-content:space-between; align-items:center; gap:10px}
+.cs2-no{font-size:13px; font-weight:700; color:var(--acc)}
+.cs2-tag{font-family:var(--f-mono); font-size:12px; color:var(--faint)}
+.cs2 h3{margin:10px 0 14px; font-family:var(--f-head); font-weight:600; font-size:19px; line-height:1.4; color:var(--ink); word-break:keep-all}
+.cs2 dl{margin:0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:9px 14px}
+.cs2 dt{font-size:13.5px; font-weight:700; color:var(--muted); padding-top:2px; white-space:nowrap}
+.cs2 dd{margin:0; font-size:15px; line-height:1.6; color:var(--body); word-break:keep-all}
+.cs2 dt.key{color:var(--acc)} .cs2 dd.key{color:var(--ink); font-weight:600}
+.cs2-more{margin:16px 0 0; font-size:14px; color:var(--muted)} .cs2-more b{color:var(--body)}
+@media(max-width:760px){.cs2-list{grid-template-columns:1fr} .cs2{padding:20px}}
 </style>
 </head>
 <body>
@@ -739,6 +751,7 @@ section{padding:96px 0}
     <a class="logo" href="#top">OH<b>.</b>dev</a>
     <div class="nav-links">
       <a href="#work"><span class="ko">프로젝트</span><span class="en">Work</span></a>
+      <a href="#case-study"><span class="ko">문제 해결</span><span class="en">Problem solving</span></a>
       <a href="#client-work"><span class="ko">외주·공부방노트</span><span class="en">Client work</span></a>
       <a href="#timeline"><span class="ko">경력</span><span class="en">Experience</span></a>
       <a href="#contact"><span class="ko">연락</span><span class="en">Contact</span></a>
@@ -1141,6 +1154,34 @@ section{padding:96px 0}
     </div>
   </section>
 
+
+  <section id="case-study">
+    <div class="wrap">
+      <p class="kicker"><span class="ko">문제 해결</span><span class="en">Problem solving</span></p>
+      <h2 class="h2"><span class="ko">운영 중 만난 문제와, 해결을 위해 내린 판단</span><span class="en">Problems I hit in production, and the calls I made</span></h2>
+      <div class="cs2-list">
+        <article class="cs2" style="--acc:var(--a1)">
+          <div class="cs2-top"><span class="cs2-no"><span class="ko">01 · 두나</span><span class="en">01 · DoNa</span></span><span class="cs2-tag">JWT · token_version</span></div>
+          <h3><span class="ko">로그아웃한 토큰이 다시 사용되지 않도록</span><span class="en">Making a logged-out token unusable</span></h3>
+          <dl>
+            <dt><span class="ko">문제</span><span class="en">Problem</span></dt><dd><span class="ko">토큰을 localStorage에 저장해 JavaScript로 읽을 수 있었고, 로그아웃해도 1년 만료 전까지 유효</span><span class="en">Token in localStorage, readable by JavaScript and valid for a year even after logout</span></dd>
+            <dt><span class="ko">해결</span><span class="en">Fix</span></dt><dd><span class="ko">HttpOnly 쿠키로 옮기고, 로그아웃·비밀번호 변경 때 서버의 token_version을 올려 이전 토큰 거부</span><span class="en">Moved to an HttpOnly cookie; logout or a password change bumps a server-side token_version</span></dd>
+            <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt><dd class="key"><span class="ko">배포 후, 한 기기에서 로그아웃하면 다른 기기의 이전 토큰이 거부되는 것을 확인</span><span class="en">After deploy: logging out on one device rejects the old token on another</span></dd>
+          </dl>
+        </article>
+        <article class="cs2" style="--acc:var(--a3)">
+          <div class="cs2-top"><span class="cs2-no"><span class="ko">02 · QuoteCrate</span><span class="en">02 · QuoteCrate</span></span><span class="cs2-tag">Shopify · iframe</span></div>
+          <h3><span class="ko">인증 문제로 보이던 결제 오류의 원인 찾기</span><span class="en">Finding the real cause of a checkout error</span></h3>
+          <dl>
+            <dt><span class="ko">문제</span><span class="en">Problem</span></dt><dd><span class="ko">앱 안에서 결제 요청이 401로 실패. 인증 토큰 문제라고 보고 이틀을 헤맴</span><span class="en">Checkout failed with 401 inside the app; I chased the auth token for two days</span></dd>
+            <dt><span class="ko">해결</span><span class="en">Fix</span></dt><dd><span class="ko">성공·실패 요청을 나란히 비교해, iframe 안에서 결제 화면 이동이 막힌 것을 찾고 App Bridge로 상위 창에서 이동</span><span class="en">Compared good and failing requests, found the redirect blocked in the iframe, moved it to the top window with App Bridge</span></dd>
+            <dt class="key"><span class="ko">결과</span><span class="en">Result</span></dt><dd class="key"><span class="ko">결제 흐름을 복구하고 Shopify App Store에 출시</span><span class="en">Checkout restored, app shipped on the Shopify App Store</span></dd>
+          </dl>
+        </article>
+      </div>
+      <p class="cs2-more"><span class="ko">판단 근거·감수한 것·설정 코드는 각 프로젝트의 <b>자세히</b>에 있습니다.</span><span class="en">Reasoning, trade-offs and config live in each project's <b>Details</b>.</span></p>
+    </div>
+  </section>
 
   <section id="client-work">
     <div class="wrap">
@@ -1632,6 +1673,7 @@ section{padding:96px 0}
     root.classList.add('js-anim');
     var groups=[
       ['#work .kicker','#work .h2','#work .pcard'],
+      ['#case-study .kicker','#case-study .h2','#case-study .cs2','#case-study .cs2-more'],
       ['#client-work .kicker','#client-work .h2','#client-work .pcard'],
       ['#more-projects .kicker','#more-projects .pcard'],
       ['#timeline .kicker','.tl2 .r'],
