@@ -21,7 +21,7 @@ assets/         이미지 (.webp)
   dona/ admin/ quotecrate/ client/ gongbubang/ dearday/
                   프로젝트별 실제 사이트 화면 캡처 (카드·상세 모달)
   shots/          폰 크기 전체 페이지 캡처 (상세 모달 사진 열)
-og.png          링크 공유 미리보기 이미지
+og-v2.png       링크 공유 미리보기 이미지
 ```
 
 로컬에서 보려면 폴더에서 정적 서버를 띄우면 됩니다. 이미지 경로가 `/assets/...`로 시작해서 파일을 바로 열면 이미지가 안 보일 수 있어요.
