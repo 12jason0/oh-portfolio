@@ -290,10 +290,8 @@ html.pd-lock{overflow:hidden}
 .pd-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
 .pd-col:nth-child(2){margin-top:-160px}
 .pd-col:nth-child(3){margin-top:-80px}
-.pd-media.scroll{overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
-.pd-media.scroll::-webkit-scrollbar{display:none}
-.pd-cols.fixed{position:relative;inset:auto;padding:28px 28px 28px 0}
-.pd-cols.fixed .pd-col:nth-child(2){margin-top:72px}
+.pd-cols.fixed .pd-col:nth-child(1){margin-top:-56px}
+.pd-cols.fixed .pd-col:nth-child(2){flex-grow:2;margin-top:24px}
 .pd-shot{display:block;flex:none;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 6px 22px -12px rgba(17,17,17,.22),0 0 0 1px rgba(17,17,17,.04);pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
 .pd.anim .pd-backdrop{animation:pdFade .2s ease both}
 .pd.anim .pd-dialog{animation:pdUp .3s cubic-bezier(.2,.7,.2,1) both}
@@ -309,11 +307,14 @@ html.pd-lock{overflow:hidden}
   .pd-no{font-size:84px}
   .pd-title{margin-top:-20px;font-size:30px}
   .pd-desc{font-size:16.5px}
-  .pd-media,.pd-media.scroll{overflow:visible}
+  .pd-media{overflow:visible}
   .pd-cols{position:static;display:block;columns:2;column-gap:12px;padding:20px 16px 32px}
   .pd-col{display:contents}
   .pd-shot{border-radius:12px;break-inside:avoid;margin:0 0 12px}
   .pd-shot.rep{display:none}
+  .pd-cols.fixed{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .pd-cols.fixed .pd-shot{margin:0}
+  .pd-cols.fixed .pd-col:nth-child(2) .pd-shot{grid-column:1/-1}
 }
 
 @media (max-width:960px){
@@ -348,7 +349,7 @@ html.pd-lock{overflow:hidden}
   .plist{grid-template-columns:1fr;gap:26px}
 }
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-delay:0s !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
   [data-reveal]{opacity:1;transform:none}
 }
 </style>
@@ -865,7 +866,9 @@ html.pd-lock{overflow:hidden}
       info:[['역할','직접 개발 · 두나 운영에 매일 사용'],['주요 스택','Claude · 카카오 로컬 API · 텔레그램 봇'],
         ['성과',['장소 등록 약 20분 → 평균 26초 (AI 처리 기준, 검수 시간 제외)','주소는 버튼으로 확인, 최종 검수는 직접 · 장소당 약 58원']]],
       links:[['DEMO','https://dona-admin-demo.vercel.app/admin']],
-      shots:[['/assets/automation/01.webp',600,1102,'가게 사진과 이름을 보내면 후보 장소 5곳을 보여 주는 화면'],['/assets/automation/02.webp',600,1102,'장소를 고르면 저장 완료와 어드민 검수 안내'],['/assets/automation/03.webp',600,1102,'팁 후보와 사장님께 물어볼 질문 정리']] },
+      note:'어드민 화면은 실제 운영 화면이에요. 블로그 주소와 리뷰 작성자 이름은 가렸습니다.',
+      layout:[[0,1],[2,3,4]],
+      shots:[['/assets/automation/01.webp',600,1102,'가게 사진과 이름을 보내면 후보 장소 5곳을 보여 주는 화면'],['/assets/automation/03.webp',600,1102,'팁 후보와 사장님께 물어볼 질문 정리'],['/assets/automation/04.webp',1016,454,'어드민 팁 검수 목록, 장소별 검수 상태와 후보 수'],['/assets/automation/05.webp',1572,815,'어드민 팁 검수 화면, 근거 자료와 팁 후보 승인·삭제'],['/assets/automation/06.webp',1140,800,'어드민 팁 파이프라인 통계, 처리 시간·비용·승인율']] },
     { no:'03', title:'QuoteCrate',
       desc:'도매(B2B) 견적을 주문·결제로 잇는 Shopify 앱입니다. 견적 요청, 가격 책정, 체크아웃을 한 흐름으로 이었습니다.',
       info:[['기간','2026.08 – 현재'],['역할','1인 개발'],['주요 스택','React · Polaris · React Router 7 · Node · Prisma · PostgreSQL · Shopify GraphQL · Draft Orders · Billing API'],
@@ -973,11 +976,9 @@ html.pd-lock{overflow:hidden}
     var cols = [], n = P.layout ? P.layout.length : 3;
     pdCols.innerHTML = '';
     pdCols.classList.toggle('fixed', !!P.layout);
-    pdMedia.classList.toggle('scroll', !!P.layout);
-    pdMedia.scrollTop = 0;
     for (var c = 0; c < n; c++){ cols.push(el('div', 'pd-col')); pdCols.appendChild(cols[c]); }
     if (P.layout){
-      // explicit columns, no repeats: e.g. [[0,2],[1]]
+      // explicit columns, no repeats, fixed collage (column 2 is twice as wide): e.g. [[0,1],[2,3,4]]
       P.layout.forEach(function(list, c){ list.forEach(function(k){ cols[c].appendChild(shotImg(P.shots[k], k, false)); }); });
     } else {
       P.shots.forEach(function(sh, k){ cols[k % 3].appendChild(shotImg(sh, k, false)); });
