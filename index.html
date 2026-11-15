@@ -291,7 +291,7 @@ html.pd-lock{overflow:hidden}
 .pd-col:nth-child(2){margin-top:-160px}
 .pd-col:nth-child(3){margin-top:-80px}
 .pd-cols.fixed .pd-col:nth-child(1){margin-top:-56px}
-.pd-cols.fixed .pd-col:nth-child(2){flex-grow:2;margin-top:24px}
+.pd-cols.fixed .pd-col:nth-child(2){flex-grow:2;margin-top:64px}
 .pd-shot{display:block;flex:none;width:100%;height:auto;border-radius:16px;background:#fff;box-shadow:0 6px 22px -12px rgba(17,17,17,.22),0 0 0 1px rgba(17,17,17,.04);pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
 .pd.anim .pd-backdrop{animation:pdFade .2s ease both}
 .pd.anim .pd-dialog{animation:pdUp .3s cubic-bezier(.2,.7,.2,1) both}
@@ -868,7 +868,7 @@ html.pd-lock{overflow:hidden}
       links:[['DEMO','https://dona-admin-demo.vercel.app/admin']],
       note:'어드민 화면은 실제 운영 화면이에요. 블로그 주소와 리뷰 작성자 이름은 가렸습니다.',
       layout:[[0,1],[2,3,4]],
-      shots:[['/assets/automation/01.webp',600,1102,'가게 사진과 이름을 보내면 후보 장소 5곳을 보여 주는 화면'],['/assets/automation/03.webp',600,1102,'팁 후보와 사장님께 물어볼 질문 정리'],['/assets/automation/04.webp',1016,454,'어드민 팁 검수 목록, 장소별 검수 상태와 후보 수'],['/assets/automation/05.webp',1572,815,'어드민 팁 검수 화면, 근거 자료와 팁 후보 승인·삭제'],['/assets/automation/06.webp',1140,800,'어드민 팁 파이프라인 통계, 처리 시간·비용·승인율']] },
+      shots:[['/assets/automation/01.webp',600,1102,'가게 사진과 이름을 보내면 후보 장소 5곳을 보여 주는 화면'],['/assets/automation/03.webp',600,1102,'팁 후보와 사장님께 물어볼 질문 정리'],['/assets/automation/04.webp',1016,316,'어드민 팁 검수 목록, 장소별 검수 상태와 후보 수'],['/assets/automation/05.webp',766,490,'어드민 팁 검수 화면, 팁 후보별 근거와 승인·삭제'],['/assets/automation/06.webp',842,262,'어드민 팁 파이프라인 통계, 처리 시간·비용·승인율']] },
     { no:'03', title:'QuoteCrate',
       desc:'도매(B2B) 견적을 주문·결제로 잇는 Shopify 앱입니다. 견적 요청, 가격 책정, 체크아웃을 한 흐름으로 이었습니다.',
       info:[['기간','2026.08 – 현재'],['역할','1인 개발'],['주요 스택','React · Polaris · React Router 7 · Node · Prisma · PostgreSQL · Shopify GraphQL · Draft Orders · Billing API'],
@@ -1062,8 +1062,8 @@ html.pd-lock{overflow:hidden}
       requestAnimationFrame(step);
     };
     rows.forEach(function(r){ paint(r, 0); });
-    // only when scrolling down into it, and not more than once every 20s
-    var lastRun = -Infinity, lastY = window.pageYOffset, goingDown = true;
+    // every time it is scrolled into from above (scrolling down)
+    var lastY = window.pageYOffset, goingDown = true;
     window.addEventListener('scroll', function(){
       var y = window.pageYOffset; if (y !== lastY){ goingDown = y > lastY; lastY = y; }
     }, {passive:true});
@@ -1075,9 +1075,6 @@ html.pd-lock{overflow:hidden}
         rows.forEach(function(r){ if (!r._busy) paint(r, 99); });
         return;
       }
-      var now = Date.now();
-      if (now - lastRun < 20000) return;
-      lastRun = now;
       scramble(rows);
     }, {threshold: .3});
     sio.observe(shout);
